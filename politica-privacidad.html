@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de privacidad — APF Technologys</title>
+  <meta name="description" content="Política de privacidad de APF Technologys: qué datos personales tratamos, con qué finalidad, base legal, plazos de conservación, destinatarios y cómo ejercer tus derechos conforme al RGPD y la LOPDGDD." />
+  <meta name="theme-color" content="#FFFFFF" data-theme-color />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://apftechnologys.com/politica-privacidad.html" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("apf-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* Tipografía específica del documento legal, apoyada en .prose */
+    .legal { max-width: 76ch; }
+    .legal h2.subsection__title { margin-top: 0; }
+    .legal h3 {
+      font-size: 1.22rem;
+      margin-top: 32px;
+      color: var(--ink);
+    }
+    .legal h4 {
+      font-size: 1.04rem;
+      margin-top: 24px;
+      color: var(--ink);
+    }
+    .legal p { margin-top: 14px; }
+    .legal ul {
+      margin-top: 14px;
+      padding-left: 1.15rem;
+      list-style: none;
+    }
+    .legal ul li {
+      position: relative;
+      color: var(--ink-2);
+      font-size: clamp(1.02rem, 1.4vw, 1.12rem);
+      margin-top: 10px;
+      padding-left: 1.4rem;
+    }
+    .legal ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--grad-accent, var(--accent));
+    }
+    .legal a { color: var(--accent); }
+    .legal__updated {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: .95rem;
+      color: var(--ink-2);
+    }
+    .legal__block + .legal__block { margin-top: clamp(30px, 4.5vw, 52px); }
+
+    /* Índice de contenidos */
+    .legal-toc {
+      margin: 8px 0 0;
+      padding: 26px 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--surface);
+    }
+    .legal-toc h2 { font-size: 1.12rem; margin: 0 0 8px; }
+    .legal-toc ol {
+      margin: 0;
+      padding-left: 1.3rem;
+      columns: 2;
+      column-gap: 36px;
+    }
+    .legal-toc li { margin-top: 8px; break-inside: avoid; }
+    .legal-toc a { color: var(--ink-2); text-decoration: none; }
+    .legal-toc a:hover { color: var(--accent); }
+    @media (max-width: 640px) { .legal-toc ol { columns: 1; } }
+
+    /* Tabla de conservación / destinatarios */
+    .legal-table-wrap { margin-top: 18px; overflow-x: auto; }
+    .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .98rem;
+      min-width: 480px;
+    }
+    .legal-table th, .legal-table td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-2);
+      vertical-align: top;
+    }
+    .legal-table th { color: var(--ink); font-weight: 600; }
+    .legal-table tr:last-child td { border-bottom: none; }
+
+    .legal__note {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      background: var(--bg-1);
+      font-size: .98rem;
+      color: var(--ink-2);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#top">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav is-scrolled" id="nav" data-nav>
+    <div class="container nav__inner">
+      <a class="brand" href="index.html#inicio" aria-label="APF Technologys — inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+            <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M12 7v10M7.5 9.5 12 12l4.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">APF <span>Technologys</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Principal">
+        <a href="index.html#beneficios">Beneficios</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#nosotros">Sobre nosotros</a>
+        <a href="index.html#prueba">Contacto</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema claro u oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn btn--primary btn--sm" href="index.html#prueba">Solicita información</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="subhero">
+      <div class="subhero__aura" aria-hidden="true"></div>
+      <div class="container">
+        <a class="sub-back" href="index.html#inicio">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Volver al inicio
+        </a>
+        <p class="eyebrow" style="margin-top:18px">Información legal</p>
+        <h1 class="subhero__title">Política de privacidad</h1>
+        <p class="subhero__lead">En APF Technologys la protección de tus datos personales es una prioridad. En este documento te explicamos, con el máximo detalle y de forma transparente, qué información tratamos, con qué finalidad y base legal, durante cuánto tiempo, con quién la compartimos y cómo puedes ejercer tus derechos en todo momento.</p>
+        <span class="legal__updated">Última actualización: 15 de junio de 2026 · Versión 2.0</span>
+      </div>
+    </section>
+
+    <!-- ===== Documento ===== -->
+    <section class="subsection">
+      <div class="container">
+        <div class="prose legal">
+
+          <!-- Índice -->
+          <nav class="legal-toc" aria-label="Índice de la política de privacidad">
+            <h2>Contenido de este documento</h2>
+            <ol>
+              <li><a href="#s1">Introducción y aceptación</a></li>
+              <li><a href="#s2">Responsable del tratamiento</a></li>
+              <li><a href="#s3">Definiciones</a></li>
+              <li><a href="#s4">Ámbito de aplicación</a></li>
+              <li><a href="#s5">Datos que recopilamos</a></li>
+              <li><a href="#s6">Finalidades del tratamiento</a></li>
+              <li><a href="#s7">Base legal o legitimación</a></li>
+              <li><a href="#s8">Plazos de conservación</a></li>
+              <li><a href="#s9">Destinatarios y encargados</a></li>
+              <li><a href="#s10">Transferencias internacionales</a></li>
+              <li><a href="#s11">Decisiones automatizadas y perfiles</a></li>
+              <li><a href="#s12">Datos de menores de edad</a></li>
+              <li><a href="#s13">Tus derechos</a></li>
+              <li><a href="#s14">Comunicaciones comerciales</a></li>
+              <li><a href="#s15">Cookies y tecnologías similares</a></li>
+              <li><a href="#s16">Seguridad de la información</a></li>
+              <li><a href="#s17">Enlaces y servicios de terceros</a></li>
+              <li><a href="#s18">Redes sociales</a></li>
+              <li><a href="#s19">Veracidad de los datos</a></li>
+              <li><a href="#s20">Cambios en esta política</a></li>
+              <li><a href="#s21">Legislación y jurisdicción</a></li>
+              <li><a href="#s22">Contacto</a></li>
+            </ol>
+          </nav>
+
+          <div class="legal__block" id="s1">
+            <h2 class="subsection__title">1. Introducción y aceptación</h2>
+            <p>La presente Política de Privacidad regula el tratamiento de los datos de carácter personal que APF Technologys (en adelante, «APF Technologys», «la empresa», «nosotros») lleva a cabo en relación con los usuarios (en adelante, «el usuario», «tú») que visitan nuestro sitio web, rellenan nuestros formularios o se comunican con nosotros por cualquier medio.</p>
+            <p>Nos comprometemos a tratar tus datos con la máxima diligencia, transparencia y seguridad, cumpliendo en todo momento con el Reglamento (UE) 2016/679 General de Protección de Datos (RGPD), la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y Garantía de los Derechos Digitales (LOPDGDD) y demás normativa aplicable.</p>
+            <p>Al navegar por este sitio web, facilitarnos tus datos a través de cualquier formulario o contactar con nosotros, declaras haber leído y comprendido la presente política y aceptas el tratamiento de tus datos en los términos aquí descritos. Si no estás de acuerdo con alguno de los puntos, te rogamos que no facilites tus datos.</p>
+          </div>
+
+          <div class="legal__block" id="s2">
+            <h2 class="subsection__title">2. Responsable del tratamiento</h2>
+            <p>El responsable del tratamiento de los datos personales recogidos a través de este sitio web es:</p>
+            <ul>
+              <li><strong>Titular:</strong> APF Technologys</li>
+              <li><strong>Actividad:</strong> diseño e implementación de soluciones de inteligencia artificial a medida</li>
+              <li><strong>Domicilio:</strong> Madrid, España</li>
+              <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a></li>
+              <li><strong>Sitio web:</strong> <a href="https://apftechnologys.com">apftechnologys.com</a></li>
+            </ul>
+            <p>Para cualquier cuestión relacionada con la protección de datos o el ejercicio de tus derechos, puedes dirigirte a nosotros a través de la dirección de correo electrónico indicada.</p>
+          </div>
+
+          <div class="legal__block" id="s3">
+            <h2 class="subsection__title">3. Definiciones</h2>
+            <p>Para facilitar la comprensión de este documento, ten en cuenta los siguientes conceptos:</p>
+            <ul>
+              <li><strong>Dato personal:</strong> toda información sobre una persona física identificada o identificable (nombre, teléfono, correo electrónico, identificadores en línea, etc.).</li>
+              <li><strong>Tratamiento:</strong> cualquier operación realizada sobre datos personales, como su recogida, registro, conservación, uso, comunicación o supresión.</li>
+              <li><strong>Responsable del tratamiento:</strong> quien determina los fines y medios del tratamiento; en este caso, APF Technologys.</li>
+              <li><strong>Encargado del tratamiento:</strong> el tercero que trata datos por cuenta del responsable (por ejemplo, un proveedor de alojamiento web).</li>
+              <li><strong>Interesado o usuario:</strong> la persona física titular de los datos.</li>
+              <li><strong>Consentimiento:</strong> manifestación de voluntad libre, específica, informada e inequívoca por la que el interesado acepta el tratamiento de sus datos.</li>
+            </ul>
+          </div>
+
+          <div class="legal__block" id="s4">
+            <h2 class="subsection__title">4. Ámbito de aplicación</h2>
+            <p>Esta política se aplica a todos los tratamientos de datos personales que realiza APF Technologys a través de su sitio web y de los canales de comunicación asociados (formularios, correo electrónico y mensajería). No resulta aplicable a sitios web de terceros a los que se pueda acceder mediante enlaces, que disponen de sus propias políticas de privacidad.</p>
+          </div>
+
+          <div class="legal__block" id="s5">
+            <h2 class="subsection__title">5. Datos que recopilamos</h2>
+            <p>Tratamos únicamente los datos estrictamente necesarios para las finalidades descritas en esta política. En función de cómo interactúes con nosotros, podemos recopilar las siguientes categorías de datos:</p>
+
+            <h3>5.1. Datos facilitados directamente por el usuario</h3>
+            <p>Son los datos que nos proporcionas voluntariamente al cumplimentar nuestro formulario de solicitud de información o al comunicarte con nosotros:</p>
+            <ul>
+              <li>Datos identificativos: nombre y apellidos.</li>
+              <li>Datos de contacto: dirección de correo electrónico y número de teléfono.</li>
+              <li>Información profesional o sobre tu negocio que decidas compartir (sector, necesidades, servicio de interés).</li>
+              <li>El contenido de tus mensajes y de cualquier comunicación que mantengas con nosotros.</li>
+            </ul>
+
+            <h3>5.2. Datos recogidos de forma automática</h3>
+            <p>Cuando navegas por el sitio web, pueden recopilarse automáticamente determinados datos técnicos mediante cookies y tecnologías similares:</p>
+            <ul>
+              <li>Dirección IP y datos de conexión.</li>
+              <li>Tipo de dispositivo, navegador y sistema operativo.</li>
+              <li>Páginas visitadas, tiempo de permanencia y comportamiento de navegación de forma agregada.</li>
+              <li>Preferencias de configuración, como el tema claro u oscuro seleccionado.</li>
+            </ul>
+
+            <h3>5.3. Datos procedentes de terceros</h3>
+            <p>Con carácter general no obtenemos datos de fuentes externas. Si en algún momento recibiéramos datos a través de terceros (por ejemplo, plataformas de redes sociales cuando interactúas con nuestros perfiles), te informaremos de su origen y los trataremos conforme a esta política.</p>
+
+            <div class="legal__note">No solicitamos ni tratamos categorías especiales de datos (salud, ideología, origen étnico, afiliación sindical, etc.). Te rogamos que no incluyas información de esta naturaleza en tus comunicaciones.</div>
+          </div>
+
+          <div class="legal__block" id="s6">
+            <h2 class="subsection__title">6. Finalidades del tratamiento</h2>
+            <p>Tratamos tus datos personales para las siguientes finalidades:</p>
+            <ul>
+              <li>Atender y gestionar las solicitudes de información, consultas y peticiones que nos remitas.</li>
+              <li>Elaborar y enviarte presupuestos y propuestas de servicios adaptados a las necesidades de tu negocio.</li>
+              <li>Gestionar y mantener la relación comercial y contractual, así como dar seguimiento a los servicios contratados.</li>
+              <li>Enviarte comunicaciones comerciales e informativas sobre nuestros servicios, novedades y contenidos, siempre que contemos con tu consentimiento o exista una relación comercial previa.</li>
+              <li>Analizar el uso del sitio web con fines estadísticos y mejorar nuestros servicios, contenidos y experiencia de usuario.</li>
+              <li>Garantizar la seguridad de nuestros sistemas y prevenir usos fraudulentos o no autorizados.</li>
+              <li>Cumplir con las obligaciones legales, contables y fiscales que nos resulten aplicables.</li>
+            </ul>
+          </div>
+
+          <div class="legal__block" id="s7">
+            <h2 class="subsection__title">7. Base legal o legitimación</h2>
+            <p>El tratamiento de tus datos se fundamenta en una o varias de las siguientes bases jurídicas, según la finalidad concreta:</p>
+            <ul>
+              <li><strong>Consentimiento del interesado</strong> (art. 6.1.a RGPD): al cumplimentar y enviar el formulario, marcar la casilla de aceptación y, en su caso, suscribirte a comunicaciones comerciales. Este consentimiento es revocable en cualquier momento.</li>
+              <li><strong>Ejecución de un contrato o medidas precontractuales</strong> (art. 6.1.b RGPD): para gestionar la relación comercial y prestar los servicios solicitados.</li>
+              <li><strong>Interés legítimo</strong> (art. 6.1.f RGPD): para responder a tus consultas, garantizar la seguridad de la web, prevenir el fraude y, en su caso, enviar comunicaciones sobre servicios similares a clientes existentes.</li>
+              <li><strong>Cumplimiento de una obligación legal</strong> (art. 6.1.c RGPD): para atender requerimientos de las autoridades y cumplir con la normativa fiscal, mercantil y de protección de datos.</li>
+            </ul>
+            <p>La retirada del consentimiento no afectará a la licitud de los tratamientos realizados con anterioridad a dicha retirada.</p>
+          </div>
+
+          <div class="legal__block" id="s8">
+            <h2 class="subsection__title">8. Plazos de conservación</h2>
+            <p>Conservaremos tus datos personales durante el tiempo estrictamente necesario para cumplir con la finalidad para la que fueron recabados y, posteriormente, durante los plazos legalmente exigidos para atender posibles responsabilidades:</p>
+            <div class="legal-table-wrap">
+              <table class="legal-table">
+                <thead>
+                  <tr><th>Tipo de tratamiento</th><th>Plazo de conservación</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Solicitudes de información y consultas</td><td>Hasta atender tu solicitud y, salvo relación comercial, un máximo de 12 meses.</td></tr>
+                  <tr><td>Relación comercial y contractual</td><td>Durante la vigencia de la relación y los plazos de prescripción legal aplicables (con carácter general, hasta 6 años por obligaciones mercantiles y fiscales).</td></tr>
+                  <tr><td>Comunicaciones comerciales</td><td>Hasta que retires tu consentimiento o solicites la baja.</td></tr>
+                  <tr><td>Datos de navegación y cookies</td><td>Según los plazos definidos para cada cookie (ver apartado 15).</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Transcurridos dichos plazos, tus datos serán suprimidos o anonimizados de forma segura.</p>
+          </div>
+
+          <div class="legal__block" id="s9">
+            <h2 class="subsection__title">9. Destinatarios y encargados del tratamiento</h2>
+            <p>Tus datos personales son tratados con la máxima confidencialidad y <strong>no se ceden a terceros</strong>, salvo obligación legal o cuando sea necesario para la prestación del servicio. Pueden tener acceso a tus datos los siguientes destinatarios:</p>
+            <ul>
+              <li>Proveedores de servicios tecnológicos que actúan como encargados del tratamiento (alojamiento web, servicios en la nube, herramientas de gestión de clientes y de envío de correo electrónico), siempre bajo contrato de encargo de tratamiento y con las debidas garantías.</li>
+              <li>Administraciones públicas, fuerzas y cuerpos de seguridad y órganos judiciales, cuando exista una obligación legal de comunicar los datos.</li>
+              <li>Asesores profesionales (gestoría, asesoría legal o fiscal) cuando resulte necesario para el cumplimiento de obligaciones legales.</li>
+            </ul>
+            <p>Todos nuestros encargados del tratamiento ofrecen garantías suficientes para aplicar las medidas técnicas y organizativas apropiadas conforme al RGPD.</p>
+          </div>
+
+          <div class="legal__block" id="s10">
+            <h2 class="subsection__title">10. Transferencias internacionales de datos</h2>
+            <p>Con carácter general, tus datos se tratan dentro del Espacio Económico Europeo (EEE). En caso de que alguno de nuestros proveedores se encuentre fuera del EEE, garantizaremos que dichas transferencias se realicen únicamente a países con un nivel de protección adecuado reconocido por la Comisión Europea, o bien al amparo de garantías apropiadas como las Cláusulas Contractuales Tipo aprobadas por la Comisión, informándote debidamente en su caso.</p>
+          </div>
+
+          <div class="legal__block" id="s11">
+            <h2 class="subsection__title">11. Decisiones automatizadas y elaboración de perfiles</h2>
+            <p>APF Technologys no adopta decisiones que produzcan efectos jurídicos sobre ti o te afecten significativamente basadas únicamente en el tratamiento automatizado de tus datos. En caso de que en el futuro implementáramos tratamientos de este tipo, te informaríamos previamente de la lógica aplicada y de tu derecho a obtener intervención humana, expresar tu punto de vista e impugnar la decisión.</p>
+          </div>
+
+          <div class="legal__block" id="s12">
+            <h2 class="subsection__title">12. Datos de menores de edad</h2>
+            <p>Nuestros servicios y formularios están dirigidos a personas mayores de 18 años, en su condición de profesionales o representantes de empresas. No recogemos de forma consciente datos de menores de edad. Si tienes conocimiento de que un menor nos ha facilitado sus datos sin el consentimiento de sus tutores legales, te rogamos que nos lo comuniques para proceder a su eliminación.</p>
+          </div>
+
+          <div class="legal__block" id="s13">
+            <h2 class="subsection__title">13. Tus derechos</h2>
+            <p>La normativa de protección de datos te reconoce una serie de derechos que puedes ejercer de forma gratuita en cualquier momento:</p>
+            <ul>
+              <li><strong>Derecho de acceso:</strong> conocer qué datos personales tuyos estamos tratando.</li>
+              <li><strong>Derecho de rectificación:</strong> solicitar la corrección de datos inexactos o incompletos.</li>
+              <li><strong>Derecho de supresión («derecho al olvido»):</strong> solicitar la eliminación de tus datos cuando ya no sean necesarios.</li>
+              <li><strong>Derecho de oposición:</strong> oponerte al tratamiento de tus datos en determinadas circunstancias, incluida la oposición al marketing directo.</li>
+              <li><strong>Derecho a la limitación del tratamiento:</strong> solicitar que se limite el tratamiento de tus datos en los supuestos previstos por la ley.</li>
+              <li><strong>Derecho a la portabilidad:</strong> recibir tus datos en un formato estructurado, de uso común y lectura mecánica, o solicitar su transmisión a otro responsable.</li>
+              <li><strong>Derecho a retirar el consentimiento</strong> en cualquier momento, sin que ello afecte a la licitud del tratamiento previo.</li>
+              <li><strong>Derecho a no ser objeto de decisiones individuales automatizadas</strong> que produzcan efectos jurídicos o significativos.</li>
+            </ul>
+
+            <h4>Cómo ejercer tus derechos</h4>
+            <p>Para ejercer cualquiera de estos derechos, envíanos una solicitud al correo <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a>, indicando el derecho que deseas ejercer y adjuntando, cuando proceda, una copia de un documento que acredite tu identidad. Atenderemos tu solicitud en el plazo máximo de un mes, ampliable a dos meses en casos de especial complejidad.</p>
+
+            <h4>Reclamación ante la autoridad de control</h4>
+            <p>Si consideras que el tratamiento de tus datos no se ajusta a la normativa, o que no hemos atendido correctamente el ejercicio de tus derechos, tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>), C/ Jorge Juan, 6, 28001 Madrid.</p>
+          </div>
+
+          <div class="legal__block" id="s14">
+            <h2 class="subsection__title">14. Comunicaciones comerciales</h2>
+            <p>Si nos has dado tu consentimiento, podremos enviarte comunicaciones comerciales por correo electrónico u otros medios electrónicos sobre nuestros servicios, novedades y contenidos que puedan ser de tu interés. Podrás revocar este consentimiento y darte de baja en cualquier momento, de forma sencilla y gratuita, a través del enlace habilitado en cada comunicación o escribiéndonos a <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a>.</p>
+          </div>
+
+          <div class="legal__block" id="s15">
+            <h2 class="subsection__title">15. Cookies y tecnologías similares</h2>
+            <p>Este sitio web puede utilizar cookies y tecnologías similares (como el almacenamiento local del navegador) para garantizar su correcto funcionamiento, recordar tus preferencias y analizar el uso del sitio. Distinguimos entre:</p>
+            <ul>
+              <li><strong>Cookies técnicas o necesarias:</strong> imprescindibles para el funcionamiento de la web y para recordar ajustes como el tema claro u oscuro. No requieren consentimiento.</li>
+              <li><strong>Cookies analíticas:</strong> nos permiten medir y analizar de forma agregada y anónima cómo se utiliza el sitio, con el fin de mejorarlo.</li>
+              <li><strong>Cookies de terceros:</strong> en su caso, las gestionadas por proveedores externos conforme a sus propias políticas.</li>
+            </ul>
+            <p>Puedes configurar, permitir, bloquear o eliminar las cookies instaladas en tu equipo desde los ajustes de tu navegador. Ten en cuenta que la desactivación de algunas cookies puede afectar al correcto funcionamiento de determinadas secciones del sitio web.</p>
+          </div>
+
+          <div class="legal__block" id="s16">
+            <h2 class="subsection__title">16. Seguridad de la información</h2>
+            <p>APF Technologys ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad, confidencialidad e integridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, teniendo en cuenta el estado de la técnica, los costes de aplicación y la naturaleza, alcance y fines del tratamiento.</p>
+            <p>Entre otras medidas, aplicamos el cifrado de las comunicaciones, el control de accesos, la formación de nuestro personal y la revisión periódica de nuestros sistemas. No obstante, ningún sistema es completamente infalible, por lo que no podemos garantizar la seguridad absoluta de la información transmitida a través de internet.</p>
+          </div>
+
+          <div class="legal__block" id="s17">
+            <h2 class="subsection__title">17. Enlaces y servicios de terceros</h2>
+            <p>Nuestro sitio web puede contener enlaces a páginas o servicios de terceros. APF Technologys no se responsabiliza de las políticas de privacidad ni de los contenidos de dichos sitios. Te recomendamos revisar sus respectivas políticas antes de facilitarles cualquier dato personal.</p>
+          </div>
+
+          <div class="legal__block" id="s18">
+            <h2 class="subsection__title">18. Redes sociales</h2>
+            <p>APF Technologys puede disponer de perfiles en redes sociales. Cuando interactúas con nosotros a través de ellas, el tratamiento de tus datos se rige también por las condiciones de uso y políticas de privacidad de la red social correspondiente, sobre las que no tenemos control. Te recomendamos configurar adecuadamente tus opciones de privacidad en dichas plataformas.</p>
+          </div>
+
+          <div class="legal__block" id="s19">
+            <h2 class="subsection__title">19. Veracidad de los datos</h2>
+            <p>El usuario garantiza que los datos personales facilitados son veraces, exactos y se encuentran actualizados, y se compromete a comunicar cualquier modificación de los mismos. El usuario será el único responsable de los daños y perjuicios, directos o indirectos, que pudieran derivarse de la cumplimentación de los formularios con datos falsos, inexactos o incompletos, o pertenecientes a terceros sin su autorización.</p>
+          </div>
+
+          <div class="legal__block" id="s20">
+            <h2 class="subsection__title">20. Cambios en esta política</h2>
+            <p>APF Technologys se reserva el derecho a modificar la presente Política de Privacidad para adaptarla a novedades legislativas, jurisprudenciales o a cambios en sus servicios y tratamientos. Cualquier modificación se publicará en esta misma página, indicando la fecha de la última actualización. Te recomendamos revisar periódicamente este documento.</p>
+          </div>
+
+          <div class="legal__block" id="s21">
+            <h2 class="subsection__title">21. Legislación aplicable y jurisdicción</h2>
+            <p>La presente Política de Privacidad se rige por la legislación española y europea en materia de protección de datos. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso del sitio web, las partes se someten a los juzgados y tribunales que resulten competentes conforme a la normativa aplicable.</p>
+          </div>
+
+          <div class="legal__block" id="s22">
+            <h2 class="subsection__title">22. Contacto</h2>
+            <p>Si tienes cualquier duda, comentario o sugerencia sobre esta Política de Privacidad o sobre el tratamiento de tus datos personales, puedes ponerte en contacto con nosotros en:</p>
+            <ul>
+              <li>Correo electrónico: <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a></li>
+              <li>Sitio web: <a href="https://apftechnologys.com">apftechnologys.com</a></li>
+            </ul>
+            <p>Estaremos encantados de atenderte y resolver cualquier cuestión relacionada con tu privacidad.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="index.html#inicio">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+              <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M12 7v10M7.5 9.5 12 12l4.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand__name">APF <span>Technologys</span></span>
+        </a>
+        <p class="footer__tagline">Automatiza tu negocio con inteligencia artificial.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Soluciones">
+        <h4>Soluciones</h4>
+        <a href="soluciones/asistente-llamadas-ia.html">Asistente de llamadas IA</a>
+        <a href="soluciones/sistemas-ecommerce.html">Sistemas e-commerce</a>
+        <a href="soluciones/fidelizacion-clientes.html">Fidelización de clientes</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Empresa">
+        <h4>Empresa</h4>
+        <a href="index.html#nosotros">Sobre nosotros</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#prueba">Solicita información</a>
+      </nav>
+
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a>
+        <a href="https://instagram.com/apf.technologies" target="_blank" rel="noopener">Instagram · @apf.technologies</a>
+        <span class="footer__loc">Madrid, España</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© <span data-year>2025</span> APF Technologys. Todos los derechos reservados.</span>
+        <span class="footer__legal"><a href="politica-privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

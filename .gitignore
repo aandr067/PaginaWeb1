@@ -1,0 +1,23 @@
+# Basura de desarrollo que NO debe ir al repo ni al deploy
+three.js-dev/
+claude-frontend-skills/
+claude-web-design-skill/
+.vscode/
+
+# Backups / fuentes que no usa la web en producción
+robot.png
+robot-original.png
+robotPerfecto-*.png
+download*.jpeg
+download*.png
+shot-*.png
+*.webp
+*.pptx
+
+# Artefactos de empaquetado local
+_deploy/
+apf-web.zip
+
+# Sistema
+.DS_Store
+Thumbs.db
