@@ -5,18 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>APF Technologys — Inteligencia artificial para tu negocio</title>
   <meta name="description" content="APF Technologys diseña e implementa inteligencia artificial a medida: automatización de procesos, ventas, atención 24/7 y más. Empresa tecnológica con base en Madrid." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="APF Technologys" />
   <meta name="theme-color" content="#FFFFFF" data-theme-color />
   <link rel="canonical" href="https://apftechnologys.com/" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="APF Technologys" />
   <meta property="og:title" content="APF Technologys — Inteligencia artificial para tu negocio" />
   <meta property="og:description" content="Automatización inteligente, ventas y operación 24/7 impulsadas por IA. Soluciones a medida desde Madrid." />
   <meta property="og:url" content="https://apftechnologys.com/" />
   <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://apftechnologys.com/robotPerfecto.png" />
+  <meta property="og:image:alt" content="APF Technologys — robot de inteligencia artificial" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="APF Technologys — Inteligencia artificial para tu negocio" />
   <meta name="twitter:description" content="Automatización inteligente, ventas y operación 24/7 impulsadas por IA." />
+  <meta name="twitter:image" content="https://apftechnologys.com/robotPerfecto.png" />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
@@ -41,7 +47,69 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+  <!-- Preload hero image (LCP element) -->
+  <link rel="preload" as="image" href="robotPerfecto.webp" type="image/webp" fetchpriority="high" />
+
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://apftechnologys.com/#organization",
+        "name": "APF Technologys",
+        "url": "https://apftechnologys.com/",
+        "logo": "https://apftechnologys.com/robotPerfecto.png",
+        "email": "apf@apftechnologys.com",
+        "description": "Diseño e implementación de soluciones de inteligencia artificial a medida: automatización de procesos, ventas, atención 24/7 y más.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Madrid",
+          "addressCountry": "ES"
+        },
+        "sameAs": [
+          "https://instagram.com/apf.technologies"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://apftechnologys.com/#website",
+        "url": "https://apftechnologys.com/",
+        "name": "APF Technologys",
+        "inLanguage": "es-ES",
+        "publisher": { "@id": "https://apftechnologys.com/#organization" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": "APF Technologys",
+        "image": "https://apftechnologys.com/robotPerfecto.png",
+        "url": "https://apftechnologys.com/",
+        "areaServed": "ES",
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Madrid",
+          "addressCountry": "ES"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Soluciones de IA",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asistente de llamadas IA" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas e-commerce" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fidelización de clientes" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing con IA" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aplicaciones a medida" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas de IA predictiva" } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#inicio">Saltar al contenido</a>
@@ -107,14 +175,17 @@
     <section class="hero">
       <div class="hero__aura" aria-hidden="true"></div>
       <div class="hero__robot" aria-hidden="true">
-        <img src="robotPerfecto.png" alt="" width="736" height="1261" decoding="async" />
+        <picture>
+          <source srcset="robotPerfecto.webp" type="image/webp" />
+          <img src="robotPerfecto.png" alt="" width="736" height="1261" decoding="async" fetchpriority="high" />
+        </picture>
       </div>
       <div class="container hero__inner">
         <p class="reveal" data-delay="0">
           <span class="eyebrow eyebrow--pill"><span class="dot" aria-hidden="true"></span> Inteligencia artificial aplicada · Madrid</span>
         </p>
         <h1 class="hero__title reveal" data-delay="1">
-          Lleva tu NEGOCIO al siguiente nivel con <span class="grad">INTELIGENCIA ARTIFICIAL</span>
+          Lleva tu negocio al siguiente nivel con <span class="grad">inteligencia&nbsp;artificial</span>
         </h1>
         <p class="hero__lead reveal" data-delay="2">
           Diseñamos e implementamos sistemas de IA a medida que automatizan tus procesos,
@@ -338,7 +409,13 @@
           </ul>
         </div>
 
-        <form class="form reveal" data-delay="1" novalidate>
+        <form class="form reveal" data-delay="1" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <!-- Necesario para que Netlify identifique el formulario -->
+          <input type="hidden" name="form-name" value="contacto" />
+          <!-- Trampa anti-spam: invisible para personas, los bots la rellenan -->
+          <p class="form__hp" aria-hidden="true">
+            <label>No rellenar este campo: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           <div class="field">
             <label for="nombre">Nombre completo</label>
             <input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" />
@@ -391,11 +468,11 @@
         <p class="footer__tagline">Automatiza tu negocio con inteligencia artificial.</p>
       </div>
 
-      <nav class="footer__col" aria-label="Recursos">
-        <h4>Recursos</h4>
-        <a href="#">Blog</a>
-        <a href="#">Guías gratuitas</a>
-        <a href="#">Webinars</a>
+      <nav class="footer__col" aria-label="Soluciones">
+        <h4>Soluciones</h4>
+        <a href="soluciones/asistente-llamadas-ia.html">Asistente de llamadas IA</a>
+        <a href="soluciones/sistemas-ecommerce.html">Sistemas e-commerce</a>
+        <a href="soluciones/marketing-ia.html">Marketing con IA</a>
       </nav>
 
       <nav class="footer__col" aria-label="Empresa">

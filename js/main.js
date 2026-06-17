@@ -155,8 +155,29 @@
         return;
       }
       note.classList.remove("is-error");
-      note.textContent = "¡Gracias! Hemos recibido tu solicitud de información. Te contactaremos muy pronto.";
-      form.reset();
+      note.textContent = "Enviando…";
+
+      var btn = form.querySelector("button[type=submit]");
+      if (btn) btn.disabled = true;
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("bad status");
+          note.classList.remove("is-error");
+          note.textContent = "¡Gracias! Hemos recibido tu solicitud de información. Te contactaremos muy pronto.";
+          form.reset();
+        })
+        .catch(function () {
+          note.classList.add("is-error");
+          note.textContent = "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a anderpastorfer05@gmail.com.";
+        })
+        .then(function () {
+          if (btn) btn.disabled = false;
+        });
     });
   }
 

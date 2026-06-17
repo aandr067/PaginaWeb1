@@ -2,6 +2,8 @@
 three.js-dev/
 claude-frontend-skills/
 claude-web-design-skill/
+lighthouse/
+tailwindcss/
 .vscode/
 
 # Backups / fuentes que no usa la web en producción
@@ -12,6 +14,7 @@ download*.jpeg
 download*.png
 shot-*.png
 *.webp
+!robotPerfecto.webp
 *.pptx
 
 # Artefactos de empaquetado local

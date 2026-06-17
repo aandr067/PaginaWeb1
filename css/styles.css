@@ -9,8 +9,8 @@
   color-scheme: light;
 
   /* Surfaces / ink */
-  --bg:        #FFFFFF;
-  --bg-1:      #F6F8FB;
+  --bg:        #FCFCFE;
+  --bg-1:      #F4F7FB;
   --surface:   #FFFFFF;
   --surface-2: #FBFCFE;
   --ink:       #0B1220;
@@ -142,9 +142,13 @@ body {
   font-weight: 400;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.6;
+  line-height: 1.62;
+  letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01" 1, "cv05" 1, "cv11" 1;
+  font-optical-sizing: auto;
   overflow-x: hidden;
   transition: background .4s var(--ease), color .4s var(--ease);
 }
@@ -193,6 +197,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.022em;
   line-height: 1.06;
   color: var(--ink);
+  font-optical-sizing: auto;
+  text-wrap: balance;
 }
 
 .eyebrow {
@@ -464,10 +470,11 @@ h1, h2, h3, h4 {
 
 .hero__title {
   font-size: clamp(2.6rem, 6.4vw, 5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  max-width: 17ch;
-  margin: 20px 0 0;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  max-width: 18ch;
+  margin: 22px 0 0;
 }
 .hero__lead {
   font-size: clamp(1.06rem, 1.7vw, 1.32rem);
@@ -587,6 +594,13 @@ h1, h2, h3, h4 {
 .section { padding: clamp(80px, 11vw, 150px) 0; }
 .section--soft { background: var(--bg-1); }
 .section__head { max-width: 64ch; margin: 0 auto clamp(44px, 6vw, 70px); text-align: center; }
+/* Editorial kicker — flanking hairlines on centered section eyebrows */
+.section__head .eyebrow::before,
+.section__head .eyebrow::after {
+  content: ""; width: 26px; height: 1px; flex: none;
+  background: linear-gradient(90deg, transparent, var(--accent-tint-2));
+}
+.section__head .eyebrow::after { transform: scaleX(-1); }
 .section__title { font-size: clamp(2rem, 4vw, 3.2rem); margin-top: 16px; }
 .section__lead { color: var(--ink-2); font-size: clamp(1.04rem, 1.5vw, 1.2rem); margin-top: 18px; }
 
@@ -765,6 +779,7 @@ a.svc { color: inherit; }
 }
 .consent { display: flex; gap: 11px; align-items: flex-start; font-size: .88rem; color: var(--ink-3); }
 .consent input { margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+.form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form__note { font-size: .9rem; color: var(--accent); min-height: 1.2em; }
 .form__note.is-error { color: #DC2626; }
 [data-theme="dark"] .form__note.is-error { color: #F87171; }

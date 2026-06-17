@@ -2,16 +2,52 @@
 [build]
   publish = "."
 
-# Cabeceras de seguridad y caché
+# Cabeceras de seguridad para todo el sitio
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Content-Security-Policy = "frame-ancestors 'self'"
 
-# Cachear la imagen del hero (no cambia a menudo)
+# Caché larga e inmutable para la imagen del hero (no cambia)
 [[headers]]
   for = "/robotPerfecto.png"
   [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/robotPerfecto.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Caché para el resto de imágenes
+[[headers]]
+  for = "*.png"
+  [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Caché para hojas de estilo
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+# Caché para scripts
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
