@@ -36,6 +36,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://apftechnologys.com/soluciones/auditoria-vulnerabilidades.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apftechnologys.com/soluciones/pentesting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apftechnologys.com/soluciones/soc-monitorizacion.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apftechnologys.com/soluciones/seguridad-ia.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apftechnologys.com/soluciones/backup-ransomware.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://apftechnologys.com/soluciones/seguridad-email-endpoints.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://apftechnologys.com/politica-privacidad.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
