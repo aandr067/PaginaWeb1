@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens (claude-web-design-skill): 6 colores base + acento, contraste WCAG AA. */
+@layer base {
+  :root {
+    --bg: 248 250 252; /* slate-50 */
+    --surface: 255 255 255;
+    --border: 226 232 240; /* slate-200 */
+    --muted: 100 116 139; /* slate-500 */
+    --fg: 15 23 42; /* slate-900 */
+    --brand: 37 99 235; /* blue-600 */
+    --brand-fg: 255 255 255;
+    --success: 22 163 74;
+    --warning: 217 119 6;
+    --danger: 220 38 38;
+    --info: 8 145 178;
+  }
+  .dark {
+    --bg: 2 6 23;
+    --surface: 15 23 42;
+    --border: 30 41 59;
+    --muted: 148 163 184;
+    --fg: 226 232 240;
+    --brand: 59 130 246;
+    --brand-fg: 255 255 255;
+  }
+  html {
+    font-feature-settings: "cv11", "ss01";
+  }
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+  }
+}
