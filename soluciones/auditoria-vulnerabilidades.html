@@ -57,6 +57,20 @@
     ]
   }
   </script>
+
+  <!-- Datos estructurados: preguntas frecuentes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿En qué se diferencia de un pentesting?", "acceptedAnswer": { "@type": "Answer", "text": "La auditoría busca cobertura total: descubre y cataloga de forma exhaustiva todas las vulnerabilidades conocidas y las prioriza por criticidad. El pentesting, en cambio, simula un ataque dirigido para demostrar hasta dónde podría llegar un atacante explotando esos fallos. Son complementarios: la auditoría te da el mapa completo del riesgo; el pentesting prueba su explotación real." } },
+      { "@type": "Question", "name": "¿Afecta al funcionamiento de mis sistemas en producción?", "acceptedAnswer": { "@type": "Answer", "text": "No. El análisis es esencialmente de descubrimiento y se realiza con técnicas no intrusivas. Cualquier prueba que pudiera tener algún impacto se coordina contigo de antemano y se ejecuta en ventanas seguras, sin frenar tu operación." } },
+      { "@type": "Question", "name": "¿Es confidencial todo lo que encontréis?", "acceptedAnswer": { "@type": "Answer", "text": "Totalmente. Firmamos un acuerdo de confidencialidad antes de empezar. Todos los hallazgos son solo para ti y se entregan por canales seguros. Nadie más conoce el estado de tu seguridad." } },
+      { "@type": "Question", "name": "¿Cuánto tarda y qué recibo al final?", "acceptedAnswer": { "@type": "Answer", "text": "Una auditoría típica se entrega en 3–5 días. Recibes un informe ejecutivo para dirección y uno técnico detallado con cada vulnerabilidad, su criticidad según CVSS y un plan de remediación priorizado, paso a paso." } }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#top">Saltar al contenido</a>

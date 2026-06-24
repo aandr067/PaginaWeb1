@@ -53,6 +53,12 @@
   <link rel="stylesheet" href="css/styles.css?v=20260624b" />
 
   <!-- Datos estructurados -->
+  <!-- ⚠️ REQUIERE DATO REAL: el nodo "LocalBusiness" de abajo está preparado para
+       activar el SEO local (Google Business Profile, resultados enriquecidos), pero
+       le faltan datos. Cuando estén disponibles, añade dentro de su "address" los
+       campos "streetAddress" y "postalCode", y un "telephone" a nivel de nodo.
+       No publicar datos inventados: si no hay dirección física pública, deja solo
+       la localidad y añade al menos un "telephone" real. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -112,6 +118,23 @@
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Seguridad gestionada de email y endpoints" } }
           ]
         }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://apftechnologys.com/#localbusiness",
+        "name": "APF Technologys",
+        "image": "https://apftechnologys.com/robotPerfecto.png",
+        "url": "https://apftechnologys.com/",
+        "email": "apf@apftechnologys.com",
+        "priceRange": "€€",
+        "areaServed": "ES",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Madrid",
+          "addressRegion": "Madrid",
+          "addressCountry": "ES"
+        },
+        "parentOrganization": { "@id": "https://apftechnologys.com/#organization" }
       }
     ]
   }

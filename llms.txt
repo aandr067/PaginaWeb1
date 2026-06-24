@@ -1,0 +1,30 @@
+# APF Technologys
+
+> Empresa tecnológica con base en Madrid (España) especializada en inteligencia artificial a medida y ciberseguridad para empresas. Diseñamos e implementamos automatización de procesos, agentes de IA, atención 24/7 y protección de datos para que los negocios trabajen de forma más eficiente y segura.
+
+APF Technologys ofrece dos grandes líneas de servicio: **soluciones de inteligencia artificial** (automatización, agentes de voz, marketing, e-commerce, IA predictiva, GPTs personalizados) y **ciberseguridad** (auditorías, pentesting, monitorización 24/7, copias de seguridad, seguridad con IA y protección de email/endpoints). Todo el contenido está en español de España (es-ES). Contacto: apf@apftechnologys.com.
+
+## Soluciones de inteligencia artificial
+
+- [Asistente de llamadas IA](https://apftechnologys.com/soluciones/asistente-llamadas-ia.html): agente de voz con IA que atiende llamadas 24/7, agenda citas y se integra con el CRM.
+- [GPTs personalizados](https://apftechnologys.com/soluciones/gpts-personalizados.html): asistentes de IA entrenados con el conocimiento de la empresa, integrados en web, WhatsApp y CRM.
+- [Marketing con IA](https://apftechnologys.com/soluciones/marketing-ia.html): generación y optimización de contenido y campañas con inteligencia artificial.
+- [Sistemas e-commerce](https://apftechnologys.com/soluciones/sistemas-ecommerce.html): automatización integral de tiendas online con stock, pedidos y recomendaciones por IA.
+- [Fidelización de clientes](https://apftechnologys.com/soluciones/fidelizacion-clientes.html): campañas personalizadas automáticas para aumentar la recurrencia.
+- [Sistemas de IA predictiva](https://apftechnologys.com/soluciones/ia-predictiva.html): modelos que anticipan demanda, comportamiento y oportunidades a partir de los datos.
+- [Aplicaciones a medida](https://apftechnologys.com/soluciones/aplicaciones-medida.html): desarrollo de software propio que automatiza procesos e integra las herramientas existentes.
+
+## Ciberseguridad
+
+- [Auditoría y análisis de vulnerabilidades](https://apftechnologys.com/soluciones/auditoria-vulnerabilidades.html): análisis exhaustivo de la superficie expuesta con priorización por criticidad (CVSS).
+- [Pentesting (test de intrusión)](https://apftechnologys.com/soluciones/pentesting.html): simulación de ataques reales para demostrar y corregir el riesgo de explotación.
+- [Protección y monitorización 24/7 (SOC)](https://apftechnologys.com/soluciones/soc-monitorizacion.html): vigilancia continua con detección y respuesta ante amenazas en tiempo real.
+- [Seguridad con IA](https://apftechnologys.com/soluciones/seguridad-ia.html): detección de comportamientos anómalos y ataques de día cero mediante modelos de IA.
+- [Copias de seguridad y recuperación ante ransomware](https://apftechnologys.com/soluciones/backup-ransomware.html): copias cifradas e inmutables (regla 3-2-1) y plan de continuidad.
+- [Seguridad de email y endpoints](https://apftechnologys.com/soluciones/seguridad-email-endpoints.html): protección de correo, equipos y dispositivos frente a malware y phishing.
+
+## Páginas principales
+
+- [Inicio](https://apftechnologys.com/): visión general de servicios, planes y contacto.
+- [Política de privacidad](https://apftechnologys.com/politica-privacidad.html)
+- [Términos y condiciones](https://apftechnologys.com/terminos.html)
