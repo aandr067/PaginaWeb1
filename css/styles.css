@@ -299,12 +299,13 @@ h1, h2, h3, h4 {
   transition: padding .35s var(--ease);
 }
 .nav__inner {
-  max-width: var(--container);
+  max-width: 1340px;
   margin-inline: auto;
   height: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 0 8px 0 18px;
   border-radius: var(--pill);
   border: 1px solid transparent;
@@ -336,11 +337,12 @@ h1, h2, h3, h4 {
 }
 .brand__name span { font-weight: 400; color: var(--ink-3); }
 
-.nav__links { display: flex; gap: 4px; }
+.nav__links { display: flex; gap: 2px; flex-wrap: nowrap; }
 .nav__links a {
-  padding: 9px 15px;
+  padding: 9px 14px;
   border-radius: var(--pill);
   font-size: .92rem;
+  white-space: nowrap;
   color: var(--ink-2);
   transition: color .2s var(--ease), background .2s var(--ease);
 }
@@ -824,7 +826,7 @@ a.svc { color: inherit; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 1024px) {
   .nav__links { display: none; }
   .nav__toggle { display: block; }
   .nav .nav__actions .btn--primary { display: none; }
@@ -890,6 +892,21 @@ a.svc { color: inherit; }
     transform: translateX(0);
     transition: transform .12s linear;
   }
+
+  /* ---- Plans become a peek carousel too (same UX as services) ---- */
+  .carousel .plans.carousel__track {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    max-width: none;
+    margin: 0 calc(var(--pad) * -1);
+    padding-inline: var(--pad);
+    align-items: stretch;
+  }
+  .carousel .plans.carousel__track > .plan { margin: 0; }
+  /* let the featured tier keep its accent but share the carousel scale */
+  .carousel .plans.carousel__track > .plan--popular { transform: scale(.94); }
+  .carousel .plans.carousel__track > .plan--popular.is-active { transform: scale(1); }
 }
 
 @media (max-width: 600px) {
@@ -1103,13 +1120,143 @@ a.svc { color: inherit; }
   width: 10px; height: 10px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
 }
-.plan .btn { position: relative; z-index: 1; margin-top: auto; }
+.plan__cta {
+  position: relative; z-index: 1;
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.plan .btn { position: relative; z-index: 1; }
 
 .plans__note {
   text-align: center; color: var(--ink-2);
   margin-top: 34px; font-size: .98rem;
 }
 .plans__note a { color: var(--accent); font-weight: 500; }
+
+/* ===================================================================
+   Subpages — enriched persuasion blocks (trust, risk, FAQ, urgency)
+   =================================================================== */
+
+/* Trust chips under the hero */
+.trust-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.trust-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 15px; border-radius: var(--pill);
+  background: var(--lg-fill); border: 1px solid var(--lg-edge);
+  box-shadow: var(--lg-shadow);
+  -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
+  font-size: .86rem; font-weight: 500; color: var(--ink-2);
+}
+.trust-chip svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+
+/* Lead-in paragraph for sections */
+.subsection__lead {
+  color: var(--ink-2); font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+  max-width: 62ch; margin-top: 16px;
+}
+
+/* Risk / cost-of-inaction cards (urgency) */
+.risk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.risk {
+  position: relative; padding: 28px 26px;
+  border-radius: var(--r);
+  background: var(--lg-fill);
+  border: 1px solid rgba(220, 38, 38, .22);
+  box-shadow: var(--lg-shadow);
+  -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
+  transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.risk:hover { transform: translateY(-4px); border-color: rgba(220, 38, 38, .48); box-shadow: var(--lg-shadow), 0 18px 40px -26px rgba(220,38,38,.4); }
+.risk__icon {
+  display: grid; place-items: center; width: 46px; height: 46px;
+  border-radius: 13px; color: #DC2626;
+  background: rgba(220, 38, 38, .08); border: 1px solid rgba(220, 38, 38, .18);
+}
+.risk__icon svg { width: 23px; height: 23px; }
+.risk h3 { font-size: 1.1rem; margin: 18px 0 8px; }
+.risk p { color: var(--ink-2); font-size: .96rem; }
+.risk strong { color: #DC2626; font-weight: 600; }
+[data-theme="dark"] .risk { border-color: rgba(248, 113, 113, .26); }
+[data-theme="dark"] .risk:hover { border-color: rgba(248, 113, 113, .5); }
+[data-theme="dark"] .risk__icon { color: #F87171; background: rgba(248,113,113,.1); border-color: rgba(248,113,113,.22); }
+[data-theme="dark"] .risk strong { color: #F87171; }
+
+/* 3-up feature grid variant */
+.feature-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+/* Outcome / benefit list with big result numbers */
+.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.outcome {
+  padding: 28px 26px; border-radius: var(--r);
+  background: var(--lg-fill); border: 1px solid var(--lg-edge);
+  box-shadow: var(--lg-shadow);
+  -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
+  transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.outcome:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--lg-shadow), 0 18px 40px -26px var(--accent-glow); }
+.outcome strong {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem); letter-spacing: -0.03em;
+  background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.outcome h3 { font-size: 1.04rem; margin: 10px 0 6px; }
+.outcome p { color: var(--ink-2); font-size: .95rem; }
+
+/* Pull quote / testimonial */
+.quote {
+  max-width: 820px; margin: 0 auto; text-align: center;
+  padding: clamp(36px,5vw,56px) clamp(24px,4vw,48px);
+  border-radius: var(--r-lg);
+  background: var(--lg-fill); border: 1px solid var(--lg-edge);
+  box-shadow: var(--lg-shadow);
+  -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
+}
+.quote__mark { font-family: var(--font-display); font-size: 3.4rem; line-height: .6; color: var(--accent); opacity: .5; }
+.quote p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 500; line-height: 1.45; margin-top: 10px; }
+.quote cite { display: block; margin-top: 20px; font-style: normal; color: var(--ink-3); font-size: .95rem; }
+.quote cite strong { color: var(--ink); font-weight: 600; }
+
+/* FAQ accordion */
+.faq { max-width: 800px; margin: 30px auto 0; display: grid; gap: 12px; }
+.faq__item {
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  background: var(--lg-fill); box-shadow: var(--lg-shadow);
+  -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
+  overflow: hidden; transition: border-color .3s var(--ease);
+}
+.faq__item[open] { border-color: var(--accent-tint-2); }
+.faq__q {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 19px 24px; font-family: var(--font-display); font-weight: 600; font-size: 1.04rem;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after {
+  content: ""; flex: none; width: 20px; height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition: transform .3s var(--ease);
+}
+.faq__item[open] .faq__q::after { transform: rotate(135deg); }
+.faq__a { padding: 0 24px 22px; color: var(--ink-2); font-size: 1rem; }
+
+/* Urgency strip */
+.urgency {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+  margin: 30px auto 0; max-width: 760px;
+  padding: 14px 24px; border-radius: var(--pill);
+  background: var(--accent-tint); border: 1px solid var(--accent-tint-2);
+  color: var(--accent); font-weight: 500; font-size: .96rem; text-align: center;
+}
+.urgency svg { width: 18px; height: 18px; flex: none; }
+
+/* Guarantee chips inside the CTA band */
+.cta-guarantee { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; margin-top: 28px; }
+.cta-guarantee span { display: inline-flex; align-items: center; gap: 8px; color: rgba(244,246,250,.86); font-size: .92rem; }
+.cta-guarantee svg { width: 17px; height: 17px; color: #60A5FA; flex: none; }
+
+@media (max-width: 860px) {
+  .risk-grid, .outcomes, .feature-grid--3 { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 980px) {
   .plans { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; gap: 30px; }

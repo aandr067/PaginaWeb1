@@ -106,10 +106,26 @@
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="11" cy="10.5" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="m12.8 12.3 2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </span>
         <h1 class="subhero__title">Auditoría y análisis de vulnerabilidades</h1>
-        <p class="subhero__lead">Una radiografía completa de la seguridad de tu empresa: localizamos cada punto débil y te decimos exactamente cómo corregirlo, por orden de prioridad.</p>
+        <p class="subhero__lead">Hacemos una radiografía completa de tu web, sistemas y configuraciones para descubrir cada punto débil y priorizarlo por criticidad. <strong>Sabrás exactamente qué corregir primero — antes de que un atacante lo encuentre por ti.</strong></p>
         <div class="subhero__foot">
-          <a class="btn btn--primary btn--lg" href="../index.html#prueba">Solicita información</a>
-          <span class="subhero__metric">Detecta el 95% de fallos críticos</span>
+          <a class="btn btn--primary btn--lg" href="../index.html#prueba">Solicita tu auditoría</a>
+          <span class="subhero__metric">Informe en 3–5 días</span>
+        </div>
+        <div class="trust-row reveal">
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Metodología OWASP</span>
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Escaneo + revisión manual experta</span>
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Confidencial y bajo contrato</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stat band ===== -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat reveal"><strong>+25.000</strong><span>vulnerabilidades nuevas (CVE) se publican cada año</span></div>
+          <div class="stat reveal" data-delay="1"><strong>70%</strong><span>de las webs presentan fallos de seguridad conocidos sin corregir</span></div>
+          <div class="stat reveal" data-delay="2"><strong>4,4 M€</strong><span>coste medio global de una brecha de datos</span></div>
         </div>
       </div>
     </section>
@@ -119,48 +135,144 @@
       <div class="container">
         <div class="prose reveal">
           <p class="eyebrow">¿En qué consiste?</p>
-          <h2 class="subsection__title" style="margin-top:14px">Conoce tus puntos débiles antes que los atacantes</h2>
-          <p>Realizamos un escaneo exhaustivo de tus aplicaciones web, redes, servidores y configuraciones en la nube para identificar las vulnerabilidades que podrían poner en riesgo tu negocio: software desactualizado, configuraciones inseguras, contraseñas débiles o puertas abiertas que no sabías que existían.</p>
-          <p>No te entregamos un informe técnico imposible de entender. Priorizamos cada hallazgo según su riesgo real y te damos un plan de acción claro para corregirlo, paso a paso.</p>
+          <h2 class="subsection__title" style="margin-top:14px">Conoce y prioriza tus puntos débiles antes que los atacantes</h2>
+          <p>Una auditoría de vulnerabilidades es un análisis exhaustivo y sistemático de toda tu superficie expuesta: aplicaciones web, sistemas, servidores, configuraciones en la nube y dependencias de software. Identificamos las vulnerabilidades conocidas que podrían poner en riesgo tu negocio —software desactualizado, configuraciones inseguras, librerías con CVE públicos, credenciales débiles o puertos abiertos que no sabías que existían— y las catalogamos una a una.</p>
+          <p>A diferencia de un pentesting, donde simulamos un ataque dirigido para demostrar hasta dónde se podría llegar, aquí el objetivo es la <strong>cobertura total</strong>: descubrir y documentar de forma exhaustiva cada fallo presente y ordenarlo por criticidad real. Así no dejas ningún punto ciego y sabes con certeza dónde está cada riesgo.</p>
+          <p>Al terminar recibes un informe ejecutivo entendible por dirección y un informe técnico detallado con cada vulnerabilidad, su nivel de criticidad y el plan de remediación priorizado. Sin tecnicismos imposibles, sin letra pequeña: solo qué corregir y en qué orden.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cost of inaction (urgency) ===== -->
+    <section class="subsection subsection--soft">
+      <div class="container">
+        <p class="eyebrow reveal">El coste de no actuar</p>
+        <h2 class="subsection__title reveal" style="margin-top:14px">Lo que está en juego mientras no lo compruebas</h2>
+        <p class="subsection__lead reveal">Las vulnerabilidades no avisan: están ahí en silencio hasta que alguien las encuentra. Esto es lo que te juegas cada día que pasa sin auditar:</p>
+        <div class="risk-grid">
+          <div class="risk reveal">
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2 20h20L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <h3>Datos expuestos</h3>
+            <p>Un solo fallo sin corregir puede dejar <strong>al descubierto los datos de tus clientes</strong> y abrir la puerta a robos, fraudes y suplantaciones.</p>
+          </div>
+          <div class="risk reveal" data-delay="1">
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/></svg></span>
+            <h3>Multas del RGPD</h3>
+            <p>No proteger los datos personales puede acarrear <strong>sanciones de hasta el 4% de tu facturación anual</strong>, además del coste de notificar la brecha.</p>
+          </div>
+          <div class="risk reveal" data-delay="2">
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M8 15s1.5-2 4-2 4 2 4 2M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <h3>Downtime y reputación</h3>
+            <p>Un fallo explotado puede tumbar tu web y tus sistemas durante días. <strong>La caída se paga en ventas y en confianza perdida.</strong></p>
+          </div>
+        </div>
+        <div class="urgency reveal">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          La mayoría de las brechas explotan vulnerabilidades conocidas para las que ya existía solución. Detectarlas a tiempo cuesta mucho menos que lamentar el ataque.
         </div>
       </div>
     </section>
 
     <!-- ===== What it includes ===== -->
-    <section class="subsection subsection--soft">
+    <section class="subsection">
       <div class="container">
         <p class="eyebrow reveal">Qué incluye</p>
         <h2 class="subsection__title reveal" style="margin-top:14px">Todo lo que revisamos por ti</h2>
-        <div class="feature-grid">
+        <div class="feature-grid feature-grid--3">
           <div class="feature reveal">
             <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div><h3>Escaneo integral</h3><p>Analizamos web, red, servidores y servicios en la nube en una única auditoría.</p></div>
+            <div><h3>Escaneo de vulnerabilidades</h3><p>Análisis automatizado de web, red, servidores y servicios en la nube para detectar cada fallo conocido.</p></div>
           </div>
           <div class="feature reveal" data-delay="1">
             <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div><h3>Riesgo priorizado</h3><p>Clasificamos cada vulnerabilidad por criticidad para que sepas qué corregir primero.</p></div>
+            <div><h3>Revisión manual experta</h3><p>Un analista valida cada hallazgo, descarta falsos positivos y encuentra lo que las herramientas pasan por alto.</p></div>
+          </div>
+          <div class="feature reveal" data-delay="2">
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><h3>Análisis de configuración</h3><p>Revisamos servidores, permisos, cifrado y ajustes de la nube en busca de configuraciones inseguras.</p></div>
           </div>
           <div class="feature reveal">
             <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div><h3>Informe accionable</h3><p>Un documento claro con hallazgos, impacto y pasos concretos de remediación.</p></div>
+            <div><h3>Dependencias y CVEs</h3><p>Comprobamos librerías y componentes de terceros frente a las vulnerabilidades públicas conocidas.</p></div>
           </div>
           <div class="feature reveal" data-delay="1">
             <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div><h3>Revisión recurrente</h3><p>Auditorías periódicas para mantener tu seguridad al día frente a nuevas amenazas.</p></div>
+            <div><h3>Priorización por criticidad</h3><p>Clasificamos cada vulnerabilidad con el estándar CVSS para que sepas exactamente qué corregir primero.</p></div>
+          </div>
+          <div class="feature reveal" data-delay="2">
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><h3>Informe + plan de remediación</h3><p>Documento ejecutivo y técnico con cada hallazgo, su impacto y los pasos concretos para resolverlo.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== How we do it ===== -->
+    <!-- ===== Outcomes ===== -->
+    <section class="subsection subsection--soft">
+      <div class="container">
+        <p class="eyebrow reveal">Resultados que vas a notar</p>
+        <h2 class="subsection__title reveal" style="margin-top:14px">De los puntos ciegos al control total</h2>
+        <div class="outcomes">
+          <div class="outcome reveal"><strong>100%</strong><h3>Visibilidad</h3><p>Un mapa completo de cada vulnerabilidad de tu negocio, sin puntos ciegos ni suposiciones.</p></div>
+          <div class="outcome reveal" data-delay="1"><strong>−90%</strong><h3>Riesgo crítico</h3><p>Cierras primero los fallos más peligrosos y reduces drásticamente tu exposición real.</p></div>
+          <div class="outcome reveal" data-delay="2"><strong>+ Confianza</strong><h3>Tranquilidad</h3><p>Demuestras a clientes y partners que tu seguridad está revisada y bajo control.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Quote ===== -->
     <section class="subsection">
       <div class="container">
+        <figure class="quote reveal">
+          <div class="quote__mark" aria-hidden="true">“</div>
+          <p>Creíamos tener todo actualizado. La auditoría destapó decenas de fallos que ni sabíamos que existían y, sobre todo, nos dijo cuáles corregir primero. Por fin sabíamos por dónde empezar.</p>
+          <cite><strong>Responsable de IT</strong> · empresa de servicios</cite>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== How we do it ===== -->
+    <section class="subsection subsection--soft">
+      <div class="container">
         <p class="eyebrow reveal">Cómo lo ponemos en marcha</p>
-        <h2 class="subsection__title reveal" style="margin-top:14px">En tres pasos, sin complejidad</h2>
+        <h2 class="subsection__title reveal" style="margin-top:14px">En cuatro pasos, sin complejidad</h2>
         <div class="steps">
-          <div class="step reveal"><span class="step__n">1</span><h3>Alcance</h3><p>Definimos contigo qué sistemas, webs y activos entran en la auditoría.</p></div>
-          <div class="step reveal" data-delay="1"><span class="step__n">2</span><h3>Análisis</h3><p>Escaneamos y revisamos manualmente en busca de vulnerabilidades reales.</p></div>
-          <div class="step reveal" data-delay="2"><span class="step__n">3</span><h3>Informe y plan</h3><p>Te entregamos los hallazgos priorizados y el plan de corrección.</p></div>
+          <div class="step reveal"><span class="step__n">1</span><h3>Alcance</h3><p>Definimos contigo qué webs, sistemas y activos entran en la auditoría, bajo acuerdo de confidencialidad.</p></div>
+          <div class="step reveal" data-delay="1"><span class="step__n">2</span><h3>Análisis y escaneo</h3><p>Combinamos escaneo automatizado y revisión manual experta para detectar cada vulnerabilidad real.</p></div>
+          <div class="step reveal" data-delay="2"><span class="step__n">3</span><h3>Informe priorizado</h3><p>Entregamos los hallazgos ordenados por criticidad, con su impacto y el plan de corrección.</p></div>
+          <div class="step reveal" data-delay="3"><span class="step__n">4</span><h3>Acompañamiento en remediación</h3><p>Te guiamos al corregir y verificamos que cada fallo crítico quede realmente cerrado.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="subsection">
+      <div class="container">
+        <p class="eyebrow reveal" style="text-align:center;display:block">Preguntas frecuentes</p>
+        <h2 class="subsection__title reveal" style="margin-top:14px;text-align:center">Resolvemos tus dudas</h2>
+        <div class="faq">
+          <details class="faq__item reveal"><summary class="faq__q">¿En qué se diferencia de un pentesting?</summary><div class="faq__a">La auditoría busca cobertura total: descubre y cataloga de forma exhaustiva todas las vulnerabilidades conocidas y las prioriza por criticidad. El pentesting, en cambio, simula un ataque dirigido para demostrar hasta dónde podría llegar un atacante explotando esos fallos. Son complementarios: la auditoría te da el mapa completo del riesgo; el pentesting prueba su explotación real.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q">¿Afecta al funcionamiento de mis sistemas en producción?</summary><div class="faq__a">No. El análisis es esencialmente de descubrimiento y se realiza con técnicas no intrusivas. Cualquier prueba que pudiera tener algún impacto se coordina contigo de antemano y se ejecuta en ventanas seguras, sin frenar tu operación.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q">¿Es confidencial todo lo que encontréis?</summary><div class="faq__a">Totalmente. Firmamos un acuerdo de confidencialidad antes de empezar. Todos los hallazgos son solo para ti y se entregan por canales seguros. Nadie más conoce el estado de tu seguridad.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q">¿Cuánto tarda y qué recibo al final?</summary><div class="faq__a">Una auditoría típica se entrega en 3–5 días. Recibes un informe ejecutivo para dirección y uno técnico detallado con cada vulnerabilidad, su criticidad según CVSS y un plan de remediación priorizado, paso a paso.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Final CTA ===== -->
+    <section class="subsection subsection--soft">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h2>Descubre tus vulnerabilidades antes que un atacante</h2>
+          <p>Las vulnerabilidades conocidas no esperan: cada día sin auditar es una ventaja para quien quiera entrar. Solicita hoy tu auditoría y recibe una primera valoración sin compromiso.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="../index.html#prueba">Solicita tu auditoría</a>
+          </div>
+          <div class="cta-guarantee">
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Valoración inicial sin compromiso</span>
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% confidencial</span>
+            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Informe en 3–5 días</span>
+          </div>
         </div>
       </div>
     </section>

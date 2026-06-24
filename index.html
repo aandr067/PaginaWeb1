@@ -145,9 +145,9 @@
       <nav class="nav__links" aria-label="Principal">
         <a href="#nosotros">Grupo APF</a>
         <a href="#beneficios">Beneficios</a>
-        <a href="#servicios">Servicios de Software</a>
+        <a href="#servicios">Servicios</a>
         <a href="#ciberseguridad">Ciberseguridad</a>
-        <a href="#porque">Por qué nosotros</a>
+        <a href="#porque">Por qué APF</a>
         <a href="#planes">Planes</a>
         <a href="#prueba">Contacto</a>
       </nav>
@@ -171,9 +171,9 @@
     <nav class="drawer__nav" aria-label="Móvil">
       <a href="#nosotros">Grupo APF</a>
       <a href="#beneficios">Beneficios</a>
-      <a href="#servicios">Servicios de Software</a>
+      <a href="#servicios">Servicios</a>
       <a href="#ciberseguridad">Ciberseguridad</a>
-      <a href="#porque">Por qué nosotros</a>
+      <a href="#porque">Por qué APF</a>
       <a href="#planes">Planes</a>
       <a href="#prueba">Contacto</a>
       <a class="btn btn--ghost" href="/portal/">Portal clientes</a>
@@ -453,7 +453,7 @@
         <header class="section__head reveal">
           <p class="eyebrow">Planes y suscripciones</p>
           <h2 class="section__title">Elige el plan que impulsa tu negocio</h2>
-          <p class="section__lead">Precios mensuales, IVA no incluido. Escalas cuando lo necesitas: automatiza con IA y blinda tu empresa con ciberseguridad.</p>
+          <p class="section__lead">Soluciones que escalan contigo: automatiza con IA y blinda tu empresa con ciberseguridad. Pide presupuesto sin compromiso y lo adaptamos a tu negocio.</p>
         </header>
 
         <div class="plans__group">
@@ -461,22 +461,22 @@
           <p class="eyebrow">IA y automatización</p>
           <h3>Impulsa y automatiza tu negocio</h3>
         </div>
-        <div class="plans">
+        <div class="carousel" data-carousel>
+        <div class="plans carousel__track" data-start="1">
           <!-- Plan 1 — Esencial -->
           <article class="plan reveal" data-spotlight>
             <div class="plan__head">
               <h3 class="plan__name">Esencial</h3>
               <p class="plan__tagline">Automatiza atención y captación.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">600&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
               <li>Agente de voz (Sara) 24/7</li>
               <li>Sistemas de marketing</li>
             </ul>
-            <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
 
           <!-- Plan 2 — Profesional (destacado) -->
@@ -486,16 +486,15 @@
               <h3 class="plan__name">Profesional</h3>
               <p class="plan__tagline">El equilibrio perfecto, potenciado con IA.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">700&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
               <li>Todo lo del plan <strong>Esencial</strong></li>
               <li>Agente de voz (Sara) 24/7</li>
               <li>Sistemas de marketing con IA</li>
             </ul>
-            <a class="btn btn--primary btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
 
           <!-- Plan 3 — Premium -->
@@ -504,17 +503,18 @@
               <h3 class="plan__name">Premium</h3>
               <p class="plan__tagline">La solución completa para escalar.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">850&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
               <li>Todo lo del plan <strong>Profesional</strong></li>
               <li>GPT personalizado para tu empresa</li>
               <li>SEO local de tu página web</li>
             </ul>
-            <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
+        </div>
+        <div class="carousel__bar" aria-hidden="true"><span></span></div>
         </div>
         </div>
 
@@ -523,24 +523,23 @@
           <p class="eyebrow">Ciberseguridad</p>
           <h3>Protege tu empresa con planes a tu medida</h3>
         </div>
-        <div class="plans">
+        <div class="carousel" data-carousel>
+        <div class="plans carousel__track" data-start="1">
           <!-- Ciber 1 — Protección Esencial -->
           <article class="plan reveal" data-spotlight>
             <div class="plan__head">
               <h3 class="plan__name">Protección Esencial</h3>
               <p class="plan__tagline">Lo imprescindible para estar protegido.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">250&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
-              <li>Auditoría inicial de vulnerabilidades</li>
-              <li>Seguridad de email y endpoints</li>
-              <li>Copias de seguridad automáticas cifradas</li>
+              <li>Auditoría y análisis de vulnerabilidades</li>
+              <li>Protección y monitorización 24/7</li>
               <li>Informe de seguridad mensual</li>
             </ul>
-            <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
 
           <!-- Ciber 2 — Vigilancia 24/7 (destacado) -->
@@ -550,17 +549,15 @@
               <h3 class="plan__name">Vigilancia 24/7</h3>
               <p class="plan__tagline">Protección continua y proactiva con IA.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">450&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
               <li>Todo lo del plan <strong>Protección Esencial</strong></li>
-              <li>Monitorización y protección 24/7/365</li>
               <li>Seguridad con IA (anomalías y día cero)</li>
-              <li>Respuesta ante incidentes</li>
+              <li>1 pentesting al mes (test de intrusión)</li>
             </ul>
-            <a class="btn btn--primary btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
 
           <!-- Ciber 3 — Blindaje Total -->
@@ -569,18 +566,20 @@
               <h3 class="plan__name">Blindaje Total</h3>
               <p class="plan__tagline">Máxima seguridad y soporte dedicado.</p>
             </div>
-            <div class="plan__price">
-              <span class="plan__amount">750&nbsp;€</span>
-              <span class="plan__period">/mes + IVA</span>
-            </div>
             <ul class="plan__features">
               <li>Todo lo del plan <strong>Vigilancia 24/7</strong></li>
-              <li>Pentesting periódico (test de intrusión)</li>
-              <li>Anti-ransomware avanzado + plan de continuidad</li>
+              <li>Copias de seguridad cifradas y anti-ransomware</li>
+              <li>Seguridad de email y endpoints</li>
+              <li>Pentesting periódico y plan de continuidad</li>
               <li>Soporte prioritario y consultoría dedicada</li>
             </ul>
-            <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contratar este plan</a>
+            <div class="plan__cta">
+              <a class="btn btn--primary btn--lg btn--block" href="#prueba">Solicita presupuesto</a>
+              <a class="btn btn--ghost btn--lg btn--block" href="#prueba">Contacto</a>
+            </div>
           </article>
+        </div>
+        <div class="carousel__bar" aria-hidden="true"><span></span></div>
         </div>
         </div>
 

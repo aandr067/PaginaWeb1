@@ -229,8 +229,23 @@
       });
     }
 
+    // Optional: open the carousel centred on a given card (e.g. the
+    // featured/middle plan). Only acts while the track is actually
+    // scrollable (mobile), so desktop layouts are untouched.
+    function center() {
+      var si = parseInt(track.getAttribute("data-start"), 10);
+      if (isNaN(si) || !cards[si]) return;
+      if (track.scrollWidth - track.clientWidth <= 4) return;
+      var sc = cards[si];
+      var tgt = sc.offsetLeft - (track.clientWidth - sc.offsetWidth) / 2;
+      track.scrollLeft = tgt > 0 ? tgt : 0;
+    }
+
     window.addEventListener("resize", update, { passive: true });
+    center();
     update();
+    // re-centre once everything (fonts/images) has settled
+    window.addEventListener("load", function () { center(); update(); });
   });
 
   /* ---- Liquid-glass: build the refraction displacement map ----
