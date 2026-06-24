@@ -2,6 +2,14 @@
 [build]
   publish = "."
 
+# Portal de cliente (SPA React Router). Los assets reales de /portal/assets/* se
+# sirven directamente; cualquier otra ruta /portal/* cae a su index.html para que
+# el enrutado del lado del cliente funcione en enlaces profundos y recargas.
+[[redirects]]
+  from = "/portal/*"
+  to = "/portal/index.html"
+  status = 200
+
 # Cabeceras de seguridad para todo el sitio
 [[headers]]
   for = "/*"
