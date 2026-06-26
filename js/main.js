@@ -189,6 +189,7 @@
     var thumb = bar ? bar.querySelector("span") : null;
     var cards = Array.prototype.slice.call(track.children);
     if (!cards.length) return;
+    var mqMobile = window.matchMedia("(max-width: 680px)");
 
     function update() {
       var max = track.scrollWidth - track.clientWidth;
@@ -201,11 +202,30 @@
       }
       // active card = the one whose centre is nearest the viewport centre
       var center = track.scrollLeft + track.clientWidth / 2;
+      // 3D cylinder coverflow only while the track actually scrolls (mobile)
+      var coverflow = !reduce && mqMobile.matches && max > 4;
       var best = 0, bestD = Infinity;
       for (var i = 0; i < cards.length; i++) {
-        var cc = cards[i].offsetLeft + cards[i].offsetWidth / 2;
-        var d = Math.abs(cc - center);
-        if (d < bestD) { bestD = d; best = i; }
+        var card = cards[i];
+        var cc = card.offsetLeft + card.offsetWidth / 2;
+        var d = cc - center;
+        var ad = Math.abs(d);
+        if (ad < bestD) { bestD = ad; best = i; }
+        if (coverflow) {
+          var off = card.offsetWidth ? d / card.offsetWidth : 0; // -1 left · 0 centre · +1 right
+          var mag = Math.min(Math.abs(off), 2);
+          var rot = Math.max(-2, Math.min(2, off)) * -28;        // turn around the cylinder
+          var sc = 1 - mag * 0.10;
+          var tz = -mag * 70;
+          card.style.transform =
+            "rotateY(" + rot.toFixed(2) + "deg) translateZ(" + tz.toFixed(1) + "px) scale(" + sc.toFixed(3) + ")";
+          card.style.opacity = (1 - Math.min(mag, 1) * 0.45).toFixed(3);
+          card.style.zIndex = String(100 - Math.round(mag * 10));
+        } else if (card.style.transform || card.style.opacity) {
+          card.style.transform = "";
+          card.style.opacity = "";
+          card.style.zIndex = "";
+        }
       }
       for (var j = 0; j < cards.length; j++) {
         cards[j].classList.toggle("is-active", j === best);

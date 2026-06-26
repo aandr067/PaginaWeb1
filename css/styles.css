@@ -844,40 +844,46 @@ a.svc { color: inherit; }
   .footer__grid { grid-template-columns: 1fr; }
   .footer__bottom { flex-direction: column; }
 
-  /* ---- Benefits + Services become a modern peek carousel ---- */
+  /* ---- Benefits + Services become a 3D cylinder (coverflow) carousel ---- */
   .carousel__track {
     position: relative;
     display: flex;
     grid-template-columns: none;        /* drop the grid */
-    gap: 16px;
+    gap: 14px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 12px 0 18px;
+    padding: 26px 0 22px;
     margin: 0 calc(var(--pad) * -1);     /* bleed to the screen edges */
     padding-inline: var(--pad);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* 3D stage: cards rotate around the centre like a turning cylinder */
+    perspective: 1100px;
+    perspective-origin: 50% 50%;
   }
   .carousel__track::-webkit-scrollbar { width: 0; height: 0; display: none; }
   .carousel__track > * {
-    flex: 0 0 84%;
+    flex: 0 0 72%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
-    opacity: .55;
-    transform: scale(.94);
-    transition: opacity .45s var(--ease), transform .45s var(--ease),
-                border-color .35s var(--ease), box-shadow .35s var(--ease);
+    transform-origin: center center;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    /* transform + opacity are driven per-frame by JS for a smooth cylinder;
+       only colour/shadow animate on their own */
+    transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
   }
+  /* fallback look before JS measures (and with reduced motion) */
+  .carousel__track > *:not(.is-active) { opacity: .55; }
   .carousel__track > *.is-active {
     opacity: 1;
-    transform: scale(1);
     border-color: var(--accent);
     box-shadow: var(--shadow);
   }
   /* keep reveal from hiding carousel cards (they scroll horizontally) */
-  .carousel__track > *.reveal { opacity: .55; transform: scale(.94); }
-  .carousel__track > *.reveal.is-in.is-active { opacity: 1; transform: scale(1); }
+  .carousel__track > *.reveal { opacity: .55; }
+  .carousel__track > *.reveal.is-in.is-active { opacity: 1; }
 
   /* fluid progress rail */
   .carousel__bar {
@@ -896,20 +902,20 @@ a.svc { color: inherit; }
     transition: transform .12s linear;
   }
 
-  /* ---- Plans become a peek carousel too (same UX as services) ---- */
+  /* ---- Plans share the same 3D cylinder carousel ---- */
   .carousel .plans.carousel__track {
     display: flex;
     grid-template-columns: none;
-    gap: 16px;
+    gap: 14px;
     max-width: none;
     margin: 0 calc(var(--pad) * -1);
     padding-inline: var(--pad);
     align-items: stretch;
   }
-  .carousel .plans.carousel__track > .plan { margin: 0; }
-  /* let the featured tier keep its accent but share the carousel scale */
-  .carousel .plans.carousel__track > .plan--popular { transform: scale(.94); }
-  .carousel .plans.carousel__track > .plan--popular.is-active { transform: scale(1); }
+  .carousel .plans.carousel__track > .plan { margin: 0; padding: 30px 24px; }
+  /* tighten the feature list so tall plans (cybersecurity) fit the screen */
+  .carousel .plans.carousel__track .plan__features { gap: 8px; margin: 18px 0 22px; }
+  .carousel .plans.carousel__track .plan__tagline { margin-top: 5px; }
 }
 
 @media (max-width: 600px) {
@@ -1078,6 +1084,12 @@ a.svc { color: inherit; }
   z-index: 1;
 }
 .plan--popular:hover { transform: scale(1.045) translateY(-6px); }
+
+/* ---------- Blue accent border on every box (same look as the featured plan) ---------- */
+.card, .svc, .plan, .values li, .hero__lead,
+.feature, .step, .outcome, .faq__item, .form, .trust-chip {
+  border-color: var(--accent);
+}
 
 .plan__badge {
   position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
