@@ -369,6 +369,27 @@ h1, h2, h3, h4 {
   width: auto; min-width: 42px; padding: 0 12px;
   font-family: var(--font-display); font-size: .82rem; font-weight: 600; letter-spacing: .06em;
 }
+/* First-visit beacon: one slow 2s swell of blue light, like a bulb fading up
+   and back down. Symmetric ease so it never snaps on or off. */
+@keyframes lang-beacon {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    border-color: var(--border-2);
+    color: var(--ink-2);
+  }
+  50% {
+    /* first declaration is the fallback; the color-mix one wins where supported */
+    box-shadow: 0 0 26px 7px var(--accent-glow), 0 0 0 1px var(--accent);
+    box-shadow: 0 0 30px 9px color-mix(in srgb, var(--accent) 48%, transparent),
+                0 0 10px 2px color-mix(in srgb, var(--accent) 30%, transparent),
+                0 0 0 1px var(--accent);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+.lang-toggle.is-beacon {
+  animation: lang-beacon 2s cubic-bezier(.4, 0, .6, 1) both;
+}
 .theme-toggle .icon-sun { display: none; }
 .theme-toggle .icon-moon { display: block; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }

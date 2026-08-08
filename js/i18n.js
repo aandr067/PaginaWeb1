@@ -218,6 +218,7 @@
 
   var ATTRS = ["aria-label", "placeholder", "title", "alt"];
   var STORE = "apf-lang";
+  var SEEN = "apf-lang-hint";
   var texts = [];
   var attrs = [];
   var current = "es";
@@ -268,11 +269,32 @@
     });
   }
 
+  // English is the default for everyone; the browser language is deliberately
+  // ignored. Only an explicit choice the visitor made before overrides it.
   function initial() {
     var saved;
     try { saved = localStorage.getItem(STORE); } catch (e) { /* private mode */ }
-    if (saved === "es" || saved === "en") return saved;
-    return /^en\b/i.test(navigator.language || "") ? "en" : "es";
+    return saved === "es" || saved === "en" ? saved : "en";
+  }
+
+  // First visit only: pulse the toggle once so a Spanish speaker notices the
+  // page can be switched. Skipped for anyone who has been here before.
+  function beacon() {
+    if (!/^\/(index\.html)?$/.test(location.pathname)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var seen;
+    try { seen = localStorage.getItem(SEEN); } catch (e) { return; }
+    if (seen) return;
+    try { localStorage.setItem(SEEN, "1"); } catch (e) { /* private mode */ }
+
+    window.setTimeout(function () {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-lang-toggle]"), function (btn) {
+        btn.classList.add("is-beacon");
+        btn.addEventListener("animationend", function () {
+          btn.classList.remove("is-beacon");
+        }, { once: true });
+      });
+    }, 700);
   }
 
   function start() {
@@ -284,11 +306,14 @@
     document.addEventListener("click", function (event) {
       var btn = event.target.closest("[data-lang-toggle]");
       if (!btn) return;
+      btn.classList.remove("is-beacon");
       var next = current === "en" ? "es" : "en";
       apply(next);
       document.title = next === "en" ? translate(title) : title;
       try { localStorage.setItem(STORE, next); } catch (e) { /* private mode */ }
     });
+
+    beacon();
   }
 
   if (document.readyState === "loading") {
