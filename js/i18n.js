@@ -32,8 +32,8 @@
     "Inteligencia artificial aplicada · Miami · Madrid": "Applied artificial intelligence · Miami · Madrid",
     "Lleva tu Negocio al siguiente nivel con": "Take your business to the next level with",
     "Inteligencia Artificial": "Artificial Intelligence",
-    "Software, IA y ciberseguridad a medida que automatizan tu negocio y protegen tus datos. Desde Miami y Madrid, sin complejidad.":
-      "Custom software, AI and cybersecurity that automate your business and protect your data. From Miami and Madrid, without the complexity.",
+    "Software, IA y ciberseguridad a medida que automatizan tu negocio, multiplican tus ventas y protegen tus datos. Sin complejidad.":
+      "Custom software, AI and cybersecurity that automate your business, multiply your sales and protect your data. Without the complexity.",
     "Ver soluciones": "See solutions",
     "Se integra con las herramientas que ya usas": "Works with the tools you already use",
     "Pagos · Stripe": "Payments · Stripe",
@@ -176,38 +176,6 @@
     "Compromiso total": "Total commitment",
     "Un equipo cercano que responde y acompaña en cada fase.":
       "A close-knit team that responds and supports you at every stage.",
-
-    /* Testimonials */
-    "Clientes": "Clients",
-    "Qué dicen nuestros clientes": "What our clients say",
-    "Negocios reales que ya trabajan con nosotros en nuestras dos sedes.":
-      "Real businesses already working with us across our two offices.",
-    "5 de 5 estrellas": "5 out of 5 stars",
-    "Implantaron el marketing con IA y el agente de voz en pocas semanas, y el cambio fue inmediato: ya no se nos escapa ninguna reserva y el teléfono dejó de interrumpir el servicio. El trato y la atención han sido excelentes de principio a fin. Estamos muy contentos.":
-      "They rolled out the AI marketing and the voice agent in a few weeks, and the change was immediate: we no longer miss a single booking and the phone stopped interrupting service. The care and attention have been excellent from start to finish. We're delighted.",
-    "Dirección de sala": "Front of house",
-    "Pastro at Pascal's · Restaurante, Miami": "Pastro at Pascal's · Restaurant, Miami",
-    "Marketing con IA · Agente de voz": "AI marketing · Voice agent",
-    "Pasamos de perder llamadas en hora punta a tenerlo todo automatizado. El agente atiende en español y en inglés, y las reservas entran solas mientras nosotros estamos en la sala. Un equipo muy cercano.":
-      "We went from losing calls at peak hours to having it all automated. The agent answers in Spanish and English, and bookings come in on their own while we're out on the floor. A really approachable team.",
-    "Propietaria · Lolailo Taberna, Miami": "Owner · Lolailo Taberna, Miami",
-    "Agente de voz · Reservas automatizadas": "Voice agent · Automated bookings",
-    "La recepción ya no vive pegada al teléfono. El asistente gestiona citas, confirmaciones y cambios a cualquier hora, y hemos reducido drásticamente las ausencias a consulta.":
-      "Reception is no longer glued to the phone. The assistant handles appointments, confirmations and changes at any hour, and we've cut no-shows dramatically.",
-    "Dra. Elena Ruiz de Velasco": "Dr. Elena Ruiz de Velasco",
-    "Directora médica · Clínica Dental Altamira, Madrid": "Medical director · Clínica Dental Altamira, Madrid",
-    "El sistema de fidelización y los recordatorios automáticos nos han devuelto pacientes que llevaban dos años sin venir. Se integró con nuestro software sin que tuviéramos que cambiar nada.":
-      "The loyalty system and automated reminders have brought back patients we hadn't seen in two years. It integrated with our software without us changing a thing.",
-    "Gerente · Dental Nova Chamberí, Madrid": "Manager · Dental Nova Chamberí, Madrid",
-    "Fidelización de clientes · Recordatorios": "Customer loyalty · Reminders",
-    "Las campañas que antes nos llevaban un día entero ahora salen solas y mejor segmentadas. Llenamos entre semana, que era justo lo que necesitábamos.":
-      "Campaigns that used to take us a whole day now run themselves, and better targeted. We fill the place midweek, which was exactly what we needed.",
-    "Propietaria · Casa Herrán, Madrid": "Owner · Casa Herrán, Madrid",
-    "Marketing con IA · Reservas": "AI marketing · Bookings",
-    "Auditaron todo, cerraron los agujeros que teníamos abiertos y montaron las copias de seguridad. Trabajamos con información muy sensible y por fin dormimos tranquilos.":
-      "They audited everything, closed the holes we had open and set up the backups. We handle highly sensitive information and we finally sleep soundly.",
-    "Socio director · Belmonte & Arriaga Abogados, Madrid": "Managing partner · Belmonte & Arriaga Abogados, Madrid",
-    "Auditoría de vulnerabilidades · Backup": "Vulnerability audit · Backup",
 
     /* Contact form */
     "Información": "Information",

@@ -618,7 +618,6 @@ h1, h2, h3, h4 {
 /* ---------- Cards (benefits) ---------- */
 .cards { display: grid; gap: 22px; }
 .cards--3 { grid-template-columns: repeat(3, 1fr); }
-.cards--2 { grid-template-columns: repeat(2, 1fr); }
 .card, .svc {
   position: relative;
   background: var(--lg-fill);
@@ -911,20 +910,6 @@ a.svc { color: inherit; }
     transform: translateX(0);
     transition: transform .12s linear;
   }
-
-  /* ---- Testimonials ---- */
-  .tgroup + .tgroup { margin-top: 34px; }
-  .tgroup__city { margin-bottom: 12px; font-size: .95rem; }
-  /* wider slides + self-sizing height: quotes are long, so stretching every
-     card to the tallest one made them overflow the screen */
-  .cards--2.carousel__track { align-items: flex-start; }
-  .cards--2.carousel__track > * { flex-basis: 86%; }
-  .tcard { padding: 20px 18px; }
-  .tcard__stars svg { width: 15px; height: 15px; }
-  .tcard__text { margin-top: 12px; font-size: .92rem; line-height: 1.5; }
-  .tcard__by { margin-top: 16px; padding-top: 13px; }
-  .tcard__by strong { font-size: .93rem; }
-  .tcard__by span { font-size: .85rem; }
 
   /* ---- Plans share the same 3D cylinder carousel ---- */
   .carousel .plans.carousel__track {
@@ -1302,28 +1287,6 @@ a.svc { color: inherit; }
 .cta-guarantee { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; margin-top: 28px; }
 .cta-guarantee span { display: inline-flex; align-items: center; gap: 8px; color: rgba(244,246,250,.86); font-size: .92rem; }
 .cta-guarantee svg { width: 17px; height: 17px; color: #60A5FA; flex: none; }
-
-/* ---------- Testimonials (Miami / Madrid) ---------- */
-.tgroup + .tgroup { margin-top: clamp(44px, 5vw, 68px); }
-.tgroup__city {
-  display: flex; align-items: center; justify-content: center; gap: 9px;
-  margin-bottom: 26px;
-  font-family: var(--font-display); font-size: 1.06rem; font-weight: 600;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
-}
-.tgroup__city svg { flex: none; }
-
-.tcard { display: flex; flex-direction: column; padding: 28px 26px; }
-.tcard__stars { display: flex; gap: 3px; color: var(--accent); }
-.tcard__stars svg { width: 17px; height: 17px; }
-.tcard__text {
-  margin-top: 16px; flex: 1;
-  color: var(--ink); font-size: 1.02rem; line-height: 1.6;
-}
-.tcard__by { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
-.tcard__by strong { display: block; font-weight: 600; font-size: .98rem; }
-.tcard__by span { display: block; margin-top: 3px; color: var(--ink-3); font-size: .9rem; }
-.tcard__by .tcard__tags { margin-top: 9px; color: var(--accent); font-weight: 500; }
 
 @media (max-width: 860px) {
   .risk-grid, .outcomes, .feature-grid--3 { grid-template-columns: 1fr; }
