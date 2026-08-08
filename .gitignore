@@ -21,6 +21,11 @@ shot-*.png
 _deploy/
 apf-web.zip
 
+# Toolkits SEO clonados: el deploy publica la raiz ("publish = ."),
+# asi que no deben acabar en el sitio publico
+claude-seo/
+geo-seo-claude/
+
 # Sistema
 .DS_Store
 Thumbs.db

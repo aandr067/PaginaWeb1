@@ -1,4 +1,4 @@
-# APF Technologys — robots.txt
+# APF Tech — robots.txt
 User-agent: *
 Allow: /
 

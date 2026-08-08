@@ -1,4 +1,4 @@
-/* APF Technologys — interactions (no dependencies) */
+/* APF Tech — interactions (no dependencies) */
 (function () {
   "use strict";
 

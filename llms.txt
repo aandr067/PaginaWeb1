@@ -1,8 +1,8 @@
-# APF Technologys
+# APF Tech
 
 > Empresa tecnológica con base en Madrid (España) especializada en inteligencia artificial a medida y ciberseguridad para empresas. Diseñamos e implementamos automatización de procesos, agentes de IA, atención 24/7 y protección de datos para que los negocios trabajen de forma más eficiente y segura.
 
-APF Technologys ofrece dos grandes líneas de servicio: **soluciones de inteligencia artificial** (automatización, agentes de voz, marketing, e-commerce, IA predictiva, GPTs personalizados) y **ciberseguridad** (auditorías, pentesting, monitorización 24/7, copias de seguridad, seguridad con IA y protección de email/endpoints). Todo el contenido está en español de España (es-ES). Contacto: apf@apftechnologys.com.
+APF Tech ofrece dos grandes líneas de servicio: **soluciones de inteligencia artificial** (automatización, agentes de voz, marketing, e-commerce, IA predictiva, GPTs personalizados) y **ciberseguridad** (auditorías, pentesting, monitorización 24/7, copias de seguridad, seguridad con IA y protección de email/endpoints). Todo el contenido está en español de España (es-ES). Contacto: apf@apftechnologys.com.
 
 ## Soluciones de inteligencia artificial
 
