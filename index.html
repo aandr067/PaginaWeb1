@@ -55,7 +55,7 @@
         imagesrcset="img/robot-368.avif 368w, img/robot-500.avif 500w, img/robot-640.avif 640w, img/robot-736.avif 736w"
         imagesizes="(max-width: 680px) 62vw, 460px" />
 
-  <link rel="stylesheet" href="css/styles.css?v=20260809e" />
+  <link rel="stylesheet" href="css/styles.css?v=20260809f" />
 
   <!-- Datos estructurados -->
   <!-- ⚠️ REQUIERE DATO REAL: el nodo "LocalBusiness" de abajo está preparado para
@@ -383,6 +383,12 @@
               <span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.5 2.4 2.5 14.6 0 17M12 3.5c-2.5 2.4-2.5 14.6 0 17" stroke="currentColor" stroke-width="1.4"/></svg> CRM · Web</span>
             </div>
           </div>
+
+          <button class="marquee__pause" type="button" data-marquee-pause aria-pressed="false">
+            <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/></svg>
+            <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5.2v13.6l11-6.8L8 5.2Z" fill="currentColor"/></svg>
+            <span>Pausar animación</span>
+          </button>
         </div>
       </div>
     </section>
@@ -415,7 +421,7 @@
         </header>
 
         <div class="carousel" data-carousel>
-        <div class="cards cards--3 carousel__track">
+        <div class="cards cards--3 carousel__track" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Beneficios">
           <article class="card reveal" data-delay="0" data-spotlight>
             <span class="card__icon">
               <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m10 9-2 2 2 2M14 9l2 2-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -455,7 +461,7 @@
         </header>
 
         <div class="carousel" data-carousel>
-        <div class="bento carousel__track">
+        <div class="bento carousel__track" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Servicios">
           <a class="svc reveal" data-delay="0" data-spotlight href="soluciones/asistente-llamadas-ia.html">
             <span class="svc__icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M6.5 4h2l1.5 4-2 1.5a11 11 0 0 0 5 5L14.5 13l4 1.5v2a2 2 0 0 1-2.2 2A14 14 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -531,7 +537,7 @@
         </header>
 
         <div class="carousel" data-carousel>
-        <div class="bento carousel__track">
+        <div class="bento carousel__track" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Soluciones de ciberseguridad">
           <a class="svc reveal" data-delay="0" data-spotlight href="soluciones/auditoria-vulnerabilidades.html">
             <span class="svc__icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="11" cy="10.5" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="m12.8 12.3 2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -612,7 +618,7 @@
           <h3>Impulsa y automatiza tu negocio</h3>
         </div>
         <div class="carousel" data-carousel>
-        <div class="plans carousel__track" data-start="1">
+        <div class="plans carousel__track" data-start="1" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Planes de IA y automatización">
           <!-- Plan 1 — Esencial -->
           <article class="plan reveal" data-spotlight>
             <div class="plan__head">
@@ -674,7 +680,7 @@
           <h3>Protege tu empresa con planes a tu medida</h3>
         </div>
         <div class="carousel" data-carousel>
-        <div class="plans carousel__track" data-start="1">
+        <div class="plans carousel__track" data-start="1" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Planes de ciberseguridad">
           <!-- Ciber 1 — Protección Esencial -->
           <article class="plan reveal" data-spotlight>
             <div class="plan__head">
@@ -892,7 +898,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260809e" defer></script>
-  <script src="js/main.js?v=20260809e" defer></script>
+  <script src="js/i18n.js?v=20260809f" defer></script>
+  <script src="js/main.js?v=20260809f" defer></script>
 </body>
 </html>

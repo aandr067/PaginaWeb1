@@ -663,8 +663,35 @@ h1, h2, h3, h4 {
   display: flex; gap: 18px; width: max-content;
   animation: marquee 38s linear infinite;
 }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* :hover no existe en tactil ni por teclado, asi que la pausa por raton no basta
+   para WCAG 2.2.2. El boton de abajo es el mecanismo real; :focus-within cubre a
+   quien llega tabulando. */
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track,
+.logos.is-paused .marquee__track { animation-play-state: paused; }
+/* El track son 16 chips con 15 huecos de 18px: su mitad mide 8 chips + 7,5
+   huecos, pero el bucle necesita avanzar 8 chips + 8 huecos. De ahi el salto de
+   9px (medio hueco) que se veia en cada vuelta. */
+@keyframes marquee { to { transform: translateX(calc(-50% - 9px)); } }
+
+.marquee__pause {
+  /* flex + width:fit-content lo centra sin convertir .logos en contenedor flex:
+     ese contenedor volveria a exponer el track de ~2800px y el scroll lateral. */
+  display: flex; align-items: center; gap: var(--sp-2);
+  width: fit-content;
+  margin: var(--sp-3) auto 0;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--pill);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: .82rem; font-weight: 500;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.marquee__pause:hover, .marquee__pause:focus-visible { color: var(--accent); border-color: var(--accent); }
+.marquee__pause .icon-play { display: none; }
+.logos.is-paused .marquee__pause .icon-play { display: block; }
+.logos.is-paused .marquee__pause .icon-pause { display: none; }
 .chip {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 11px 20px;
@@ -786,6 +813,14 @@ a.svc { color: inherit; }
 /* ---------- Mobile peek-carousel (benefits + services) ---------- */
 .carousel { position: relative; }
 .carousel__bar { display: none; }
+/* El track es un scroller enfocable (tabindex="0"): quien navega con teclado lo
+   alcanza y lo recorre con las flechas. Necesita indicador de foco propio porque
+   el anillo generico se recorta contra el desbordamiento del carrusel. */
+.carousel__track:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--r);
+}
 
 /* ---------- Split (about) ---------- */
 .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(44px, 6vw, 86px); align-items: center; }
@@ -968,7 +1003,6 @@ a.svc { color: inherit; }
     gap: 14px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     padding: 26px 0 22px;
     margin: 0 calc(var(--pad) * -1);     /* bleed to the screen edges */
     padding-inline: var(--pad);
@@ -984,21 +1018,23 @@ a.svc { color: inherit; }
     scroll-snap-align: center;
     scroll-snap-stop: always;
     transform-origin: center center;
-    will-change: transform, opacity;
     backface-visibility: hidden;
     /* transform + opacity are driven per-frame by JS for a smooth cylinder;
        only colour/shadow animate on their own */
     transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
   }
+  /* Capa de compositor solo durante el arrastre (la clase la pone main.js).
+     Mantenerla siempre reservaba cinco capas durante toda la vida de la pagina. */
+  .carousel__track.is-scrolling > * { will-change: transform, opacity; }
   /* fallback look before JS measures (and with reduced motion) */
-  .carousel__track > *:not(.is-active) { opacity: .55; }
+  .carousel__track > *:not(.is-active) { opacity: .92; }
   .carousel__track > *.is-active {
     opacity: 1;
     border-color: var(--accent);
     box-shadow: var(--shadow);
   }
   /* keep reveal from hiding carousel cards (they scroll horizontally) */
-  .carousel__track > *.reveal { opacity: .55; }
+  .carousel__track > *.reveal { opacity: .92; }
   .carousel__track > *.reveal.is-in.is-active { opacity: 1; }
 
   /* fluid progress rail */
@@ -1059,6 +1095,11 @@ a.svc { color: inherit; }
   .btn--primary::after { display: none; }
   .marquee__track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
   .marquee { -webkit-mask-image: none; mask-image: none; }
+  /* Sin animacion el track se ve entero, y los 8 chips duplicados que existen
+     solo para que el bucle sea continuo aparecian repetidos en pantalla. */
+  .marquee__track .chip[aria-hidden="true"] { display: none; }
+  /* Sin movimiento no hay nada que pausar. */
+  .marquee__pause { display: none; }
   .hero__robot img { animation: none; }
   .carousel__track > * { opacity: 1 !important; transform: none !important; transition: none; }
 }

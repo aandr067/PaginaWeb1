@@ -232,49 +232,80 @@
     if (!cards.length) return;
     var mqMobile = window.matchMedia("(max-width: 680px)");
 
+    // Geometria de las tarjetas. Se cachea porque solo cambia al redimensionar o
+    // al cambiar el layout: leerla dentro del bucle de scroll obligaba al
+    // navegador a recalcular el layout entre cada escritura de transform.
+    var geom = [];
+    function measure() {
+      geom = cards.map(function (card) {
+        return { left: card.offsetLeft, width: card.offsetWidth };
+      });
+    }
+
     function update() {
+      // --- fase de LECTURA: todo junto, antes de escribir nada ---
       var max = track.scrollWidth - track.clientWidth;
-      var p = max > 0 ? track.scrollLeft / max : 0;
+      var scrollLeft = track.scrollLeft;
+      var clientWidth = track.clientWidth;
+      var rail = bar ? bar.clientWidth : 0;
+      if (!geom.length || geom.length !== cards.length) measure();
+
+      var p = max > 0 ? scrollLeft / max : 0;
+      var center = scrollLeft + clientWidth / 2;
+      var coverflow = !reduce && mqMobile.matches && max > 4;
+
+      // --- fase de CALCULO: sin tocar el DOM ---
+      var best = 0, bestD = Infinity;
+      var writes = [];
+      for (var i = 0; i < cards.length; i++) {
+        var g = geom[i];
+        var d = (g.left + g.width / 2) - center;
+        var ad = Math.abs(d);
+        if (ad < bestD) { bestD = ad; best = i; }
+        if (coverflow) {
+          var off = g.width ? d / g.width : 0;   // -1 izquierda · 0 centro · +1 derecha
+          var mag = Math.min(Math.abs(off), 2);
+          var rot = Math.max(-2, Math.min(2, off)) * -28;
+          writes.push({
+            i: i,
+            transform: "rotateY(" + rot.toFixed(2) + "deg) translateZ(" + (-mag * 70).toFixed(1) + "px) scale(" + (1 - mag * 0.10).toFixed(3) + ")",
+            // El atenuado baja del 45% al 8%: al 55% de opacidad el texto quedaba
+            // en 2,59:1 de contraste. La profundidad ya la dan scale y translateZ.
+            opacity: (1 - Math.min(mag, 1) * 0.08).toFixed(3),
+            zIndex: String(100 - Math.round(mag * 10))
+          });
+        } else {
+          writes.push({ i: i, transform: "", opacity: "", zIndex: "" });
+        }
+      }
+
+      // --- fase de ESCRITURA ---
       if (thumb && bar) {
-        var rail = bar.clientWidth;
         var tw = rail / cards.length;
         thumb.style.width = tw + "px";
         thumb.style.transform = "translateX(" + (p * (rail - tw)) + "px)";
       }
-      // active card = the one whose centre is nearest the viewport centre
-      var center = track.scrollLeft + track.clientWidth / 2;
-      // 3D cylinder coverflow only while the track actually scrolls (mobile)
-      var coverflow = !reduce && mqMobile.matches && max > 4;
-      var best = 0, bestD = Infinity;
-      for (var i = 0; i < cards.length; i++) {
-        var card = cards[i];
-        var cc = card.offsetLeft + card.offsetWidth / 2;
-        var d = cc - center;
-        var ad = Math.abs(d);
-        if (ad < bestD) { bestD = ad; best = i; }
-        if (coverflow) {
-          var off = card.offsetWidth ? d / card.offsetWidth : 0; // -1 left · 0 centre · +1 right
-          var mag = Math.min(Math.abs(off), 2);
-          var rot = Math.max(-2, Math.min(2, off)) * -28;        // turn around the cylinder
-          var sc = 1 - mag * 0.10;
-          var tz = -mag * 70;
-          card.style.transform =
-            "rotateY(" + rot.toFixed(2) + "deg) translateZ(" + tz.toFixed(1) + "px) scale(" + sc.toFixed(3) + ")";
-          card.style.opacity = (1 - Math.min(mag, 1) * 0.45).toFixed(3);
-          card.style.zIndex = String(100 - Math.round(mag * 10));
-        } else if (card.style.transform || card.style.opacity) {
-          card.style.transform = "";
-          card.style.opacity = "";
-          card.style.zIndex = "";
-        }
+      for (var w = 0; w < writes.length; w++) {
+        var card = cards[writes[w].i];
+        if (!coverflow && !card.style.transform && !card.style.opacity) continue;
+        card.style.transform = writes[w].transform;
+        card.style.opacity = writes[w].opacity;
+        card.style.zIndex = writes[w].zIndex;
       }
       for (var j = 0; j < cards.length; j++) {
         cards[j].classList.toggle("is-active", j === best);
       }
     }
 
+    // will-change se activa solo mientras el usuario arrastra. Dejarlo puesto de
+    // forma permanente en 5 carruseles mantenia otras tantas capas de compositor
+    // reservadas durante toda la vida de la pagina.
     var ticking = false;
+    var idleTimer = null;
     track.addEventListener("scroll", function () {
+      if (!track.classList.contains("is-scrolling")) track.classList.add("is-scrolling");
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { track.classList.remove("is-scrolling"); }, 180);
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function () { update(); ticking = false; });
@@ -302,12 +333,44 @@
       track.scrollLeft = tgt > 0 ? tgt : 0;
     }
 
-    window.addEventListener("resize", update, { passive: true });
+    // resize sin throttle disparaba update() decenas de veces por gesto, y cada
+    // una recorre las tarjetas de los cinco carruseles.
+    var resizeTick = false;
+    window.addEventListener("resize", function () {
+      if (resizeTick) return;
+      resizeTick = true;
+      requestAnimationFrame(function () { measure(); update(); resizeTick = false; });
+    }, { passive: true });
+    measure();
     center();
     update();
     // re-centre once everything (fonts/images) has settled
-    window.addEventListener("load", function () { center(); update(); });
+    window.addEventListener("load", function () { measure(); center(); update(); });
   });
+
+  /* ---- Marquee: pausa real (WCAG 2.2.2) ----
+     El movimiento dura mas de 5 s y es automatico, asi que necesita un mecanismo
+     de parada que no dependa del raton. */
+  var mqPause = document.querySelector("[data-marquee-pause]");
+  if (mqPause) {
+    var logos = mqPause.closest(".logos");
+    var label = mqPause.querySelector("span");
+    var setPaused = function (paused) {
+      if (logos) logos.classList.toggle("is-paused", paused);
+      mqPause.setAttribute("aria-pressed", String(paused));
+      if (label) {
+        var en = document.documentElement.lang === "en";
+        label.textContent = paused
+          ? (en ? "Resume animation" : "Reanudar animación")
+          : (en ? "Pause animation" : "Pausar animación");
+      }
+    };
+    mqPause.addEventListener("click", function () {
+      setPaused(mqPause.getAttribute("aria-pressed") !== "true");
+    });
+    // Con prefers-reduced-motion el CSS ya detiene la animacion y oculta el boton.
+    if (reduce) setPaused(true);
+  }
 
   /* ---- Liquid-glass: build the refraction displacement map ----
      A normalized (objectBoundingBox) rounded-rect normal map. R encodes
