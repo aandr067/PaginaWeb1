@@ -48,6 +48,17 @@
   line-gap-override: 0%;
 }
 
+/* ---------- Transiciones de pagina ----------
+   El sitio son 17 documentos estaticos, asi que la navegacion es MPA. Los
+   navegadores que soportan la API hacen un fundido entre paginas; el resto
+   ignora la regla por completo y navega como siempre. */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
+
 /* ---------- Design tokens ---------- */
 :root {
   color-scheme: light;
@@ -101,10 +112,17 @@
   --font-display: "Inter Tight", "Inter Tight Fallback", -apple-system, "SF Pro Display", BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-body:    "Inter", "Inter Fallback", -apple-system, "SF Pro Text", BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 
-  /* Motion */
-  --ease: cubic-bezier(.16, 1, .3, 1);
-  --ease-out: cubic-bezier(.22, 1, .36, 1);
-  --dur:  .6s;
+  /* Motion — ver MOTION.md
+     Cuatro duraciones y tres curvas cubren todo el sitio. Antes convivian ocho
+     duraciones distintas (.12/.2/.25/.3/.35/.4/.7/.8s) sin criterio. */
+  --ease: cubic-bezier(.16, 1, .3, 1);        /* salida estandar */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);   /* entradas */
+  --ease-inout: cubic-bezier(.4, 0, .6, 1);   /* ciclos simetricos */
+  --dur-micro: 150ms;   /* controles pequenos: boton, chip, enlace */
+  --dur-ui:    240ms;   /* cambios de estado corrientes */
+  --dur-card:  320ms;   /* superficies grandes: tarjetas, planes, drawer */
+  --dur-enter: 420ms;   /* entradas al viewport */
+  --dur:  .6s;          /* legado: usado por .reveal */
 
   /* Spacing scale — base 4. Antes habia 27 valores distintos de gap, 44 de
      padding y 19 de margin-top; estos ocho cubren todos los casos reales. */
@@ -212,7 +230,7 @@ body {
   font-feature-settings: "ss01" 1, "cv05" 1, "cv11" 1;
   font-optical-sizing: auto;
   overflow-x: hidden;
-  transition: background .4s var(--ease), color .4s var(--ease);
+  transition: background var(--dur-card) var(--ease), color var(--dur-card) var(--ease);
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -280,10 +298,23 @@ h1, h2, h3, h4 {
   letter-spacing: .1em;
   font-size: .74rem;
 }
+/* El anillo late con un pseudo-elemento que escala y se desvanece. Antes animaba
+   box-shadow, que repinta en cada frame y encima esta sobre el fold, corriendo de
+   forma indefinida. transform + opacity los resuelve el compositor. */
 .eyebrow--pill .dot {
+  position: relative;
   width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
-  box-shadow: 0 0 0 0 var(--accent-glow);
-  animation: pulse 2.4s var(--ease) infinite;
+}
+.eyebrow--pill .dot::after {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: ring-pulse 2.4s var(--ease) infinite;
+}
+@keyframes ring-pulse {
+  0%   { transform: scale(1);   opacity: .45; }
+  70%  { transform: scale(3.3); opacity: 0; }
+  100% { transform: scale(3.3); opacity: 0; }
 }
 
 .grad {
@@ -313,8 +344,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
-  transition: transform .3s var(--ease), background .3s var(--ease),
-              border-color .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease), background var(--dur-ui) var(--ease),
+              border-color var(--dur-ui) var(--ease), box-shadow var(--dur-ui) var(--ease), color var(--dur-ui) var(--ease);
 }
 .btn--sm  { --bh: 42px; padding-inline: 18px; font-size: .9rem; }
 .btn--lg  { --bh: 56px; padding-inline: 32px; font-size: 1.02rem; }
@@ -330,7 +361,7 @@ h1, h2, h3, h4 {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
   transform: translateX(-120%);
-  transition: transform .7s var(--ease);
+  transition: transform var(--dur-enter) var(--ease);
 }
 .btn--primary:hover {
   transform: translateY(-2px);
@@ -343,6 +374,7 @@ h1, h2, h3, h4 {
   background: var(--glass);
   color: var(--ink);
   border-color: var(--border-2);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .btn--ghost:hover {
@@ -358,7 +390,8 @@ h1, h2, h3, h4 {
   inset: 0 0 auto 0;
   z-index: 100;
   padding: 14px var(--pad) 0;
-  transition: padding .35s var(--ease);
+  /* El encogimiento de 4px al hacer scroll se resuelve con transform en
+     .nav__inner: padding es una propiedad de layout. */
 }
 .nav__inner {
   max-width: 1340px;
@@ -371,11 +404,13 @@ h1, h2, h3, h4 {
   padding: 0 8px 0 18px;
   border-radius: var(--pill);
   border: 1px solid transparent;
-  transition: background .35s var(--ease), border-color .35s var(--ease),
-              box-shadow .35s var(--ease), backdrop-filter .35s var(--ease);
+  /* backdrop-filter sale de la lista: animarlo obliga a recomponer el desenfoque
+     en cada frame. transform entra para el encogimiento del scroll. */
+  transition: background var(--dur-card) var(--ease), border-color var(--dur-card) var(--ease),
+              box-shadow var(--dur-card) var(--ease), transform var(--dur-card) var(--ease);
 }
-.nav.is-scrolled { padding-top: 10px; }
 .nav.is-scrolled .nav__inner {
+  transform: translateY(-4px);
   background: var(--glass);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
           backdrop-filter: saturate(180%) blur(18px);
@@ -414,7 +449,7 @@ h1, h2, h3, h4 {
   font-size: .92rem;
   white-space: nowrap;
   color: var(--ink-2);
-  transition: color .2s var(--ease), background .2s var(--ease);
+  transition: color var(--dur-micro) var(--ease), background var(--dur-micro) var(--ease);
 }
 .nav__links a:hover { color: var(--ink); background: var(--accent-tint); }
 
@@ -428,7 +463,7 @@ h1, h2, h3, h4 {
   border: 1px solid var(--border-2);
   background: var(--glass);
   color: var(--ink-2);
-  transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+  transition: color var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), background var(--dur-ui) var(--ease), transform var(--dur-ui) var(--ease);
 }
 .theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
 .theme-toggle svg { width: 19px; height: 19px; }
@@ -436,26 +471,36 @@ h1, h2, h3, h4 {
   width: auto; min-width: 42px; padding: 0 12px;
   font-family: var(--font-display); font-size: .82rem; font-weight: 600; letter-spacing: .06em;
 }
-/* First-visit beacon: one slow 2s swell of blue light, like a bulb fading up
-   and back down. Symmetric ease so it never snaps on or off. */
-@keyframes lang-beacon {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-    border-color: var(--border-2);
-    color: var(--ink-2);
-  }
-  50% {
-    /* first declaration is the fallback; the color-mix one wins where supported */
-    box-shadow: 0 0 26px 7px var(--accent-glow), 0 0 0 1px var(--accent);
+/* Destello de primera visita: un solo hinchado lento de luz azul, como una
+   bombilla que sube y baja. El halo vive en un pseudo-elemento que solo cambia
+   opacity, en vez de animar box-shadow + border-color + color a la vez, que
+   obligaba a repintar el boton en cada frame. El color del texto se sigue
+   moviendo con una transicion aparte, que es barata sobre un unico elemento. */
+.lang-toggle { position: relative; }
+.lang-toggle::before {
+  content: ""; position: absolute; inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 0 30px 9px var(--accent-glow), 0 0 0 1px var(--accent);
+}
+@supports (color: color-mix(in srgb, red 50%, transparent)) {
+  .lang-toggle::before {
     box-shadow: 0 0 30px 9px color-mix(in srgb, var(--accent) 48%, transparent),
                 0 0 10px 2px color-mix(in srgb, var(--accent) 30%, transparent),
                 0 0 0 1px var(--accent);
-    border-color: var(--accent);
-    color: var(--accent);
   }
 }
+@keyframes lang-beacon {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+.lang-toggle.is-beacon::before {
+  animation: lang-beacon 2s var(--ease-inout) both;
+}
 .lang-toggle.is-beacon {
-  animation: lang-beacon 2s cubic-bezier(.4, 0, .6, 1) both;
+  color: var(--accent);
+  transition: color 1s var(--ease-inout);
 }
 .theme-toggle .icon-sun { display: none; }
 .theme-toggle .icon-moon { display: block; }
@@ -473,7 +518,7 @@ h1, h2, h3, h4 {
 .nav__toggle span {
   position: absolute; left: 12px; right: 12px; height: 1.6px;
   background: var(--ink); border-radius: 2px;
-  transition: transform .3s var(--ease), opacity .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease), opacity var(--dur-ui) var(--ease);
 }
 .nav__toggle span:nth-child(1) { top: 17px; }
 .nav__toggle span:nth-child(2) { bottom: 17px; }
@@ -491,7 +536,7 @@ h1, h2, h3, h4 {
   padding: 14px;
   transform: translateY(-12px);
   opacity: 0;
-  transition: transform .3s var(--ease), opacity .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease), opacity var(--dur-ui) var(--ease);
 }
 .drawer.is-open { transform: translateY(0); opacity: 1; }
 .drawer__nav { display: flex; flex-direction: column; gap: 2px; }
@@ -508,7 +553,7 @@ h1, h2, h3, h4 {
   position: fixed; inset: 0; z-index: 98;
   background: rgba(7,9,14,.42);
   -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
-  opacity: 0; transition: opacity .3s var(--ease);
+  opacity: 0; transition: opacity var(--dur-ui) var(--ease);
 }
 .drawer__scrim.is-open { opacity: 1; }
 
@@ -614,9 +659,8 @@ h1, h2, h3, h4 {
 .panel__live { display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500; color: var(--ink-2); }
 .panel__live-dot {
   width: 9px; height: 9px; border-radius: 50%; background: #22C55E; flex: none;
-  box-shadow: 0 0 0 0 rgba(34,197,94,.5); animation: pulse 2s var(--ease) infinite;
+  box-shadow: 0 0 0 0 rgba(34,197,94,.5);
 }
-@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)} 70%{box-shadow:0 0 0 8px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)} }
 
 .panel__body { display: grid; gap: 14px; }
 .chat {
@@ -633,10 +677,9 @@ h1, h2, h3, h4 {
 .chat__row--user .chat__bubble { background: var(--grad-accent); color: #fff; border-bottom-right-radius: 6px; }
 .chat__bubble--ai { background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-bottom-left-radius: 6px; }
 .chat__typing { display: flex; gap: 5px; padding: 15px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; border-bottom-left-radius: 6px; }
-.chat__typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-3); animation: typing 1.4s var(--ease) infinite; }
+.chat__typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-3); }
 .chat__typing span:nth-child(2) { animation-delay: .2s; }
 .chat__typing span:nth-child(3) { animation-delay: .4s; }
-@keyframes typing { 0%,60%,100%{ transform: translateY(0); opacity: .5; } 30%{ transform: translateY(-5px); opacity: 1; } }
 
 .panel__kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .kpi { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 16px; }
@@ -686,7 +729,7 @@ h1, h2, h3, h4 {
   background: var(--surface);
   color: var(--ink-2);
   font-size: .82rem; font-weight: 500;
-  transition: color .2s var(--ease), border-color .2s var(--ease);
+  transition: color var(--dur-micro) var(--ease), border-color var(--dur-micro) var(--ease);
 }
 .marquee__pause:hover, .marquee__pause:focus-visible { color: var(--accent); border-color: var(--accent); }
 .marquee__pause .icon-play { display: none; }
@@ -756,14 +799,14 @@ h1, h2, h3, h4 {
   box-shadow: var(--lg-shadow);
   -webkit-backdrop-filter: var(--lg-blur-soft);
   backdrop-filter: var(--lg-blur);
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  transition: transform var(--dur-card) var(--ease), box-shadow var(--dur-card) var(--ease), border-color var(--dur-card) var(--ease);
 }
 .card { padding: 36px 32px; }
 /* cursor spotlight */
 .card::after, .svc::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
   background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), var(--accent-tint), transparent 62%);
-  opacity: 0; transition: opacity .4s var(--ease); pointer-events: none;
+  opacity: 0; transition: opacity var(--dur-card) var(--ease); pointer-events: none;
 }
 /* Solo transform + opacity + box-shadow: nada que provoque layout. El foco de
    teclado recibe el mismo trato que el raton (.svc es un <a> completo). */
@@ -807,7 +850,7 @@ a.svc { color: inherit; }
   font-family: var(--font-display); font-weight: 500; font-size: .9rem;
   color: var(--accent);
 }
-.svc__more svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.svc__more svg { width: 16px; height: 16px; transition: transform var(--dur-ui) var(--ease); }
 .svc:hover .svc__more svg { transform: translateX(4px); }
 
 /* ---------- Mobile peek-carousel (benefits + services) ---------- */
@@ -837,7 +880,7 @@ a.svc { color: inherit; }
   -webkit-backdrop-filter: var(--lg-blur-soft);
   backdrop-filter: var(--lg-blur);
   border-radius: var(--r); padding: 24px 26px;
-  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  transition: border-color var(--dur-ui) var(--ease), transform var(--dur-ui) var(--ease), box-shadow var(--dur-ui) var(--ease);
 }
 .values li:hover { border-color: var(--accent); transform: translateX(5px); box-shadow: var(--lg-shadow), 0 18px 40px -26px var(--accent-glow); }
 .values__k { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: 1.1rem; }
@@ -908,7 +951,7 @@ a.svc { color: inherit; }
   background-color: rgba(255, 255, 255, .45); font: inherit; color: var(--ink);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 0 0 1px rgba(15, 23, 42, .04);
   -webkit-backdrop-filter: blur(12px) saturate(150%); backdrop-filter: blur(12px) saturate(150%);
-  transition: border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+  transition: border-color var(--dur-micro) var(--ease), background var(--dur-micro) var(--ease), box-shadow var(--dur-micro) var(--ease);
 }
 [data-theme="dark"] .field input,
 [data-theme="dark"] .field select {
@@ -946,7 +989,7 @@ a.svc { color: inherit; }
 .footer__tagline { color: var(--ink-3); margin-top: 16px; max-width: 30ch; font-size: .95rem; }
 .footer__col { display: flex; flex-direction: column; gap: 12px; }
 .footer__col h4 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
-.footer__col a { color: var(--ink-2); font-size: .95rem; transition: color .2s var(--ease); width: fit-content; }
+.footer__col a { color: var(--ink-2); font-size: .95rem; transition: color var(--dur-micro) var(--ease); width: fit-content; }
 .footer__col a:hover { color: var(--accent); }
 .footer__loc { color: var(--ink-3); font-size: .95rem; }
 .footer__bottom {
@@ -966,7 +1009,7 @@ a.svc { color: inherit; }
 }
 
 /* ---------- Reveal animation ---------- */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-enter) var(--ease), transform var(--dur-enter) var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
 .reveal[data-delay="1"] { transition-delay: .08s; }
 .reveal[data-delay="2"] { transition-delay: .16s; }
@@ -1021,7 +1064,7 @@ a.svc { color: inherit; }
     backface-visibility: hidden;
     /* transform + opacity are driven per-frame by JS for a smooth cylinder;
        only colour/shadow animate on their own */
-    transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
+    transition: border-color var(--dur-card) var(--ease), box-shadow var(--dur-card) var(--ease);
   }
   /* Capa de compositor solo durante el arrastre (la clase la pone main.js).
      Mantenerla siempre reservaba cinco capas durante toda la vida de la pagina. */
@@ -1051,7 +1094,7 @@ a.svc { color: inherit; }
     border-radius: var(--pill);
     background: var(--grad-accent);
     transform: translateX(0);
-    transition: transform .12s linear;
+    transition: transform var(--dur-micro) linear;
   }
 
   /* ---- Plans share the same 3D cylinder carousel ---- */
@@ -1089,8 +1132,19 @@ a.svc { color: inherit; }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
+  /* Red de seguridad global: cualquier animacion o transicion que se anada en el
+     futuro queda cubierta sin tener que acordarse de listarla aqui. No se pone
+     "animation: none" porque eso salta al fotograma final de golpe y romperia
+     los estados que dependen de "both"; una duracion inapreciable conserva el
+     estado final sin movimiento perceptible. */
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
   .reveal { opacity: 1 !important; transform: none !important; transition: none; }
-  .panel__live-dot, .chat__typing span, .eyebrow--pill .dot { animation: none; }
+  .eyebrow--pill .dot::after { animation: none; }
   .btn, .card, .svc, .values li { transition: none; }
   .btn--primary::after { display: none; }
   .marquee__track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
@@ -1123,9 +1177,9 @@ a.svc { color: inherit; }
 .sub-back {
   display: inline-flex; align-items: center; gap: 8px;
   color: var(--ink-2); font-weight: 500; font-size: .92rem;
-  transition: color .2s var(--ease);
+  transition: color var(--dur-micro) var(--ease);
 }
-.sub-back svg { width: 18px; height: 18px; transition: transform .2s var(--ease); }
+.sub-back svg { width: 18px; height: 18px; transition: transform var(--dur-micro) var(--ease); }
 .sub-back:hover { color: var(--accent); }
 .sub-back:hover svg, .sub-back:focus-visible svg { transform: translateX(-4px); }
 .subhero__icon {
@@ -1156,7 +1210,7 @@ a.svc { color: inherit; }
   display: flex; gap: 15px; align-items: flex-start;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 24px 24px;
-  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+  transition: transform var(--dur-card) var(--ease), box-shadow var(--dur-card) var(--ease), border-color var(--dur-card) var(--ease);
 }
 .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--border-2); }
 .feature__check {
@@ -1226,13 +1280,13 @@ a.svc { color: inherit; }
   -webkit-backdrop-filter: var(--lg-blur-soft);
   backdrop-filter: var(--lg-blur);
   padding: 36px 30px;
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  transition: transform var(--dur-card) var(--ease), box-shadow var(--dur-card) var(--ease), border-color var(--dur-card) var(--ease);
 }
 /* Cursor spotlight, identical language to .svc / .card */
 .plan::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
   background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), var(--accent-tint), transparent 62%);
-  opacity: 0; transition: opacity .4s var(--ease); pointer-events: none;
+  opacity: 0; transition: opacity var(--dur-card) var(--ease); pointer-events: none;
 }
 .plan:hover {
   transform: translateY(-6px);
@@ -1367,7 +1421,7 @@ a.svc { color: inherit; }
   border: 1px solid rgba(220, 38, 38, .22);
   box-shadow: var(--lg-shadow);
   -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
-  transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), box-shadow var(--dur-ui) var(--ease);
 }
 .risk:hover { transform: translateY(-4px); border-color: rgba(220, 38, 38, .48); box-shadow: var(--lg-shadow), 0 18px 40px -26px rgba(220,38,38,.4); }
 .risk__icon {
@@ -1394,7 +1448,7 @@ a.svc { color: inherit; }
   background: var(--lg-fill); border: 1px solid var(--lg-edge);
   box-shadow: var(--lg-shadow);
   -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
-  transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), box-shadow var(--dur-ui) var(--ease);
 }
 .outcome:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--lg-shadow), 0 18px 40px -26px var(--accent-glow); }
 .outcome strong {
@@ -1425,7 +1479,7 @@ a.svc { color: inherit; }
   border: 1px solid var(--border); border-radius: var(--r-sm);
   background: var(--lg-fill); box-shadow: var(--lg-shadow);
   -webkit-backdrop-filter: var(--lg-blur-soft); backdrop-filter: var(--lg-blur-soft);
-  overflow: hidden; transition: border-color .3s var(--ease);
+  overflow: hidden; transition: border-color var(--dur-ui) var(--ease);
 }
 /* Abierto = mas contraste, no menos. Antes el estado expandido bajaba el borde
    a un 16% de opacidad y se leia como "desactivado". */
@@ -1440,7 +1494,7 @@ a.svc { color: inherit; }
 .faq__q::after {
   content: ""; flex: none; width: 20px; height: 20px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/contain no-repeat;
-  transition: transform .3s var(--ease);
+  transition: transform var(--dur-ui) var(--ease);
 }
 .faq__item[open] .faq__q::after { transform: rotate(135deg); }
 .faq__a { padding: 0 24px 22px; color: var(--ink-2); font-size: 1rem; }
