@@ -38,17 +38,52 @@
   var drawer = document.querySelector("[data-drawer]");
   var scrim = document.querySelector("[data-drawer-scrim]");
 
+  // Elementos que quedan fuera del drawer mientras esta abierto. Marcarlos como
+  // inert los saca del orden de tabulacion y del arbol de accesibilidad, que es
+  // lo que convierte el drawer en un dialogo modal de verdad.
+  var outside = [document.querySelector("header.nav"), document.querySelector("main"), document.querySelector("footer")];
+  var closeTimer = null;
+  var lastFocused = null;
+  var menuOpen = false;
+
   function setMenu(open) {
     if (!drawer || !scrim || !toggle) return;
-    if (open) { drawer.hidden = false; scrim.hidden = false; }
+    if (open === menuOpen) return;
+    menuOpen = open;
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+
+    if (open) {
+      lastFocused = document.activeElement;
+      drawer.hidden = false;
+      scrim.hidden = false;
+    }
     requestAnimationFrame(function () {
       drawer.classList.toggle("is-open", open);
       scrim.classList.toggle("is-open", open);
     });
     toggle.setAttribute("aria-expanded", String(open));
+    // El texto lo pone el JS, asi que i18n.js no puede alcanzarlo: se resuelve
+    // contra el idioma que i18n haya fijado en <html lang>.
+    var en = document.documentElement.lang === "en";
+    toggle.setAttribute("aria-label", open ? (en ? "Close menu" : "Cerrar menú") : (en ? "Open menu" : "Abrir menú"));
     document.body.style.overflow = open ? "hidden" : "";
-    if (!open) {
-      setTimeout(function () { drawer.hidden = true; scrim.hidden = true; }, 320);
+
+    outside.forEach(function (el) {
+      if (!el) return;
+      if (open) el.setAttribute("inert", "");
+      else el.removeAttribute("inert");
+    });
+
+    if (open) {
+      var first = drawer.querySelector("a, button");
+      if (first) first.focus();
+    } else {
+      closeTimer = setTimeout(function () {
+        drawer.hidden = true;
+        scrim.hidden = true;
+        closeTimer = null;
+      }, 320);
+      if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
     }
   }
   if (toggle) {
@@ -63,8 +98,14 @@
     });
   }
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") setMenu(false);
+    if (e.key === "Escape" && menuOpen) setMenu(false);
   });
+  // Girar a horizontal oculta el boton hamburguesa por CSS: sin esto la pagina se
+  // quedaba con el scroll bloqueado y sin forma de cerrar el menu.
+  var mqDesktop = window.matchMedia("(min-width: 1025px)");
+  var onDesktop = function (e) { if (e.matches) setMenu(false); };
+  if (mqDesktop.addEventListener) mqDesktop.addEventListener("change", onDesktop);
+  else if (mqDesktop.addListener) mqDesktop.addListener(onDesktop);
 
   /* ---- Scroll reveal ---- */
   var reveals = document.querySelectorAll(".reveal");

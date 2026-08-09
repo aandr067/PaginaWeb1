@@ -55,7 +55,7 @@
         imagesrcset="img/robot-368.avif 368w, img/robot-500.avif 500w, img/robot-640.avif 640w, img/robot-736.avif 736w"
         imagesizes="(max-width: 680px) 62vw, 460px" />
 
-  <link rel="stylesheet" href="css/styles.css?v=20260809c" />
+  <link rel="stylesheet" href="css/styles.css?v=20260809e" />
 
   <!-- Datos estructurados -->
   <!-- ⚠️ REQUIERE DATO REAL: el nodo "LocalBusiness" de abajo está preparado para
@@ -305,7 +305,7 @@
         </button>
         <a class="btn btn--ghost btn--sm nav__portal" href="/portal/">Portal clientes</a>
         <a class="btn btn--primary btn--sm" href="#prueba">Solicita información</a>
-        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer" data-menu-toggle>
           <span></span><span></span>
         </button>
       </div>
@@ -313,7 +313,7 @@
   </header>
 
   <!-- Mobile drawer -->
-  <div class="drawer" id="drawer" data-drawer hidden>
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación" data-drawer hidden>
     <nav class="drawer__nav" aria-label="Móvil">
       <a href="#beneficios">Beneficios</a>
       <a href="#servicios">Servicios</a>
@@ -631,6 +631,7 @@
 
           <!-- Plan 2 — Profesional (destacado) -->
           <article class="plan plan--popular reveal" data-delay="1" data-spotlight>
+            <span class="plan__badge">Recomendado</span>
             <div class="plan__head">
               <h3 class="plan__name">Profesional</h3>
               <p class="plan__tagline">El equilibrio perfecto, potenciado con IA.</p>
@@ -693,6 +694,7 @@
 
           <!-- Ciber 2 — Vigilancia 24/7 (destacado) -->
           <article class="plan plan--popular reveal" data-delay="1" data-spotlight>
+            <span class="plan__badge">Recomendado</span>
             <div class="plan__head">
               <h3 class="plan__name">Vigilancia 24/7</h3>
               <p class="plan__tagline">Protección continua y proactiva con IA.</p>
@@ -890,7 +892,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260809c" defer></script>
-  <script src="js/main.js?v=20260809c" defer></script>
+  <script src="js/i18n.js?v=20260809e" defer></script>
+  <script src="js/main.js?v=20260809e" defer></script>
 </body>
 </html>
