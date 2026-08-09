@@ -32,6 +32,23 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Fuentes autoalojadas: el contenido nunca cambia bajo el mismo nombre.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Variantes derivadas del héroe y del logo (AVIF/WebP/JPEG generadas en build).
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
 # Caché para el resto de imágenes
 [[headers]]
   for = "*.png"

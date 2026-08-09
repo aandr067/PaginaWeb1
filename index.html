@@ -17,12 +17,14 @@
   <meta property="og:description" content="Automatización inteligente, ventas y operación 24/7 impulsadas por IA. Soluciones a medida desde Miami y Madrid." />
   <meta property="og:url" content="https://apftechnologys.com/" />
   <meta property="og:locale" content="es_ES" />
-  <meta property="og:image" content="https://apftechnologys.com/robotPerfecto.png" />
+  <meta property="og:image" content="https://apftechnologys.com/img/og-apf.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="APF Tech — robot de inteligencia artificial" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="APF Tech — Inteligencia artificial para tu negocio" />
   <meta name="twitter:description" content="Automatización inteligente, ventas y operación 24/7 impulsadas por IA." />
-  <meta name="twitter:image" content="https://apftechnologys.com/robotPerfecto.png" />
+  <meta name="twitter:image" content="https://apftechnologys.com/img/og-apf.jpg" />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
@@ -42,15 +44,18 @@
     })();
   </script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fuentes autoalojadas en css/styles.css (@font-face). Sin preload: medido en
+       movil (CPU x4, 4G, mediana de 5) el preload de la fuente empeoraba
+       FCP 1296->1468 ms y TBT 279->795 ms al competir con la hoja de estilos. -->
 
-  <!-- Preload hero image (LCP element) -->
-  <link rel="preload" as="image" href="robotPerfecto.webp" type="image/webp" fetchpriority="high" />
+  <!-- Preload hero image (LCP candidate). imagesrcset/imagesizes must mirror the
+       <picture> below or the browser downloads the image twice. -->
+  <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+        href="img/robot-736.avif"
+        imagesrcset="img/robot-368.avif 368w, img/robot-500.avif 500w, img/robot-640.avif 640w, img/robot-736.avif 736w"
+        imagesizes="(max-width: 680px) 62vw, 460px" />
 
-  <link rel="stylesheet" href="css/styles.css?v=20260809a" />
+  <link rel="stylesheet" href="css/styles.css?v=20260809b" />
 
   <!-- Datos estructurados -->
   <!-- ⚠️ REQUIERE DATO REAL: el nodo "LocalBusiness" de abajo está preparado para
@@ -68,7 +73,7 @@
       "@id": "https://apftechnologys.com/#organization",
       "name": "APF Tech",
       "url": "https://apftechnologys.com/",
-      "logo": "https://apftechnologys.com/robotPerfecto.png",
+      "logo": "https://apftechnologys.com/logo-apf.png",
       "email": "apf@apftechnologys.com",
       "description": "Diseño e implementación de soluciones de inteligencia artificial a medida: automatización de procesos, ventas, atención 24/7 y más.",
       "areaServed": [
@@ -105,7 +110,7 @@
     {
       "@type": "ProfessionalService",
       "name": "APF Tech",
-      "image": "https://apftechnologys.com/robotPerfecto.png",
+      "image": "https://apftechnologys.com/img/og-apf.jpg",
       "url": "https://apftechnologys.com/",
       "areaServed": [
         "ES",
@@ -220,7 +225,7 @@
       "@type": "LocalBusiness",
       "@id": "https://apftechnologys.com/#localbusiness",
       "name": "APF Tech — Madrid",
-      "image": "https://apftechnologys.com/robotPerfecto.png",
+      "image": "https://apftechnologys.com/img/og-apf.jpg",
       "url": "https://apftechnologys.com/",
       "email": "apf@apftechnologys.com",
       "priceRange": "€€",
@@ -239,7 +244,7 @@
       "@type": "LocalBusiness",
       "@id": "https://apftechnologys.com/#localbusiness-miami",
       "name": "APF Tech — Miami",
-      "image": "https://apftechnologys.com/robotPerfecto.png",
+      "image": "https://apftechnologys.com/img/og-apf.jpg",
       "url": "https://apftechnologys.com/",
       "email": "apf@apftechnologys.com",
       "priceRange": "$$",
@@ -328,7 +333,14 @@
       <div class="hero__aura" aria-hidden="true"></div>
       <div class="hero__robot" aria-hidden="true">
         <picture>
-          <source srcset="robotPerfecto.webp" type="image/webp" />
+          <source type="image/avif"
+                  srcset="img/robot-368.avif 368w, img/robot-500.avif 500w, img/robot-640.avif 640w, img/robot-736.avif 736w"
+                  sizes="(max-width: 680px) 62vw, 460px" />
+          <source type="image/webp"
+                  srcset="img/robot-368.webp 368w, img/robot-500.webp 500w, img/robot-640.webp 640w, img/robot-736.webp 736w"
+                  sizes="(max-width: 680px) 62vw, 460px" />
+          <!-- src is the legacy path only: browsers without <picture> or AVIF/WebP.
+               Modern browsers always resolve one of the <source> sets above. -->
           <img src="robotPerfecto.png" alt="" width="736" height="1261" decoding="async" fetchpriority="high" />
         </picture>
       </div>
@@ -878,7 +890,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260809a" defer></script>
-  <script src="js/main.js?v=20260809a" defer></script>
+  <script src="js/i18n.js?v=20260809b" defer></script>
+  <script src="js/main.js?v=20260809b" defer></script>
 </body>
 </html>
