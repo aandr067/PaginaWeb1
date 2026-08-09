@@ -10,6 +10,26 @@
   to = "/portal/index.html"
   status = 200
 
+# `publish = "."` sirve TODO lo versionado. El codigo fuente del portal de cliente
+# (50 ficheros: src/lib/api.ts, .env.example, vite.config.ts, modelo de roles...)
+# quedaba accesible publicamente. Se bloquea el acceso; lo correcto a medio plazo es
+# sacar ese proyecto del repositorio de la web.
+[[redirects]]
+  from = "/portal-cliente/*"
+  to = "/404.html"
+  status = 404
+
+# Documentos internos de la auditoria: no deben servirse.
+[[redirects]]
+  from = "/AUDITORIA.md"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/HALLAZGOS.md"
+  to = "/404.html"
+  status = 404
+
 # Cabeceras de seguridad para todo el sitio
 [[headers]]
   for = "/*"

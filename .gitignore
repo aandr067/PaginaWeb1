@@ -21,6 +21,10 @@ shot-*.png
 _deploy/
 apf-web.zip
 
+# Panel interno de facturacion: no es parte del sitio publico y "publish = ."
+# desplegaria cualquier cosa que se versione aqui.
+panel-apf/
+
 # Toolkits SEO clonados: el deploy publica la raiz ("publish = ."),
 # asi que no deben acabar en el sitio publico
 claude-seo/

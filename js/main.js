@@ -173,7 +173,7 @@
         })
         .catch(function () {
           note.classList.add("is-error");
-          note.textContent = "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a anderpastorfer05@gmail.com.";
+          note.textContent = "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a apf@apftechnologys.com.";
         })
         .then(function () {
           if (btn) btn.disabled = false;
