@@ -15,12 +15,17 @@
   function applyMeta(theme) {
     if (metaTheme) metaTheme.setAttribute("content", theme === "dark" ? "#07090E" : "#FFFFFF");
   }
+  function syncThemeBtn(theme) {
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(theme === "dark"));
+  }
   applyMeta(root.getAttribute("data-theme"));
+  syncThemeBtn(root.getAttribute("data-theme"));
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
       applyMeta(next);
+      syncThemeBtn(next);
       try { localStorage.setItem("apf-theme", next); } catch (e) {}
     });
   }

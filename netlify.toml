@@ -34,6 +34,13 @@
   to = "/404.html"
   status = 404
 
+# El portal de cliente no debe indexarse: el catch-all 200 devuelve su index.html
+# para cualquier ruta bajo /portal, lo que multiplica URLs indexables sin valor.
+[[headers]]
+  for = "/portal/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Cabeceras de seguridad para todo el sitio
 [[headers]]
   for = "/*"

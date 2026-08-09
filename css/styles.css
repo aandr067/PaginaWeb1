@@ -70,7 +70,7 @@
   --surface-2: #FBFCFE;
   --ink:       #0B1220;
   --ink-2:     #475264;
-  --ink-3:     #717C8C;
+  --ink-3:     #687281;  /* WCAG AA 4,53:1 sobre --bg-1; antes #717C8C daba 3,94:1 */
   --border:    rgba(11, 18, 32, .09);
   --border-2:  rgba(11, 18, 32, .14);
 
@@ -170,7 +170,7 @@
   --surface-2: #11161F;
   --ink:       #F4F6FA;
   --ink-2:     #A6B0C0;
-  --ink-3:     #6F7A8A;
+  --ink-3:     #727E8E;  /* WCAG AA 4,54:1 sobre --surface; antes #6F7A8A daba 4,31:1 */
   --border:    rgba(255, 255, 255, .09);
   --border-2:  rgba(255, 255, 255, .16);
 
@@ -235,6 +235,21 @@ body {
 
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+main:focus { outline: none; }
+/* WCAG 1.4.1: dentro de un bloque de texto, un enlace no puede distinguirse solo
+   por el color. En la navegacion, las tarjetas y los botones el contexto ya los
+   identifica como interactivos, asi que la regla se limita a la prosa. */
+.prose a, .legal a, .footer__legal a, .consent a, p > a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.prose a:hover, .legal a:hover, .footer__legal a:hover, .consent a:hover, p > a:hover {
+  text-decoration-thickness: 2px;
+}
+/* Las tarjetas-enlace y los botones que viven dentro de un <p> quedan fuera. */
+p > a.btn, p > a.svc, p > a.sub-back { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; color: inherit; }
 
 ::selection { background: var(--accent-tint-2); color: var(--ink); }
@@ -921,9 +936,13 @@ a.svc { color: inherit; }
 .field select:invalid { color: var(--ink-3); }
 .field input:focus,
 .field select:focus {
-  outline: none; background-color: var(--surface);
+  /* outline transparente en vez de none: en modo de contraste forzado el sistema
+     lo repinta y el campo sigue teniendo indicador de foco. */
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  background-color: var(--surface);
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-tint-2);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 .consent { display: flex; gap: 11px; align-items: flex-start; font-size: .88rem; color: var(--ink-3); }
 .consent input { margin-top: 3px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
@@ -939,7 +958,7 @@ a.svc { color: inherit; }
 .footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.4fr; gap: 40px; }
 .footer__tagline { color: var(--ink-3); margin-top: 16px; max-width: 30ch; font-size: .95rem; }
 .footer__col { display: flex; flex-direction: column; gap: 12px; }
-.footer__col h4 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+.footer__col h2, .footer__col h3 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
 .footer__col a { color: var(--ink-2); font-size: .95rem; transition: color var(--dur-micro) var(--ease); width: fit-content; }
 .footer__col a:hover { color: var(--accent); }
 .footer__loc { color: var(--ink-3); font-size: .95rem; }
@@ -949,6 +968,9 @@ a.svc { color: inherit; }
   border-top: 1px solid var(--border); color: var(--ink-3); font-size: .88rem;
 }
 .footer__legal a:hover { color: var(--accent); }
+/* WCAG 2.2 AA (2.5.8): objetivo tactil minimo de 24x24 CSS px. */
+.footer__legal a, .footer__col a { display: inline-flex; align-items: center; min-height: 24px; }
+.sub-back { min-height: 24px; }
 
 /* ---------- Reveal animation ---------- */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-enter) var(--ease), transform var(--dur-enter) var(--ease); }
@@ -1406,6 +1428,8 @@ a.svc { color: inherit; }
   padding: 19px 24px; font-family: var(--font-display); font-weight: 600; font-size: 1.04rem;
 }
 .faq__q::-webkit-details-marker { display: none; }
+/* El h3 esta solo por semantica: hereda el aspecto del summary. */
+.faq__q h3 { font: inherit; margin: 0; letter-spacing: inherit; }
 .faq__q::after {
   content: ""; flex: none; width: 20px; height: 20px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/contain no-repeat;

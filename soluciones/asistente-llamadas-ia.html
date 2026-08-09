@@ -45,7 +45,7 @@
        movil (CPU x4, 4G, mediana de 5) el preload de la fuente empeoraba
        FCP 1296->1468 ms y TBT 279->795 ms al competir con la hoja de estilos. -->
 
-  <link rel="stylesheet" href="../css/styles.css?v=20260809h" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260809i" />
 
   <!-- Datos estructurados: miga de pan -->
   <script type="application/ld+json">
@@ -93,6 +93,7 @@
 
       <nav class="nav__links" aria-label="Principal">
         <a href="../index.html#servicios">Servicios</a>
+        <a href="aplicaciones-medida.html">Aplicaciones a medida</a>
         <a href="../index.html#ciberseguridad">Ciberseguridad</a>
         <a href="../index.html#nosotros">Sobre nosotros</a>
         <a href="../index.html#prueba">Contacto</a>
@@ -100,7 +101,7 @@
 
       <div class="nav__actions">
         <button class="theme-toggle lang-toggle" type="button" data-lang-toggle aria-label="Switch to English" lang="en">EN</button>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema claro u oscuro">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar tema claro u oscuro">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </button>
@@ -125,7 +126,7 @@
   </div>
   <div class="drawer__scrim" data-drawer-scrim hidden></div>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <!-- ===== Subpage hero ===== -->
     <section class="subhero">
       <div class="subhero__aura" aria-hidden="true"></div>
@@ -136,7 +137,7 @@
         </a>
         <p class="eyebrow" style="margin-top:18px">Solución a medida</p>
         <span class="subhero__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h2l1.5 4-2 1.5a11 11 0 0 0 5 5L14.5 13l4 1.5v2a2 2 0 0 1-2.2 2A14 14 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h2l1.5 4-2 1.5a11 11 0 0 0 5 5L14.5 13l4 1.5v2a2 2 0 0 1-2.2 2A14 14 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </span>
         <h1 class="subhero__title">Asistente de llamadas IA</h1>
         <p class="subhero__lead">Un agente de voz con inteligencia artificial que atiende <strong>todas</strong> tus llamadas al instante — 24/7, agenda citas, capta clientes y no deja escapar ni una sola oportunidad de negocio.</p>
@@ -145,9 +146,9 @@
           <span class="subhero__metric">0 llamadas perdidas, 24/7</span>
         </div>
         <div class="trust-row reveal">
-          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Atiende 24/7, sin festivos</span>
-          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Voz natural, no robótica</span>
-          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Se integra con tu agenda</span>
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Atiende 24/7, sin festivos</span>
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Voz natural, no robótica</span>
+          <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Se integra con tu agenda</span>
         </div>
       </div>
     </section>
@@ -184,23 +185,23 @@
         <p class="subsection__lead reveal">Una llamada sin contestar no se queda esperando: se va directa a tu competencia. Esto es lo que te juegas cada día que sigues sin cubrir el teléfono:</p>
         <div class="risk-grid">
           <div class="risk reveal">
-            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 4h2l1.5 4-2 1.5a11 11 0 0 0 5 5L14.5 13l4 1.5v2a2 2 0 0 1-2.2 2A14 14 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m17 3 4 4M21 3l-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h2l1.5 4-2 1.5a11 11 0 0 0 5 5L14.5 13l4 1.5v2a2 2 0 0 1-2.2 2A14 14 0 0 1 4.5 6.2 2 2 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m17 3 4 4M21 3l-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
             <h3>Llamadas perdidas = ventas perdidas</h3>
             <p>Cada llamada que no contestas es una venta que <strong>nunca llegarás a facturar</strong>. El cliente ya tenía la intención; solo le faltaba que cogieras el teléfono.</p>
           </div>
           <div class="risk reveal" data-delay="1">
-            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
             <h3>Se van a la competencia</h3>
             <p>El 80% de quien no te localiza <strong>no vuelve a intentarlo</strong>: llama al siguiente de la lista. Tu inversión en captar ese lead se la queda otro.</p>
           </div>
           <div class="risk reveal" data-delay="2">
-            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 20c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9v4M17 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="risk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 20c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9v4M17 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
             <h3>Tu equipo saturado</h3>
             <p>Tu gente no puede atender el teléfono y trabajar a la vez. <strong>Se quema con tareas repetitivas</strong> y aun así no llega a todas las llamadas.</p>
           </div>
         </div>
         <div class="urgency reveal">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
           Mientras lees esto, alguien intenta llamar a tu negocio. Si nadie contesta, en menos de un minuto estará hablando con tu competencia.
         </div>
       </div>
@@ -213,27 +214,27 @@
         <h2 class="subsection__title reveal" style="margin-top:14px">Todo lo que hace por ti</h2>
         <div class="feature-grid feature-grid--3">
           <div class="feature reveal">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Atención 24/7</h3><p>Contesta todas las llamadas al instante, también fuera de horario, festivos y en picos de demanda.</p></div>
           </div>
           <div class="feature reveal" data-delay="1">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Agenda citas sola</h3><p>Crea, mueve y confirma citas conectado a tu calendario, sin que nadie toque nada.</p></div>
           </div>
           <div class="feature reveal" data-delay="2">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Responde preguntas frecuentes</h3><p>Horarios, precios, ubicación, disponibilidad… resuelve al momento lo que más te preguntan.</p></div>
           </div>
           <div class="feature reveal">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Capta leads fuera de horario</h3><p>Recoge nombre, teléfono y motivo de quien llama de noche o en festivo para que no se pierda ni uno.</p></div>
           </div>
           <div class="feature reveal" data-delay="1">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Transferencia inteligente</h3><p>Deriva a un humano con el contexto completo cuando la conversación lo requiere.</p></div>
           </div>
           <div class="feature reveal" data-delay="2">
-            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="feature__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div><h3>Transcribe y resume</h3><p>Cada llamada queda registrada con su transcripción y un resumen claro de lo hablado.</p></div>
           </div>
         </div>
@@ -270,13 +271,13 @@
     <!-- ===== FAQ ===== -->
     <section class="subsection">
       <div class="container">
-        <p class="eyebrow reveal" style="text-align:center;display:block">Preguntas frecuentes</p>
+        <h2 class="eyebrow reveal" style="text-align:center;display:block">Preguntas frecuentes</h2>
         <h2 class="subsection__title reveal" style="margin-top:14px;text-align:center">Resolvemos tus dudas</h2>
         <div class="faq">
-          <details class="faq__item reveal"><summary class="faq__q">¿De verdad suena natural o se nota que es una máquina?</summary><div class="faq__a">Suena natural. Usa una voz humana y conversa con fluidez: entiende lo que le dicen, hace preguntas y responde con normalidad. La mayoría de quien llama no nota que está hablando con una IA.</div></details>
-          <details class="faq__item reveal"><summary class="faq__q">¿Se integra con mi sistema y mi agenda?</summary><div class="faq__a">Sí. Lo conectamos con tu número de teléfono actual, tu calendario y tus herramientas de gestión o CRM, para que agende citas y registre cada llamada donde ya trabajas.</div></details>
-          <details class="faq__item reveal"><summary class="faq__q">¿Qué pasa si no sabe responder a algo?</summary><div class="faq__a">Nunca deja al cliente colgado. Si la consulta se sale de lo que sabe resolver, transfiere la llamada a una persona de tu equipo con todo el contexto, o recoge los datos para que le devolváis la llamada.</div></details>
-          <details class="faq__item reveal"><summary class="faq__q">¿Cuánto se tarda en activarlo?</summary><div class="faq__a">Muy poco. En cuestión de días lo tenemos configurado con tu información y atendiendo llamadas. No necesitas cambiar de número ni instalar nada complicado.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q"><h3>¿De verdad suena natural o se nota que es una máquina?</h3></summary><div class="faq__a">Suena natural. Usa una voz humana y conversa con fluidez: entiende lo que le dicen, hace preguntas y responde con normalidad. La mayoría de quien llama no nota que está hablando con una IA.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q"><h3>¿Se integra con mi sistema y mi agenda?</h3></summary><div class="faq__a">Sí. Lo conectamos con tu número de teléfono actual, tu calendario y tus herramientas de gestión o CRM, para que agende citas y registre cada llamada donde ya trabajas.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q"><h3>¿Qué pasa si no sabe responder a algo?</h3></summary><div class="faq__a">Nunca deja al cliente colgado. Si la consulta se sale de lo que sabe resolver, transfiere la llamada a una persona de tu equipo con todo el contexto, o recoge los datos para que le devolváis la llamada.</div></details>
+          <details class="faq__item reveal"><summary class="faq__q"><h3>¿Cuánto se tarda en activarlo?</h3></summary><div class="faq__a">Muy poco. En cuestión de días lo tenemos configurado con tu información y atendiendo llamadas. No necesitas cambiar de número ni instalar nada complicado.</div></details>
         </div>
       </div>
     </section>
@@ -291,9 +292,9 @@
             <a class="btn btn--primary btn--lg" href="../index.html#prueba">Quiero mi asistente de llamadas</a>
           </div>
           <div class="cta-guarantee">
-            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Sin compromiso</span>
-            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Conservas tu número actual</span>
-            <span><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Activo en pocos días</span>
+            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Sin compromiso</span>
+            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Conservas tu número actual</span>
+            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Activo en pocos días</span>
           </div>
         </div>
       </div>
@@ -317,21 +318,21 @@
       </div>
 
       <nav class="footer__col" aria-label="Soluciones">
-        <h4>Soluciones</h4>
+        <h3 class="footer__h">Soluciones</h3>
         <a href="asistente-llamadas-ia.html">Asistente de llamadas IA</a>
         <a href="sistemas-ecommerce.html">Sistemas e-commerce</a>
         <a href="fidelizacion-clientes.html">Fidelización de clientes</a>
       </nav>
 
       <nav class="footer__col" aria-label="Empresa">
-        <h4>Empresa</h4>
+        <h3 class="footer__h">Empresa</h3>
         <a href="../index.html#nosotros">Sobre nosotros</a>
         <a href="../index.html#servicios">Servicios</a>
         <a href="../index.html#prueba">Solicita información</a>
       </nav>
 
       <div class="footer__col">
-        <h4>Contacto</h4>
+        <h3 class="footer__h">Contacto</h3>
         <a href="mailto:apf@apftechnologys.com">apf@apftechnologys.com</a>
         <a href="https://instagram.com/apf.technologies" target="_blank" rel="noopener">Instagram · @apf.technologies</a>
         <span class="footer__loc">Miami, EE. UU. · Madrid, España</span>
@@ -345,7 +346,7 @@
       </div>    </div>
   </footer>
 
-  <script src="../js/i18n.js?v=20260809h" defer></script>
-  <script src="../js/core.js?v=20260809h" defer></script>
+  <script src="../js/i18n.js?v=20260809i" defer></script>
+  <script src="../js/core.js?v=20260809i" defer></script>
 </body>
 </html>
