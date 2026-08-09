@@ -103,13 +103,26 @@
       var btn = form.querySelector("button[type=submit]");
       if (btn) btn.disabled = true;
 
-      fetch("/", {
+      // El envio va a una Pages Function que responde JSON. Antes hacia POST a
+      // "/" contando con Netlify Forms: en un host estatico eso devuelve 200 con
+      // el HTML de la portada, res.ok era true y el visitante leia "hemos
+      // recibido tu solicitud" mientras el lead se perdia. Ahora solo se canta
+      // exito si el servidor responde ok:true de forma explicita.
+      fetch("/api/contacto", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { "Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json" },
         body: new URLSearchParams(new FormData(form)).toString()
       })
         .then(function (res) {
-          if (!res.ok) throw new Error("bad status");
+          var tipo = res.headers.get("content-type") || "";
+          if (tipo.indexOf("application/json") === -1) {
+            // No hay endpoint: alguien ha devuelto HTML. No es un envio.
+            throw new Error("sin endpoint");
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          if (!data || data.ok !== true) throw new Error(data && data.error || "fallo");
           note.classList.remove("is-error");
           note.textContent = msg("ok");
           form.reset();

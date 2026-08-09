@@ -1,0 +1,22 @@
+# Redirecciones — Cloudflare Pages / Workers Assets
+#
+# El orden importa: gana la primera regla que coincide.
+
+# El código fuente del portal de cliente NO debe servirse. Son 50 ficheros
+# (src/lib/api.ts, .env.example, vite.config.ts, el modelo de roles completo) que
+# se publican porque el despliegue sube la raíz del repositorio.
+# OJO: esto es una tirita. El arreglo de verdad es que ese proyecto no viva en el
+# repositorio de la web — ver HALLAZGOS.md C1.
+/portal-cliente/*  /404.html  404
+
+# Documentos internos de la auditoría.
+/AUDITORIA.md      /404.html  404
+/HALLAZGOS.md      /404.html  404
+/INFORME-FINAL.md  /404.html  404
+/MOTION.md         /404.html  404
+/DESPLIEGUE.md     /404.html  404
+
+# Portal de cliente (SPA con React Router): los assets reales de /portal/assets/*
+# se sirven tal cual y cualquier otra ruta cae a su index.html, para que los
+# enlaces profundos y las recargas funcionen. Va DESPUÉS de las reglas de arriba.
+/portal/*  /portal/index.html  200

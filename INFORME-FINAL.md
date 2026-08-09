@@ -5,7 +5,23 @@ Cierre del plan de siete fases. Rama `optimizacion/fase-7`, lista para merge.
 - **Sitio:** 17 páginas públicas, HTML + CSS + JS vanilla, desplegado en Netlify
 - **Periodo:** 9 de agosto de 2026
 - **Punto de partida:** `e644d7e` · **Estado final:** rama `optimizacion/fase-7`
-- **Documentos:** [AUDITORIA.md](AUDITORIA.md) · [HALLAZGOS.md](HALLAZGOS.md) · [MOTION.md](MOTION.md)
+- **Documentos:** [AUDITORIA.md](AUDITORIA.md) · [HALLAZGOS.md](HALLAZGOS.md) · [MOTION.md](MOTION.md) · [DESPLIEGUE.md](DESPLIEGUE.md)
+
+> ### ⚠️ Corrección posterior al cierre: el despliegue es Cloudflare
+>
+> Las fases 0 a 7 se hicieron asumiendo Netlify, porque `netlify.toml` era el
+> único fichero de configuración del repositorio. **Cloudflare no lo lee**, así
+> que ninguna de sus reglas ha estado activa en producción: ni las cabeceras de
+> seguridad, ni la política de caché, ni el *rewrite* del portal de cliente.
+>
+> Y, sobre todo: el formulario usaba **Netlify Forms**, que en Cloudflare no
+> existe. El `POST` a `/` devolvía 200 con el HTML de la portada, el front-end lo
+> leía como éxito y **el visitante veía «hemos recibido tu solicitud» mientras el
+> lead se perdía**. Reproducido en local.
+>
+> Todo ello está corregido en la Fase 8 (`_headers`, `_redirects` y una Pages
+> Function para el formulario), pero **queda una acción tuya**: configurar
+> `RESEND_API_KEY` en Cloudflare. Detalle en [DESPLIEGUE.md](DESPLIEGUE.md).
 
 ---
 

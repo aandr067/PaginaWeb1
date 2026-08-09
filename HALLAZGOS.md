@@ -63,6 +63,50 @@ responsive y mantener el preload alineado con el `srcset`) es correcta en ambos 
 
 ---
 
+## A4. El despliegue es Cloudflare, no Netlify · corregido en la Fase 8
+
+Toda la auditoría y las fases 1 a 7 se hicieron asumiendo Netlify, porque
+`netlify.toml` era el único fichero de configuración del repositorio y
+`origin/main` no contiene ninguno de Cloudflare. Existe una rama abandonada,
+`cloudflare/workers-autoconfig` (junio, basada en `8342525`), con un
+`wrangler.jsonc` que nunca se fusionó.
+
+**Cloudflare no lee `netlify.toml`.** Consecuencia: nada de lo que había allí ha
+estado activo en producción desde la migración, ni antes de esta intervención:
+
+- Las cabeceras de seguridad completas (`X-Frame-Options`, HSTS,
+  `Referrer-Policy`, `Permissions-Policy`, CSP `frame-ancestors`).
+- Toda la política de caché.
+- El *rewrite* `/portal/* → /portal/index.html`, del que dependen los enlaces
+  profundos y las recargas del portal de cliente.
+
+Resuelto portando todo a `_headers` y `_redirects`, que Cloudflare sí lee (tanto
+en Pages como en Workers Assets), verificado con 15/15 comprobaciones contra un
+servidor local que parsea ambos ficheros igual que Cloudflare. Detalle operativo
+en [DESPLIEGUE.md](DESPLIEGUE.md).
+
+### A5. El formulario de contacto perdía todos los leads en silencio
+
+El más grave de toda la intervención. El formulario usaba **Netlify Forms**
+(`data-netlify="true"` y `POST` a `/`), que en Cloudflare no existe. Reproducido
+en local: el host estático responde al `POST` con **200 y el HTML de la portada**,
+`res.ok` es `true`, el front-end ejecutaba la rama de éxito y el visitante leía
+*«¡Gracias! Hemos recibido tu solicitud»*. El lead no llegaba a ninguna parte.
+
+Corregido: el envío va a `/api/contacto`, una Pages Function que responde siempre
+JSON `{ ok: boolean }`, y el front-end solo canta éxito con `ok === true`.
+Verificados los tres escenarios: función ausente → error honesto; función sin
+secreto → error honesto; función respondiendo `ok:true` → éxito y reseteo.
+
+**Requiere acción tuya:** configurar `RESEND_API_KEY` en el panel de Cloudflare
+(§2 de DESPLIEGUE.md). Hasta entonces el formulario avisa de que escriban por
+correo, en vez de tragarse la solicitud.
+
+**Conviene confirmar** si el proyecto es Cloudflare *Pages* o *Workers*: la
+carpeta `functions/` solo se ejecuta en Pages.
+
+---
+
 ## B. Decisiones pendientes del cliente
 
 ### B1. Arquitectura del bilingüe · bloquea buena parte del SEO
