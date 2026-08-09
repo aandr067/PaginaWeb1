@@ -108,22 +108,31 @@ perder la identidad actual.
 
 ## C. Deuda técnica anotada, fuera del alcance de la fase actual
 
-| Id | Asunto | Dónde | Fase |
+| Id | Asunto | Dónde | Estado |
 |---|---|---|---|
-| C1 | `portal-cliente/`: 50 ficheros de código fuente publicados en producción | `netlify.toml:3` | 1 |
-| C2 | `panel-apf/` sin ignorar; entraría al repositorio y al despliegue en el próximo `git add` | `.gitignore` | 1 |
-| C3 | Gmail personal en el mensaje de error del formulario | `js/main.js:176` | 1 |
-| C4 | El contador anuncia +300 % mientras el HTML servido dice +200 % | `index.html:386` | 1 |
-| C5 | 16 páginas sin navegación móvil | `css/styles.css:862-867` | 2 |
-| C6 | Sin `_headers`/CSP más allá de `frame-ancestors` | `netlify.toml:22` | 2 |
-| C7 | Cache-busting manual `?v=` en 51 puntos de 17 ficheros | todas las páginas | 5 |
-| C8 | Sin presupuesto de rendimiento verificado en el despliegue | `netlify.toml` | 5 |
-| C9 | `.gitignore` se sirve públicamente | raíz | 1 |
-| C10 | El portal es indexable por el catch-all 200 de `/portal/*` | `netlify.toml:8-11` | 6 |
-| C11 | `sitemap.xml` con `lastmod` de junio pese a cambios de agosto | `sitemap.xml` | 6 |
-| C12 | Página huérfana: `aplicaciones-medida.html` no se enlaza desde ninguna parte | `soluciones/` | 6 |
-| C13 | No existe un hub `/soluciones/` que agrupe las 13 subpáginas | — | 6 |
-| C14 | Estilos legales duplicados en dos `<style>` inline idénticos (66 líneas) | `terminos.html`, `politica-privacidad.html` | 5 |
+| C1 | `portal-cliente/`: 50 ficheros de código fuente publicados en producción | `netlify.toml` | ✅ Fase 1 — devuelve 404 |
+| C2 | `panel-apf/` sin ignorar; entraría al despliegue en el próximo `git add` | `.gitignore` | ✅ Fase 1 |
+| C3 | Gmail personal en el mensaje de error del formulario | `js/home.js` | ✅ Fase 1 |
+| C4 | El contador anuncia +300 % mientras el HTML servido dice +200 % | `index.html` | ✅ Fase 1 |
+| C5 | 16 páginas sin navegación móvil | 17 páginas | ✅ Fase 2 |
+| C6 | Sin CSP más allá de `frame-ancestors` | `netlify.toml` | ⬜ Pendiente |
+| C7 | Cache-busting manual `?v=` en 51 puntos de 17 ficheros | todas las páginas | ⬜ Pendiente |
+| C8 | Sin presupuesto de rendimiento verificado en el despliegue | `scripts/perf-budget.mjs` | ✅ Fase 5 — falla el deploy |
+| C9 | `.gitignore` se sirve públicamente | raíz | ⬜ Pendiente (menor) |
+| C10 | El portal es indexable por el catch-all 200 de `/portal/*` | `netlify.toml` | ✅ Fase 6 — `X-Robots-Tag` |
+| C11 | `sitemap.xml` con `lastmod` de junio pese a cambios de agosto | `sitemap.xml` | ✅ Fase 6 |
+| C12 | Página huérfana: `aplicaciones-medida.html` sin enlaces entrantes | `soluciones/` | ✅ Fase 6 — la enlazan 16 páginas |
+| C13 | No existe un hub `/soluciones/` que agrupe las 13 subpáginas | — | ⬜ Pendiente |
+| C14 | Estilos legales duplicados en dos `<style>` inline idénticos (66 líneas) | `terminos.html`, `politica-privacidad.html` | ⬜ Pendiente (menor) |
+
+### Falsos positivos de la auditoría, descartados por medición
+
+- **`lg-frost` inexistente en 16 páginas.** Medido en el navegador: los 27
+  elementos que usan el filtro SVG están todos en la portada y ninguna subpágina
+  llega a resolver `var(--lg-blur)`. No había ningún fallo que corregir.
+- **Higiene del repositorio.** El `.gitignore` ya excluía correctamente
+  `lighthouse/`, `three.js-dev/`, `tailwindcss/`, `_deploy/`, `apf-web.zip` y los
+  toolkits de SEO. Lo único que sí se publicaba era `portal-cliente/` (C1).
 
 ---
 
