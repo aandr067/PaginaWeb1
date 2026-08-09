@@ -1,6 +1,10 @@
-# Configuración de Netlify para sitio estático (sin build)
+# Configuración de Netlify para sitio estático.
+# El "build" no compila nada: solo verifica el presupuesto de rendimiento. Si un
+# cambio engorda el CSS, el JS, las fuentes o la imagen del héroe por encima de
+# lo acordado, el comando sale con código 1 y el despliegue no se publica.
 [build]
   publish = "."
+  command = "node scripts/perf-budget.mjs"
 
 # Portal de cliente (SPA React Router). Los assets reales de /portal/assets/* se
 # sirven directamente; cualquier otra ruta /portal/* cae a su index.html para que
