@@ -10,20 +10,43 @@ funcione como está diseñado, y qué se rompió al migrar desde Netlify.
 | Fichero | Netlify | Cloudflare | Estado |
 |---|---|---|---|
 | `_headers` | sí | **sí** | **Es el que manda.** Cabeceras de caché, seguridad y `X-Robots-Tag` |
-| `_redirects` | sí | **sí** | **Es el que manda.** Bloqueos y el rewrite del portal |
+| `_redirects` | sí | parcial | Solo redirecciones HTTP reales (301/302/303/307/308). Vacío a propósito — ver §1.1 |
+| `functions/_middleware.js` | no | **sí** (Pages Functions) | Bloqueo de rutas y reescritura SPA del portal |
 | `functions/api/contacto.js` | no | **sí** (Pages Functions) | Recepción del formulario |
 | `netlify.toml` | sí | **no** | Inerte. Se conserva solo como referencia y por si se vuelve a Netlify |
 
 > **Lo importante:** todo lo que estaba únicamente en `netlify.toml` no ha estado
-> activo en producción desde la migración. Eso incluye las cabeceras de seguridad
-> (`X-Frame-Options`, HSTS, `Referrer-Policy`, `Permissions-Policy`, CSP), toda la
-> política de caché y el *rewrite* que hace funcionar los enlaces profundos del
-> portal. Al añadir `_headers` y `_redirects` vuelven a aplicarse.
+> activo en producción desde la migración: cabeceras de seguridad, política de
+> caché y el *rewrite* del portal. Corregido portando las cabeceras a `_headers`
+> (eso sí funciona igual que en Netlify) y el resto a `functions/_middleware.js`
+> (ver §1.1 — `_redirects` no sirve para esto en Cloudflare).
 
-Las reglas están verificadas contra un servidor local que parsea los dos ficheros
-igual que Cloudflare: 14/14 comprobaciones (cabeceras de seguridad, caché
-inmutable de fuentes e imágenes, bloqueo de `/portal-cliente/*` y de los `.md`
-internos, `noindex` del portal y su rewrite).
+### 1.1 `_redirects` no admite bloqueos (404) ni reescrituras (200)
+
+El primer despliegue a Cloudflare llevaba en `_redirects` las mismas reglas que
+usaba `netlify.toml`: bloquear `/portal-cliente/*` y los `.md` internos con
+código 404, y reescribir `/portal/*` a `/portal/index.html` con código 200.
+**Ninguna de las dos funcionó**, y no dio ningún error: Cloudflare Pages solo
+admite 301/302/303/307/308 en `_redirects` (redirecciones HTTP reales), así que
+ignoró esas líneas en silencio. Verificado en producción tras el despliegue:
+`/portal-cliente/src/lib/api.ts` seguía sirviendo el código fuente real con 200,
+y `/portal/dashboard/algo` (una ruta profunda del portal) devolvía 404 en vez de
+la aplicación.
+
+Corregido con `functions/_middleware.js`, que se ejecuta para **todas** las
+peticiones (incluidos los assets estáticos) antes de servir nada, y puede hacer
+lo que `_redirects` no puede porque ejecuta código en vez de depender de un
+código de estado concreto. Verificado con `wrangler pages dev` —el emulador
+oficial de Cloudflare, no un servidor de pruebas propio— con 8/8 casos
+correctos: bloqueo de `/portal-cliente/*` y de los `.md`, reescritura de rutas
+profundas del portal preservando el JS/CSS reales bajo `/portal/assets/*`, la
+función `/api/contacto` sin verse afectada, y las cabeceras de `_headers`
+conviviendo sin conflicto.
+
+**Lección para el futuro:** cualquier regla de `_redirects` que no sea una
+redirección HTTP real hay que verificarla contra `wrangler pages dev` o en
+producción, nunca dar por bueno que "si no da error, funciona" — Cloudflare no
+avisa cuando ignora una línea.
 
 ---
 

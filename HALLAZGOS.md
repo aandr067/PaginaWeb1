@@ -153,6 +153,26 @@ de esta corrección.
 
 ---
 
+## A8. `_redirects` no bloqueaba nada ni reescribía nada · corregido
+
+Tras desplegar la Fase 9 se verificó en producción real (no en el simulador
+local) que `/portal-cliente/src/lib/api.ts` seguía sirviendo el código fuente
+con 200, y que `/portal/dashboard/algo` devolvía 404 en vez de la aplicación del
+portal. Las reglas de `_redirects` de las fases 8 y 9 usaban códigos 404 y 200,
+que **Cloudflare Pages no admite** en ese fichero (solo 301/302/303/307/308) y
+que ignora sin avisar. El propio servidor local usado para verificar en las
+fases 8 y 9 aceptaba cualquier código porque su parser era más permisivo que
+Cloudflare real: dio una verificación en verde que no reflejaba la plataforma
+real.
+
+Corregido con `functions/_middleware.js`, que sí puede bloquear y reescribir
+porque ejecuta código en vez de depender de códigos de estado. Esta vez
+verificado con `wrangler pages dev` —el emulador oficial de Cloudflare
+descargado para la ocasión— en vez de con un simulador propio: 8/8 casos
+correctos. Detalle técnico completo en [DESPLIEGUE.md](DESPLIEGUE.md) §1.1.
+
+---
+
 ## B. Decisiones pendientes del cliente
 
 ### B1. Arquitectura del bilingüe · bloquea buena parte del SEO

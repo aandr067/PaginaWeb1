@@ -1,22 +1,16 @@
-# Redirecciones — Cloudflare Pages / Workers Assets
+# Redirecciones — Cloudflare Pages
 #
-# El orden importa: gana la primera regla que coincide.
-
-# El código fuente del portal de cliente NO debe servirse. Son 50 ficheros
-# (src/lib/api.ts, .env.example, vite.config.ts, el modelo de roles completo) que
-# se publican porque el despliegue sube la raíz del repositorio.
-# OJO: esto es una tirita. El arreglo de verdad es que ese proyecto no viva en el
-# repositorio de la web — ver HALLAZGOS.md C1.
-/portal-cliente/*  /404.html  404
-
-# Documentos internos de la auditoría.
-/AUDITORIA.md      /404.html  404
-/HALLAZGOS.md      /404.html  404
-/INFORME-FINAL.md  /404.html  404
-/MOTION.md         /404.html  404
-/DESPLIEGUE.md     /404.html  404
-
-# Portal de cliente (SPA con React Router): los assets reales de /portal/assets/*
-# se sirven tal cual y cualquier otra ruta cae a su index.html, para que los
-# enlaces profundos y las recargas funcionen. Va DESPUÉS de las reglas de arriba.
-/portal/*  /portal/index.html  200
+# IMPORTANTE: Cloudflare Pages solo admite 301/302/303/307/308 en este fichero
+# (redirecciones HTTP reales). Los códigos 200 (reescritura) y 404 (bloqueo) que
+# usa Netlify NO existen aquí y se ignoran en silencio — no hay error, el
+# fichero real se sigue sirviendo tal cual. Se comprobó en producción: las
+# reglas 200/404 que hubo aquí en el primer despliegue no hacían nada.
+#
+# El bloqueo de /portal-cliente/* y de los .md internos, y la reescritura SPA de
+# /portal/*, viven ahora en functions/_middleware.js, que sí puede hacer ambas
+# cosas porque ejecuta código arbitrario en vez de depender de códigos de
+# estado de redirección.
+#
+# Este fichero se deja vacío de reglas a propósito: si en el futuro hace falta
+# una redirección HTTP real (por ejemplo un dominio o ruta antigua que deba
+# devolver 301), este es el sitio correcto para ella.
