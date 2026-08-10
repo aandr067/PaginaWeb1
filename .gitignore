@@ -33,3 +33,6 @@ geo-seo-claude/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Cache/estado local de `wrangler pages dev` (no es parte del despliegue)
+.wrangler/
