@@ -1,10 +1,10 @@
-# AUDITORÍA — apftechnologys.com
+# AUDITORÍA — apftech.es
 
 > **Fase 0 del plan de optimización integral.** Documento de solo lectura: describe el
 > estado del sitio **antes** de cualquier cambio. Las correcciones ya aplicadas en la
 > Fase 1 se marcan con ✅ en las tablas.
 
-- **Sitio:** https://apftechnologys.com — repositorio local `APFCLAUDE`, rama `optimizacion/fase-1`
+- **Sitio:** https://apftech.es — repositorio local `APFCLAUDE`, rama `optimizacion/fase-1`
 - **Stack:** HTML + CSS + JavaScript vanilla, sin build ni dependencias de runtime
 - **Hosting:** Netlify (`publish = "."`, sin comando de build)
 - **Superficie pública:** 17 páginas (home, 13 soluciones, términos, privacidad, 404)
@@ -27,7 +27,7 @@ Escritorio: 1350×940, DPR 1, sin límite de CPU, 10 Mbps / 40 ms RTT.
 ### Cuatro límites que condicionan la lectura de las cifras
 
 1. **Producción no es alcanzable desde este entorno.** El proxy permite el registro de
-   npm pero no `apftechnologys.com`. No hay, por tanto, TTFB real de Netlify ni
+   npm pero no `apftech.es`. No hay, por tanto, TTFB real de Netlify ni
    verificación de sus cabeceras en vivo: se han inferido de `netlify.toml`.
 2. **`fonts.googleapis.com` tampoco es alcanzable.** La línea base nunca llegó a
    descargar las fuentes de Google. Cualquier comparación de FCP/LCP entre el antes y
@@ -157,7 +157,7 @@ De ellos, **18 ya están corregidos** en la Fase 1 (commit `9e003dd`).
 | 🟡 Media | bajo | F3 | **.feature y .step son opacas mientras .outcome y .risk son de cristal, en la misma página**<br><sub>Unificar: o todas las cajas de subpágina en glass (`--lg-fill` + `--lg-blur-soft`) o todas en `--surface` opaco, y dar a `.step` el mismo hover de ele</sub> | `css/styles.css:1027-1032 y 1044-1047 frente a 1244-1248 y 1215-1221` |
 | 🟡 Media | bajo | F3 | **El enlace 'Volver a soluciones' anima la propiedad gap en hover y dispara reflow**<br><sub>Dejar `gap` fijo en 8px y mover la flecha con `transform: translateX(4px)` sobre `.sub-back:hover svg`, exactamente el mismo patrón ya usado en css/st</sub> | `css/styles.css:996-1002` |
 | 🟡 Media | bajo | F5 | **Todos los mensajes del formulario se inyectan en español y nunca se traducen al inglés**<br><sub>Exponer un helper `window.APF_T(texto)` desde i18n.js y usarlo en las 4 cadenas de main.js, añadiendo sus traducciones al diccionario; o guardar las v</sub> | `js/main.js:152,158,171,176; js/i18n.js:226-245` |
-| 🟡 Media | bajo | F1 | **El fallback de error del formulario expone un Gmail personal en lugar del correo corporativo**<br><sub>Sustituir por `apf@apftechnologys.com` en js/main.js:176.</sub> | `js/main.js:176` |
+| 🟡 Media | bajo | F1 | **El fallback de error del formulario expone un Gmail personal en lugar del correo corporativo**<br><sub>Sustituir por `apf@apftech.es` en js/main.js:176.</sub> | `js/main.js:176` |
 | 🟡 Media | bajo | F1 | **El contador anima hasta +300% sobre un texto que dice +200%, y al volver a español revierte**<br><sub>Decidir la cifra correcta y alinear `data-count` con el texto inicial (o poner el texto inicial en '+0%' si se quiere la animación completa), y exclui</sub> | `index.html:386; js/main.js:87-99` |
 | 🟡 Media | bajo | F2 | **El botón del menú sigue anunciándose como 'Abrir menú' cuando está abierto**<br><sub>En `setMenu(open)` (js/main.js:48) añadir `toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú")` y, dado que i18n cachea etiquetas a</sub> | `index.html:303; js/main.js:48; js/i18n.js:26` |
 | 🟡 Media | medio | F3 | **Los carruseles de 6 tarjetas ocultan el 83 % del contenido tras un gesto horizontal**<br><sub>Mantener el coverflow sólo en `#beneficios` y `#planes` (3 elementos, comparación lado a lado) y pasar `#servicios` y `#ciberseguridad` a rejilla vert</sub> | `index.html:445-508, 521-584; css/styles.css:896-899` |
@@ -176,7 +176,7 @@ De ellos, **18 ya están corregidos** en la Fase 1 (commit `9e003dd`).
 |---|---|---|---|---|
 | 🔴 Crítica | bajo | F1 | **El codigo fuente completo del portal B2B autenticado se publica en produccion**<br><sub>Sacar portal-cliente/ del arbol publicado. Opcion mas limpia: `git rm -r --cached portal-cliente/` y anadir `portal-cliente/` al .gitignore raiz, movi</sub> | `netlify.toml:3 + portal-cliente/ (50 ficheros versionados)` |
 | 🟠 Alta | bajo | F1 | **panel-apf/ no esta versionado pero tampoco ignorado: a un `git add -A` de publicarse**<br><sub>Anadir `panel-apf/` al bloque de .gitignore que ya existe para los toolkits (junto a claude-seo/ y geo-seo-claude/, cuyo comentario en .gitignore:24-2</sub> | `.gitignore:1-31 (ausencia) + git status` |
-| 🟠 Alta | bajo | F1 | **Cinco de las siete reglas de caché usan patrones sin barra inicial, incoherentes con la sexta del mismo fichero**<br><sub>Verificar primero con `curl -sSI https://apftechnologys.com/css/styles.css?v=20260809a \| grep -i cache-control` y comparar con `curl -sSI https://apft</sub> | `netlify.toml:37,42,47,53,59 frente a netlify.toml:26,31` |
+| 🟠 Alta | bajo | F1 | **Cinco de las siete reglas de caché usan patrones sin barra inicial, incoherentes con la sexta del mismo fichero**<br><sub>Verificar primero con `curl -sSI https://apftech.es/css/styles.css?v=20260809a \| grep -i cache-control` y comparar con `curl -sSI https://apft</sub> | `netlify.toml:37,42,47,53,59 frente a netlify.toml:26,31` |
 | 🟠 Alta | medio | F2 | **max-age=604800 + must-revalidate: durante 7 dias el navegador no pregunta nada, y un despliegue sin subir el ?v= es invisible**<br><sub>Migrar a nombres con hash de contenido: css/styles.<hash>.css y js/main.<hash>.js, servidos con `public, max-age=31536000, immutable`, y HTML con `pub</sub> | `netlify.toml:52-61` |
 | 🟠 Alta | medio | F2 | **El ?v= hay que subirlo a mano en 51 sitios repartidos por 17 paginas, y un olvido parcial deja el sitio en estado mixto**<br><sub>Resuelto de raiz por la migracion a nombres con hash del hallazgo anterior. Mientras tanto, y como red de seguridad barata que conviene mantener despu</sub> | `index.html:53,881,882 y las otras 16 paginas publicas` |
 | 🟠 Alta | medio | F2 | **La CSP se limita a frame-ancestors y no aporta ninguna contencion frente a XSS**<br><sub>Sustituir netlify.toml:22 por una CSP completa ajustada a lo que el sitio usa de verdad: `default-src 'self'; script-src 'self' 'sha256-<hash del scri</sub> | `netlify.toml:22` |

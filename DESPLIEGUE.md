@@ -51,8 +51,8 @@ configurar el secreto. En el panel de Cloudflare › tu proyecto › *Settings* 
 | Variable | Tipo | Valor |
 |---|---|---|
 | `RESEND_API_KEY` | Secreto | La clave de [resend.com](https://resend.com) |
-| `CONTACTO_TO` | Texto | `apf@apftechnologys.com` (por defecto si se omite) |
-| `CONTACTO_FROM` | Texto | Un remitente verificado en el dominio, p. ej. `web@apftechnologys.com` |
+| `CONTACTO_TO` | Texto | `apf@apftech.es` (por defecto si se omite) |
+| `CONTACTO_FROM` | Texto | Un remitente verificado en el dominio, p. ej. `web@apftech.es` |
 
 Mientras `RESEND_API_KEY` no exista, la función devuelve 501 y el usuario ve el
 aviso de que escriba por correo. Es deliberado: preferible decir la verdad a

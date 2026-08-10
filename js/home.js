@@ -71,13 +71,13 @@
       invalid: "Revisa los campos: necesitamos tu nombre, teléfono, email, el servicio de interés y tu consentimiento.",
       sending: "Enviando…",
       ok: "¡Gracias! Hemos recibido tu solicitud de información. Te contactaremos muy pronto.",
-      error: "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a apf@apftechnologys.com."
+      error: "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos a apf@apftech.es."
     },
     en: {
       invalid: "Please check the form: we need your name, phone, email, the service you are interested in and your consent.",
       sending: "Sending…",
       ok: "Thank you! We have received your request and will get back to you very soon.",
-      error: "We could not send the form. Please try again or email us at apf@apftechnologys.com."
+      error: "We could not send the form. Please try again or email us at apf@apftech.es."
     }
   };
   function msg(key) {

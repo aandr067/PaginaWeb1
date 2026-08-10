@@ -10,7 +10,7 @@ cliente. Cada entrada indica quién debe resolverla.
 
 ### A1. Producción es inalcanzable · requiere validación tras el despliegue
 
-El entorno de ejecución no tiene salida hacia `apftechnologys.com` (ni hacia
+El entorno de ejecución no tiene salida hacia `apftech.es` (ni hacia
 `fonts.googleapis.com`), aunque sí alcanza el registro de npm. Consecuencias:
 
 - No hay TTFB real de Netlify. Las cabeceras se han inferido de `netlify.toml` y se han
@@ -104,6 +104,52 @@ correo, en vez de tragarse la solicitud.
 
 **Conviene confirmar** si el proyecto es Cloudflare *Pages* o *Workers*: la
 carpeta `functions/` solo se ejecuta en Pages.
+
+---
+
+## A6. El dominio real es apftech.es, no apftechnologys.com · corregido
+
+Todo el trabajo de las fases 0 a 8 asumió `apftechnologys.com` como dominio, porque
+era el único que aparecía en el código (canonical, JSON-LD, sitemap, robots.txt,
+llms.txt, Open Graph, el correo de contacto). El usuario corrigió esto tras el
+despliegue: **el dominio real y en producción es `apftech.es`**.
+
+Verificado con DNS directo desde este entorno: `apftech.es` resuelve a una IP de
+Cloudflare y sirve el sitio (confirmado con el HTML en vivo, que ya reflejaba el
+despliegue de la Fase 8). `apftechnologys.com` **no resuelve en absoluto** — ni el
+dominio raíz ni el subdominio `api.`. No es una restricción de este entorno de
+ejecución: el mismo método alcanzó `apftech.es` sin problema.
+
+Corregidas 159 URLs (canonical, og:url, og:image, twitter:image, JSON-LD @id/
+url/image/logo, sitemap.xml, robots.txt, llms.txt) y 49 direcciones de correo
+(`apf@`/`web@apftechnologys.com` → `@apftech.es`) en 17 páginas, `sitemap.xml`,
+`robots.txt`, `llms.txt`, `functions/api/contacto.js` y `js/home.js`, tras
+confirmar con el usuario que el correo también debía migrar. Verificado: 0
+referencias al dominio viejo en todo el árbol versionado fuera de
+`portal-cliente/` y `portal/` (ver A7), JSON-LD sigue válido (31 nodos, 0
+inválidos), sitemap con 16 URLs todas en `apftech.es`.
+
+### A7. El backend del portal de cliente apunta al mismo dominio muerto · sin tocar
+
+`portal/assets/index-DHBGr6co.js` (el bundle ya compilado del portal de cliente)
+tiene grabada `const API_BASE = "https://api.apftechnologys.com"`. Ese subdominio
+tampoco resuelve por DNS — el mismo problema que el dominio principal, pero en un
+sistema aparte.
+
+**No se ha tocado.** El bundle es un artefacto de compilación de
+`portal-cliente/src/lib/api.ts` (que en realidad usa
+`import.meta.env.VITE_API_BASE`, fijado en tiempo de build); cambiar la cadena a
+mano en el bundle minificado sin saber cuál es el dominio real del backend
+arriesgaba a "arreglarlo" hacia otro sitio igualmente inexistente. Esto es
+además un sistema distinto —la API de autenticación y analítica del portal— y
+queda fuera del alcance de la optimización del sitio de marketing.
+
+**Qué hacer:** confirmar cuál es el dominio real del backend (¿`api.apftech.es`?
+¿otro proveedor?), fijar `VITE_API_BASE` en el entorno de build de
+`portal-cliente/` y recompilar (`portal-build-deploy`, según memoria del
+proyecto). Mientras tanto, el login y la carga de datos del portal de cliente
+probablemente fallan en producción, igual que fallaba el sitio principal antes
+de esta corrección.
 
 ---
 

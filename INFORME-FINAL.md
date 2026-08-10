@@ -1,4 +1,4 @@
-# INFORME FINAL — optimización integral de apftechnologys.com
+# INFORME FINAL — optimización integral de apftech.es
 
 Cierre del plan de siete fases. Rama `optimizacion/fase-7`, lista para merge.
 

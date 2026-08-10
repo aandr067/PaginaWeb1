@@ -13,8 +13,8 @@
  *
  * Configuración (panel de Cloudflare › Settings › Variables and Secrets):
  *   RESEND_API_KEY   secreto de Resend (https://resend.com), imprescindible
- *   CONTACTO_TO      destino, por defecto apf@apftechnologys.com
- *   CONTACTO_FROM    remitente verificado en el dominio, p. ej. web@apftechnologys.com
+ *   CONTACTO_TO      destino, por defecto apf@apftech.es
+ *   CONTACTO_FROM    remitente verificado en el dominio, p. ej. web@apftech.es
  *
  * Mientras no exista RESEND_API_KEY la función responde 501 y el usuario ve el
  * aviso de que escriba por correo. Es deliberado: preferible decir la verdad.
@@ -55,8 +55,8 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'sin_configurar' }, 501);
   }
 
-  const to = env.CONTACTO_TO || 'apf@apftechnologys.com';
-  const from = env.CONTACTO_FROM || 'web@apftechnologys.com';
+  const to = env.CONTACTO_TO || 'apf@apftech.es';
+  const from = env.CONTACTO_FROM || 'web@apftech.es';
   const esc = (v) =>
     String(v).replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 

@@ -38,4 +38,4 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap
-Sitemap: https://apftechnologys.com/sitemap.xml
+Sitemap: https://apftech.es/sitemap.xml
