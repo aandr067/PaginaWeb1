@@ -207,6 +207,16 @@
     "APF Tech. Todos los derechos reservados.": "APF Tech. All rights reserved.",
     "Privacidad": "Privacy",
     "Términos": "Terms",
+    /* El banner de cookies lo traduce js/cookies.js por su cuenta: se inyecta
+       despues de que este modulo fotografie los nodos de texto. Aqui solo
+       estan los enlaces del pie y de la propia pagina legal. */
+    "Cookies": "Cookies",
+    "Configurar cookies": "Cookie settings",
+    /* En minuscula a proposito: asi traduce el enlace dentro de un parrafo sin
+       tocar el <h1> de politica-cookies.html. Los documentos legales estan solo
+       en espanol —igual que los terminos y la privacidad— y un titulo en ingles
+       sobre un cuerpo en espanol se lee como un error. */
+    "política de cookies": "cookie policy",
 
     /* Page titles */
     "APF Tech — Inteligencia artificial para tu negocio": "APF Tech — Artificial intelligence for your business"

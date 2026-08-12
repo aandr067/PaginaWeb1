@@ -1462,3 +1462,309 @@ a.svc { color: inherit; }
   .plan--popular { transform: none; }
   .plan--popular:hover { transform: translateY(-6px); }
 }
+
+/* ===================================================================
+   Consentimiento de cookies — banner + panel de preferencias
+   El markup lo inyecta js/cookies.js; aqui solo esta el aspecto.
+
+   Pila de z-index del sitio: nav 100, drawer 99, scrim del drawer 98,
+   skip-link 200. El banner va por encima del nav (150) y el panel modal
+   por encima del banner (190), pero ambos por debajo del skip-link.
+   =================================================================== */
+/* La entrada desliza desde abajo. La clase is-in la pone el JS en el frame
+   siguiente, para que la transicion tenga un estado inicial del que partir. */
+.cc {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 150;
+  padding: 0 var(--pad) max(var(--pad), env(safe-area-inset-bottom));
+  pointer-events: none;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform var(--dur-card) var(--ease-out), opacity var(--dur-card) var(--ease-out);
+}
+.cc.is-in { transform: none; opacity: 1; }
+.cc__box {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  width: min(var(--container), 100%);
+  margin-inline: auto;
+  padding: 22px 26px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: var(--shadow-lg);
+}
+.cc__body { min-width: 0; }
+.cc__title {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+.cc__text {
+  margin: 6px 0 0;
+  font-size: .93rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+.cc__text a { color: var(--accent); text-underline-offset: 3px; }
+
+.cc__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+/* "Aceptar todas" y "Rechazar todas" comparten alto, forma y peso tipografico:
+   la AEPD exige que rechazar sea tan facil y tan visible como aceptar. Lo unico
+   que cambia es el color, para que se distingan entre si. */
+.cc__deny,
+.cc__save {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border-2);
+}
+.cc__deny:hover,
+.cc__save:hover {
+  background: var(--bg-1);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.cc__link {
+  background: none;
+  border: 0;
+  padding: 6px 2px;
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color var(--dur-micro) var(--ease);
+}
+.cc__link:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .cc__box { flex-direction: column; align-items: stretch; gap: var(--sp-5); padding: 22px 22px; }
+  .cc__actions { flex-wrap: wrap; }
+  .cc__actions .btn { flex: 1 1 auto; }
+  .cc__link { order: 3; width: 100%; text-align: center; }
+}
+
+/* Enlace permanente del pie para reabrir el panel. Es un <button> porque no
+   navega a ninguna parte, pero tiene que leerse como el resto del pie. */
+.footer__legal button[data-cc-open] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.footer__legal button[data-cc-open]:hover { color: var(--accent); text-decoration-thickness: 2px; }
+
+/* ---------- Panel de preferencias ---------- */
+.cc-modal { position: fixed; inset: 0; z-index: 190; }
+.cc-modal__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 9, 14, .5);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity var(--dur-card) var(--ease);
+}
+.cc-modal.is-open .cc-modal__scrim { opacity: 1; }
+
+.cc-modal__box {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+  width: min(620px, 100%);
+  max-height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--dur-card) var(--ease-out);
+}
+.cc-modal.is-open .cc-modal__box { transform: translate(-50%, 0); }
+.cc-modal__box:focus-visible { outline: none; }
+
+@media (min-width: 760px) {
+  .cc-modal__box {
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, calc(-50% + 24px));
+    border-radius: var(--r-lg);
+    opacity: 0;
+    transition: transform var(--dur-card) var(--ease-out), opacity var(--dur-card) var(--ease-out);
+  }
+  .cc-modal.is-open .cc-modal__box { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+.cc-modal__head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: 22px 26px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.cc-modal__head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.cc-modal__x {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--pill);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color var(--dur-micro) var(--ease), border-color var(--dur-micro) var(--ease);
+}
+.cc-modal__x:hover { color: var(--accent); border-color: var(--accent); }
+
+.cc-modal__scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px 26px 4px;
+}
+.cc-modal__lead {
+  margin: 0 0 18px;
+  font-size: .93rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.cc-modal__lead a { color: var(--accent); text-underline-offset: 3px; }
+
+.cc-group {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+.cc-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.cc-group__head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cc-group p {
+  margin: 8px 0 0;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.cc-always {
+  flex: none;
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-tint-2);
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 500;
+}
+
+/* Interruptor. El input real sigue ahi (solo desplazado visualmente) para no
+   perder ni el foco de teclado ni la semantica de checkbox. */
+.cc-switch { flex: none; display: inline-flex; cursor: pointer; }
+.cc-switch input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+.cc-switch__track {
+  display: block;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  border-radius: var(--pill);
+  background: var(--border-2);
+  transition: background var(--dur-ui) var(--ease);
+}
+.cc-switch__dot {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(11,18,32,.3);
+  transition: transform var(--dur-ui) var(--ease);
+}
+.cc-switch input:checked + .cc-switch__track { background: var(--accent); }
+.cc-switch input:checked + .cc-switch__track .cc-switch__dot { transform: translateX(20px); }
+.cc-switch input:focus-visible + .cc-switch__track {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.cc-modal__foot {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  padding: 18px 26px max(22px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+}
+.cc-modal__foot .btn { flex: 1 1 auto; }
+
+@media (max-width: 520px) {
+  .cc-modal__head, .cc-modal__scroll, .cc-modal__foot { padding-inline: 20px; }
+  .cc-modal__foot .btn { flex-basis: 100%; }
+}
+
+/* En modo oscuro el interruptor apagado necesita mas contraste que el borde
+   normal, que sobre superficie oscura casi desaparece. */
+[data-theme="dark"] .cc-switch__track { background: rgba(255,255,255,.22); }
+/* El chip "Siempre activas" es texto pequeno (12,5 px): con --accent sobre su
+   propio tinte se queda en 4,48:1, justo por debajo del 4,5:1 que exige la
+   AA. El azul claro lo sube a 6,5:1. Medido con axe-core. */
+[data-theme="dark"] .cc-always { color: var(--accent-3); }
+[data-theme="dark"] .cc-switch__dot { background: #E8ECF4; }
+[data-theme="dark"] .cc-modal__scrim { background: rgba(0, 0, 0, .66); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cc, .cc-modal__box, .cc-modal__scrim, .cc-switch__track, .cc-switch__dot { transition: none; }
+  .cc { transform: none; }
+}

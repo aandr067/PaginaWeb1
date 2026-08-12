@@ -28,11 +28,16 @@ const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
  * Limites. Fijados con un margen aproximado del 25 % sobre el valor
  * medido tras la Fase 5, para que absorban crecimiento normal pero
  * salte la alarma ante una regresion de verdad.
+ *
+ * 2026-08-11: el consentimiento de cookies (obligatorio por el art. 22.2
+ * LSSI-CE, no es opcional) suma 1,5 KB de CSS y 4,6 KB de JS en todas las
+ * paginas. Los tres limites afectados se recalculan sobre la nueva linea
+ * base manteniendo el mismo margen del 25 %; el resto no se toca.
  * ------------------------------------------------------------------ */
 const BUDGET = {
-  'CSS (brotli)': 14,
-  'JS de la portada (brotli)': 14,
-  'JS de una subpagina (brotli)': 10,
+  'CSS (brotli)': 17,
+  'JS de la portada (brotli)': 21,
+  'JS de una subpagina (brotli)': 15,
   'HTML de la portada (brotli)': 12,
   'HTML de una subpagina (brotli)': 8,
   'Fuentes (total)': 100,
@@ -52,8 +57,9 @@ add('CSS (brotli)', KB(br(read('css/styles.css'))), 'css/styles.css');
 const jsCore = br(read('js/core.js'));
 const jsHome = exists('js/home.js') ? br(read('js/home.js')) : 0;
 const jsI18n = br(read('js/i18n.js'));
-add('JS de la portada (brotli)', KB(jsCore + jsHome + jsI18n), 'core + home + i18n');
-add('JS de una subpagina (brotli)', KB(jsCore + jsI18n), 'core + i18n');
+const jsCookies = exists('js/cookies.js') ? br(read('js/cookies.js')) : 0;
+add('JS de la portada (brotli)', KB(jsCore + jsHome + jsI18n + jsCookies), 'core + home + i18n + cookies');
+add('JS de una subpagina (brotli)', KB(jsCore + jsI18n + jsCookies), 'core + i18n + cookies');
 
 /* HTML */
 add('HTML de la portada (brotli)', KB(br(read('index.html'))), 'index.html');
@@ -86,7 +92,7 @@ add('Heroe WebP (respaldo mayor)', KB(heroWebp.n), heroWebp.f);
 const homeTotal =
   br(read('index.html')) +
   br(read('css/styles.css')) +
-  jsCore + jsHome + jsI18n +
+  jsCore + jsHome + jsI18n + jsCookies +
   fontBytes +
   fs.statSync(path.join(ROOT, 'img/robot-736.avif')).size +
   fs.statSync(path.join(ROOT, 'img/logo-apf.avif')).size;

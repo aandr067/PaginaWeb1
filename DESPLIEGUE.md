@@ -138,5 +138,26 @@ tuya. Lo mismo aplica a los `.md` internos de la auditoría.
 
 ## 6. Recordatorio de siempre
 
-Cualquier cambio en `css/styles.css` o en `js/*` obliga a subir el `?v=` en las 17
+Cualquier cambio en `css/styles.css` o en `js/*` obliga a subir el `?v=` en las 18
 páginas. Mientras no se pase a nombres con hash, es el fallo más fácil de cometer.
+
+Token actual: `?v=20260811a` (subido al añadir el consentimiento de cookies).
+
+---
+
+## 7. Consentimiento de cookies
+
+`js/cookies.js` gestiona el banner y el panel de preferencias, y `politica-cookies.html`
+es el documento legal al que apuntan. Dos cosas que conviene no olvidar:
+
+- **Antes de añadir cualquier analítica o píxel**, cárgalo como
+  `<script type="text/plain" data-cookie="analytics" src="...">`. Así queda inerte
+  hasta que el visitante acepte esa categoría. Un `<script>` normal se ejecutaría
+  siempre y convertiría el banner en decorativo, que es justo lo que sanciona la AEPD.
+- **Y actualiza la tabla del apartado 5 de `politica-cookies.html`** con el nombre,
+  titular, finalidad y duración de la cookie nueva. Hoy la tabla dice que no usamos
+  analítica; si eso cambia sin tocar el documento, la política pasa a ser falsa.
+
+Si algún día cambian las categorías, sube `VERSION` en `js/cookies.js`: invalida los
+consentimientos guardados y vuelve a preguntar a todo el mundo, que es lo correcto
+cuando cambian las finalidades.

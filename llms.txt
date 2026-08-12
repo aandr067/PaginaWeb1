@@ -28,3 +28,4 @@ APF Tech ofrece dos grandes líneas de servicio: **soluciones de inteligencia ar
 - [Inicio](https://apftech.es/): visión general de servicios, planes y contacto.
 - [Política de privacidad](https://apftech.es/politica-privacidad.html)
 - [Términos y condiciones](https://apftech.es/terminos.html)
+- [Política de cookies](https://apftech.es/politica-cookies.html): cookies y tecnologías similares que usa el sitio, finalidad, duración y cómo cambiar el consentimiento.

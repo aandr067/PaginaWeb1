@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de cookies — APF Tech</title>
+  <meta name="description" content="Política de cookies de APF Tech: qué cookies y tecnologías similares utiliza el sitio web, con qué finalidad, cuánto duran y cómo aceptarlas, rechazarlas o cambiar tu decisión en cualquier momento." />
+  <meta name="author" content="APF Tech" />
+  <meta name="theme-color" content="#FFFFFF" data-theme-color />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://apftech.es/politica-cookies.html" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="APF Tech" />
+  <meta property="og:title" content="Política de cookies — APF Tech" />
+  <meta property="og:description" content="Política de cookies de APF Tech: qué cookies y tecnologías similares utiliza el sitio web, con qué finalidad, cuánto duran y cómo cambiar tu decisión en cualquier momento." />
+  <meta property="og:url" content="https://apftech.es/politica-cookies.html" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://apftech.es/img/og-apf.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Política de cookies — APF Tech" />
+  <meta name="twitter:description" content="Política de cookies de APF Tech: qué cookies y tecnologías similares utiliza el sitio web, con qué finalidad, cuánto duran y cómo cambiar tu decisión en cualquier momento." />
+  <meta name="twitter:image" content="https://apftech.es/img/og-apf.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("apf-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+
+  <!-- Fuentes autoalojadas en css/styles.css (@font-face). Sin preload: medido en
+       movil (CPU x4, 4G, mediana de 5) el preload de la fuente empeoraba
+       FCP 1296->1468 ms y TBT 279->795 ms al competir con la hoja de estilos. -->
+
+  <link rel="stylesheet" href="css/styles.css?v=20260811a" />
+
+  <style>
+    /* Tipografía específica del documento legal, apoyada en .prose */
+    .legal { max-width: 76ch; }
+    .legal h2.subsection__title { margin-top: 0; }
+    .legal h3 {
+      font-size: 1.22rem;
+      margin-top: 32px;
+      color: var(--ink);
+    }
+    .legal p { margin-top: 14px; }
+    .legal ul {
+      margin-top: 14px;
+      padding-left: 1.15rem;
+      list-style: none;
+    }
+    .legal ul li {
+      position: relative;
+      color: var(--ink-2);
+      font-size: clamp(1.02rem, 1.4vw, 1.12rem);
+      margin-top: 10px;
+      padding-left: 1.4rem;
+    }
+    .legal ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .62em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--grad-accent, var(--accent));
+    }
+    .legal a { color: var(--accent); }
+    .legal__updated {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: .95rem;
+      color: var(--ink-2);
+    }
+    .legal__block + .legal__block { margin-top: clamp(30px, 4.5vw, 52px); }
+
+    /* Índice de contenidos */
+    .legal-toc {
+      margin: 8px 0 0;
+      padding: 26px 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--surface);
+    }
+    .legal-toc h2 { font-size: 1.12rem; margin: 0 0 8px; }
+    .legal-toc ol {
+      margin: 0;
+      padding-left: 1.3rem;
+      columns: 2;
+      column-gap: 36px;
+    }
+    .legal-toc li { margin-top: 8px; break-inside: avoid; }
+    .legal-toc a { color: var(--ink-2); text-decoration: none; }
+    .legal-toc a:hover { color: var(--accent); }
+    @media (max-width: 640px) { .legal-toc ol { columns: 1; } }
+
+    .legal__note {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      background: var(--bg-1);
+      font-size: .98rem;
+      color: var(--ink-2);
+    }
+
+    /* Tabla de cookies: en móvil se desplaza en horizontal dentro de su caja,
+       nunca empuja el ancho de la página. */
+    .legal__table {
+      margin-top: 18px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+    }
+    .legal__table table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      font-size: .93rem;
+    }
+    .legal__table th,
+    .legal__table td {
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-2);
+    }
+    .legal__table th {
+      background: var(--bg-1);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .legal__table tbody tr:last-child td { border-bottom: 0; }
+    .legal__table code {
+      font-size: .88em;
+      color: var(--ink);
+      background: var(--accent-tint);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    /* Llamada para reabrir el panel de preferencias desde el propio documento. */
+    .cookie-cta {
+      margin-top: 22px;
+      padding: 22px 24px;
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .cookie-cta p { margin: 0; font-size: .98rem; color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#top">Saltar al contenido</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav is-scrolled" id="nav" data-nav>
+    <div class="container nav__inner">
+      <a class="brand" href="index.html#inicio" aria-label="APF Tech — inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+            <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M12 7v10M7.5 9.5 12 12l4.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">APF <span>Tech</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Principal">
+        <a href="index.html#beneficios">Beneficios</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#nosotros">Sobre nosotros</a>
+        <a href="index.html#prueba">Contacto</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle lang-toggle" type="button" data-lang-toggle aria-label="Switch to English" lang="en">EN</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar tema claro u oscuro">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn btn--primary btn--sm" href="index.html#prueba">Solicita información</a>
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer" data-menu-toggle>
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu movil -->
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación" data-drawer hidden>
+    <nav class="drawer__nav" aria-label="Menú móvil">
+      <a href="index.html#beneficios">Beneficios</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#nosotros">Sobre nosotros</a>
+      <a href="index.html#prueba">Contacto</a>
+      <a class="btn btn--ghost" href="/portal/">Portal de cliente</a>
+      <a class="btn btn--primary" href="index.html#prueba">Solicita información</a>
+    </nav>
+  </div>
+  <div class="drawer__scrim" data-drawer-scrim hidden></div>
+
+  <main id="top" tabindex="-1">
+    <!-- ===== Hero ===== -->
+    <section class="subhero">
+      <div class="subhero__aura" aria-hidden="true"></div>
+      <div class="container">
+        <a class="sub-back" href="index.html#inicio">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Volver al inicio
+        </a>
+        <p class="eyebrow" style="margin-top:18px">Información legal</p>
+        <h1 class="subhero__title">Política de cookies</h1>
+        <p class="subhero__lead">Esta política explica qué cookies y tecnologías similares utiliza el sitio web de APF Tech, para qué sirve cada una, cuánto tiempo permanecen en tu dispositivo y cómo puedes aceptarlas, rechazarlas o cambiar tu decisión cuando quieras.</p>
+        <span class="legal__updated">Última actualización: 11 de agosto de 2026 · Versión 1.0</span>
+      </div>
+    </section>
+
+    <!-- ===== Documento ===== -->
+    <section class="subsection">
+      <div class="container">
+        <div class="prose legal">
+
+          <!-- Índice -->
+          <nav class="legal-toc" aria-label="Índice de la política de cookies">
+            <h2>Contenido de este documento</h2>
+            <ol>
+              <li><a href="#c1">Responsable del sitio web</a></li>
+              <li><a href="#c2">Qué son las cookies</a></li>
+              <li><a href="#c3">Base legal y consentimiento</a></li>
+              <li><a href="#c4">Tipos de cookies según su finalidad</a></li>
+              <li><a href="#c5">Cookies que utiliza este sitio</a></li>
+              <li><a href="#c6">Cookies de terceros</a></li>
+              <li><a href="#c7">Cómo cambiar o retirar tu consentimiento</a></li>
+              <li><a href="#c8">Cómo gestionarlas desde tu navegador</a></li>
+              <li><a href="#c9">Transferencias internacionales de datos</a></li>
+              <li><a href="#c10">Conservación y renovación del consentimiento</a></li>
+              <li><a href="#c11">Actualizaciones de esta política</a></li>
+              <li><a href="#c12">Contacto</a></li>
+            </ol>
+          </nav>
+
+          <div class="legal__block" id="c1">
+            <h2 class="subsection__title">1. Responsable del sitio web</h2>
+            <p>El titular de este sitio web y responsable del tratamiento de los datos obtenidos a través de cookies es:</p>
+            <ul>
+              <li><strong>Titular:</strong> APF Tech</li>
+              <li><strong>Domicilio:</strong> Madrid, España</li>
+              <li><strong>Correo electrónico:</strong> <a href="mailto:apf@apftech.es">apf@apftech.es</a></li>
+              <li><strong>Sitio web:</strong> <a href="https://apftech.es">apftech.es</a></li>
+            </ul>
+            <p>Esta política de cookies complementa nuestra <a href="politica-privacidad.html">política de privacidad</a> y nuestros <a href="terminos.html">términos y condiciones</a>.</p>
+          </div>
+
+          <div class="legal__block" id="c2">
+            <h2 class="subsection__title">2. Qué son las cookies</h2>
+            <p>Una cookie es un pequeño fichero de texto que un sitio web guarda en tu navegador cuando lo visitas. Sirve, por ejemplo, para recordar tus preferencias entre una visita y la siguiente, o para medir de forma agregada cómo se usa la web.</p>
+            <p>Junto a las cookies existen otras tecnologías que funcionan de manera equivalente y que la normativa trata igual: el <em>almacenamiento local</em> del navegador (<code>localStorage</code> y <code>sessionStorage</code>), los píxeles de seguimiento o las huellas digitales de dispositivo. En este documento, cuando hablamos de «cookies» nos referimos a todas ellas.</p>
+            <p class="legal__note">Este sitio no utiliza píxeles de seguimiento, huellas digitales de dispositivo ni publicidad comportamental. Lo que guardamos hoy en tu navegador se reduce a lo estrictamente necesario para que la web funcione y recuerde tus ajustes, y está detallado en el apartado 5.</p>
+          </div>
+
+          <div class="legal__block" id="c3">
+            <h2 class="subsection__title">3. Base legal y consentimiento</h2>
+            <p>El uso de cookies está regulado por el artículo 22.2 de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE) y, en lo que afecta a datos personales, por el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
+            <ul>
+              <li><strong>Cookies técnicas o necesarias:</strong> se instalan por interés legítimo, ya que son imprescindibles para prestar el servicio que has solicitado expresamente. No requieren tu consentimiento.</li>
+              <li><strong>El resto de cookies</strong> (analíticas, de personalización no esencial y de marketing) solo se instalan si nos das tu consentimiento previo, libre, específico, informado e inequívoco.</li>
+            </ul>
+            <p>Ese consentimiento se solicita mediante el aviso que aparece la primera vez que visitas la web. Hasta que decidas, no se activa ninguna cookie que no sea necesaria: <strong>seguir navegando, hacer scroll o cerrar el aviso no equivalen a aceptar</strong>. Rechazar es tan sencillo como aceptar, con un solo clic y desde el mismo aviso.</p>
+          </div>
+
+          <div class="legal__block" id="c4">
+            <h2 class="subsection__title">4. Tipos de cookies según su finalidad</h2>
+            <p>Las cookies pueden clasificarse de varias maneras. Estas son las categorías que empleamos en nuestro panel de preferencias:</p>
+            <ul>
+              <li><strong>Necesarias.</strong> Permiten que la web funcione y que se recuerden ajustes básicos como el tema claro u oscuro, el idioma o tu propia decisión sobre cookies. Sin ellas, el sitio no puede prestarse correctamente.</li>
+              <li><strong>Analíticas.</strong> Permiten medir de forma agregada y estadística qué páginas se visitan y cómo se navega, con el fin de mejorar los contenidos y el rendimiento. No se utilizan para identificarte.</li>
+              <li><strong>Marketing.</strong> Permiten medir la eficacia de campañas publicitarias y mostrar contenido relevante fuera de este sitio. Actualmente no utilizamos ninguna cookie de esta categoría.</li>
+            </ul>
+            <p>Además, atendiendo a otros criterios habituales, las cookies pueden ser <strong>propias</strong> (gestionadas por nosotros) o <strong>de terceros</strong> (gestionadas por otra entidad), y <strong>de sesión</strong> (se borran al cerrar el navegador) o <strong>persistentes</strong> (permanecen durante un plazo determinado).</p>
+          </div>
+
+          <div class="legal__block" id="c5">
+            <h2 class="subsection__title">5. Cookies que utiliza este sitio</h2>
+            <p>A día de hoy, este sitio web solo instala tecnologías propias de la categoría necesaria. Este es el detalle completo:</p>
+
+            <h3>5.1. Necesarias (no requieren consentimiento)</h3>
+            <div class="legal__table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Titular</th>
+                    <th scope="col">Finalidad</th>
+                    <th scope="col">Duración</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>apf_consent</code></td>
+                    <td>Cookie</td>
+                    <td>APF Tech (propia)</td>
+                    <td>Guarda tu decisión sobre las cookies y la fecha en que la tomaste, para no volver a preguntarte en cada página y poder acreditar el consentimiento.</td>
+                    <td>12 meses</td>
+                  </tr>
+                  <tr>
+                    <td><code>apf-consent</code></td>
+                    <td>Almacenamiento local</td>
+                    <td>APF Tech (propia)</td>
+                    <td>Copia de la decisión anterior en el navegador, para que tus preferencias se respeten aunque las cookies estén restringidas.</td>
+                    <td>12 meses</td>
+                  </tr>
+                  <tr>
+                    <td><code>apf-theme</code></td>
+                    <td>Almacenamiento local</td>
+                    <td>APF Tech (propia)</td>
+                    <td>Recuerda si prefieres el tema claro u oscuro y evita el destello de color al cargar la página.</td>
+                    <td>Persistente hasta que la borres</td>
+                  </tr>
+                  <tr>
+                    <td><code>apf-lang</code></td>
+                    <td>Almacenamiento local</td>
+                    <td>APF Tech (propia)</td>
+                    <td>Recuerda si has elegido ver el sitio en español o en inglés.</td>
+                    <td>Persistente hasta que la borres</td>
+                  </tr>
+                  <tr>
+                    <td><code>apf-lang-hint</code></td>
+                    <td>Almacenamiento local</td>
+                    <td>APF Tech (propia)</td>
+                    <td>Registra que ya se te ha mostrado una vez el aviso visual del selector de idioma, para no repetirlo.</td>
+                    <td>Persistente hasta que la borres</td>
+                  </tr>
+                  <tr>
+                    <td><code>__cf_bm</code>, <code>_cfuvid</code></td>
+                    <td>Cookie</td>
+                    <td>Cloudflare (proveedor de alojamiento)</td>
+                    <td>Cookies técnicas de seguridad que distinguen el tráfico humano del automatizado y protegen el sitio frente a bots y ataques. No se usan con fines publicitarios.</td>
+                    <td>Hasta 30 minutos / sesión</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>5.2. Analíticas y de marketing</h3>
+            <p>En este momento <strong>no utilizamos ninguna cookie analítica ni de marketing</strong>. Las categorías aparecen en el panel de preferencias porque están previstas: si en el futuro incorporamos alguna herramienta de medición, solo se activará después de que la aceptes expresamente, y esta tabla se actualizará con su nombre, titular, finalidad y duración antes de ponerla en marcha.</p>
+
+            <h3>5.3. Portal de cliente</h3>
+            <p>El área privada disponible en <code>/portal/</code> emplea almacenamiento técnico de sesión para mantener tu acceso identificado mientras la utilizas. Es estrictamente necesario para prestar el servicio y no se usa con fines analíticos ni publicitarios.</p>
+          </div>
+
+          <div class="legal__block" id="c6">
+            <h2 class="subsection__title">6. Cookies de terceros</h2>
+            <p>No cedemos el control de tu navegación a redes publicitarias ni a plataformas de seguimiento. Las únicas cookies de terceros presentes son las técnicas que instala <strong>Cloudflare</strong> como proveedor de alojamiento y de seguridad, descritas en el apartado anterior. Puedes consultar su tratamiento en la <a href="https://www.cloudflare.com/es-es/privacypolicy/" target="_blank" rel="noopener">política de privacidad de Cloudflare</a>.</p>
+            <p>Este sitio contiene enlaces a servicios externos, como nuestro perfil de Instagram. Al seguirlos, saldrás de nuestra web y pasarás a estar sujeto a las políticas de cookies y privacidad de esos terceros, sobre las que no tenemos control.</p>
+          </div>
+
+          <div class="legal__block" id="c7">
+            <h2 class="subsection__title">7. Cómo cambiar o retirar tu consentimiento</h2>
+            <p>Puedes revisar o modificar tu decisión en cualquier momento y con la misma facilidad con la que la tomaste. Basta con abrir el panel de preferencias desde el botón que encontrarás siempre en el pie de página, o desde aquí mismo:</p>
+            <div class="cookie-cta">
+              <p>Ajusta qué categorías de cookies permites en este dispositivo.</p>
+              <button class="btn btn--primary btn--sm" type="button" data-cc-open>Configurar cookies</button>
+            </div>
+            <p>Retirar el consentimiento no afecta a la licitud del tratamiento realizado antes de retirarlo. Cuando desactivas una categoría que antes estaba activa, la página se recarga para asegurar que las herramientas correspondientes dejan de ejecutarse de inmediato.</p>
+          </div>
+
+          <div class="legal__block" id="c8">
+            <h2 class="subsection__title">8. Cómo gestionarlas desde tu navegador</h2>
+            <p>Con independencia de nuestro panel, tu navegador te permite ver, bloquear y eliminar las cookies de cualquier sitio, así como configurar su comportamiento por defecto. Estas son las instrucciones oficiales de los navegadores más utilizados:</p>
+            <ul>
+              <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+              <li><a href="https://support.mozilla.org/es/kb/Borrar%20cookies" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+              <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+              <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+              <li><a href="https://help.opera.com/en/latest/web-preferences/" target="_blank" rel="noopener">Opera</a></li>
+            </ul>
+            <p>Ten en cuenta que si bloqueas todas las cookies y el almacenamiento local, algunas funciones dejarán de comportarse como esperas: el sitio no podrá recordar el tema, el idioma ni tu propia decisión sobre cookies, por lo que el aviso volverá a aparecer en cada visita.</p>
+          </div>
+
+          <div class="legal__block" id="c9">
+            <h2 class="subsection__title">9. Transferencias internacionales de datos</h2>
+            <p>Las cookies propias descritas en esta política se procesan en tu propio navegador y no implican transferencia de datos fuera del Espacio Económico Europeo.</p>
+            <p>Nuestro proveedor de alojamiento, Cloudflare, opera una red global de servidores, por lo que ciertos datos técnicos de conexión pueden tratarse fuera del EEE. Estas transferencias se amparan en las garantías previstas en el capítulo V del RGPD, en particular las cláusulas contractuales tipo aprobadas por la Comisión Europea.</p>
+          </div>
+
+          <div class="legal__block" id="c10">
+            <h2 class="subsection__title">10. Conservación y renovación del consentimiento</h2>
+            <p>Tu decisión se conserva durante un máximo de <strong>12 meses</strong>. Transcurrido ese plazo, el aviso volverá a mostrarse para que la confirmes o la cambies. También se te volverá a preguntar si modificamos las categorías de cookies o incorporamos finalidades nuevas.</p>
+            <p>Los datos asociados a cada categoría se conservan durante los plazos indicados en la tabla del apartado 5. Para el resto de tratamientos, consulta la <a href="politica-privacidad.html">política de privacidad</a>.</p>
+          </div>
+
+          <div class="legal__block" id="c11">
+            <h2 class="subsection__title">11. Actualizaciones de esta política</h2>
+            <p>Podemos actualizar esta política de cookies para adaptarla a cambios normativos, a nuevas funcionalidades del sitio o a criterios de las autoridades de control, como la Agencia Española de Protección de Datos. Te recomendamos revisarla periódicamente; la fecha de la última actualización figura al comienzo del documento.</p>
+          </div>
+
+          <div class="legal__block" id="c12">
+            <h2 class="subsection__title">12. Contacto</h2>
+            <p>Si tienes dudas sobre esta política o quieres ejercer tus derechos en materia de protección de datos, puedes escribirnos:</p>
+            <ul>
+              <li>Correo electrónico: <a href="mailto:apf@apftech.es">apf@apftech.es</a></li>
+              <li>Sitio web: <a href="https://apftech.es">apftech.es</a></li>
+            </ul>
+            <p>Asimismo, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>) si consideras que el tratamiento de tus datos no se ajusta a la normativa.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="index.html#inicio">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+              <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M12 7v10M7.5 9.5 12 12l4.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand__name">APF <span>Tech</span></span>
+        </a>
+        <p class="footer__tagline">Automatiza tu negocio con inteligencia artificial.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Soluciones">
+        <h3 class="footer__h">Soluciones</h3>
+        <a href="soluciones/asistente-llamadas-ia.html">Asistente de llamadas IA</a>
+        <a href="soluciones/sistemas-ecommerce.html">Sistemas e-commerce</a>
+        <a href="soluciones/fidelizacion-clientes.html">Fidelización de clientes</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Empresa">
+        <h3 class="footer__h">Empresa</h3>
+        <a href="index.html#nosotros">Sobre nosotros</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#prueba">Solicita información</a>
+      </nav>
+
+      <div class="footer__col">
+        <h3 class="footer__h">Contacto</h3>
+        <a href="mailto:apf@apftech.es">apf@apftech.es</a>
+        <a href="https://instagram.com/apf.technologies" target="_blank" rel="noopener">Instagram · @apf.technologies</a>
+        <span class="footer__loc">Miami, EE. UU. · Madrid, España</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© <span data-year>2025</span> APF Tech. Todos los derechos reservados.</span>
+        <span class="footer__legal"><a href="politica-privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="politica-cookies.html">Cookies</a> · <button type="button" data-cc-open>Configurar cookies</button></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20260811a" defer></script>
+  <script src="js/core.js?v=20260811a" defer></script>
+  <script src="js/cookies.js?v=20260811a" defer></script>
+</body>
+</html>
