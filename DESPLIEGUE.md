@@ -141,7 +141,7 @@ tuya. Lo mismo aplica a los `.md` internos de la auditoría.
 Cualquier cambio en `css/styles.css` o en `js/*` obliga a subir el `?v=` en las 18
 páginas. Mientras no se pase a nombres con hash, es el fallo más fácil de cometer.
 
-Token actual: `?v=20260811a` (subido al añadir el consentimiento de cookies).
+Token actual: `?v=20260812a` (subido al simplificar el banner de cookies a dos botones).
 
 ---
 

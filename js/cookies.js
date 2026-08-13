@@ -4,10 +4,12 @@
    Criterios que impone la guia de cookies de la AEPD y que aqui se cumplen:
      - Nada que no sea estrictamente necesario se activa antes de una accion
        afirmativa del visitante. Seguir navegando o hacer scroll NO es consentir.
-     - "Aceptar todas" y "Rechazar todas" estan al mismo nivel: mismo tamano,
-       misma jerarquia visual y ambas visibles sin abrir ningun submenu.
-     - Retirar el consentimiento es tan facil como darlo (enlace permanente en
-       el pie y en la pagina de politica de cookies).
+     - El banner ofrece dos opciones y solo dos: "Rechazar todas" y "Aceptar
+       todas", al mismo nivel —mismo tamano y misma jerarquia visual— y ambas
+       resueltas con un unico clic, sin submenus.
+     - El panel granular por categorias sigue existiendo, pero se abre desde el
+       pie y desde la politica de cookies, no desde el banner. Ahi es tambien
+       donde se retira el consentimiento, que debe ser tan facil como darlo.
      - Se guarda la fecha para poder acreditar el consentimiento y se vuelve a
        preguntar pasados 12 meses.
 
@@ -34,11 +36,10 @@
   var T = {
     es: {
       title: "Usamos cookies",
-      text: "Utilizamos cookies propias necesarias para que la web funcione y, con tu permiso, cookies analíticas y de marketing para entender cómo se usa el sitio y mejorarlo. Puedes aceptarlas, rechazarlas o elegir cuáles.",
+      text: "Utilizamos cookies propias necesarias para que la web funcione y, con tu permiso, cookies analíticas y de marketing para entender cómo se usa el sitio y mejorarlo. Puedes aceptarlas o rechazarlas; si las rechazas, solo se usan las necesarias.",
       more: "Política de cookies",
       accept: "Aceptar todas",
       reject: "Rechazar todas",
-      prefs: "Configurar",
       panel: "Preferencias de cookies",
       panelLead: "Activa o desactiva cada categoría. Las cookies necesarias no pueden desactivarse porque sin ellas la web no funciona.",
       save: "Guardar preferencias",
@@ -65,11 +66,10 @@
     },
     en: {
       title: "We use cookies",
-      text: "We use our own cookies that are necessary for the site to work and, with your permission, analytics and marketing cookies to understand how the site is used and improve it. You can accept them, reject them or choose which ones.",
+      text: "We use our own cookies that are necessary for the site to work and, with your permission, analytics and marketing cookies to understand how the site is used and improve it. You can accept or reject them; if you reject, only the necessary ones are used.",
       more: "Cookie policy",
       accept: "Accept all",
       reject: "Reject all",
-      prefs: "Customise",
       panel: "Cookie preferences",
       panelLead: "Turn each category on or off. Necessary cookies cannot be turned off because the site does not work without them.",
       save: "Save preferences",
@@ -206,7 +206,6 @@
             ' <a href="/politica-cookies.html">' + esc(d.more) + '</a>.</p>' +
         '</div>' +
         '<div class="cc__actions">' +
-          '<button type="button" class="cc__link" data-cc="prefs">' + esc(d.prefs) + '</button>' +
           '<button type="button" class="btn btn--sm cc__deny" data-cc="reject">' + esc(d.reject) + '</button>' +
           '<button type="button" class="btn btn--sm btn--primary" data-cc="accept">' + esc(d.accept) + '</button>' +
         '</div>' +
@@ -361,7 +360,6 @@
       case "accept": commit(all(true)); break;
       case "reject": commit(all(false)); break;
       case "save":   commit(draft); break;
-      case "prefs":  openPanel(); break;
       case "close":  closePanel(); break;
     }
   });
