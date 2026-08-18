@@ -13,6 +13,12 @@
 /portal/*
   X-Robots-Tag: noindex, nofollow
 
+# Código fuente de la landing de gimnasios (proyecto Next.js versionado en el
+# repo). El bloqueo efectivo está en functions/_middleware.js; esto es el
+# cinturón por si alguna vez se sirviera.
+/landing/*
+  X-Robots-Tag: noindex, nofollow
+
 # Documentos internos: no deben aparecer en buscadores aunque alguien dé con la
 # URL. El bloqueo efectivo está en _redirects.
 /AUDITORIA.md

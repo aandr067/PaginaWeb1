@@ -1,0 +1,416 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   TOKENS
+   Los valores de color vienen de los que ya usa apftech.es en producción.
+   Regla del sistema: el azul se parte en DOS ROLES por umbral de contraste,
+   no por gusto.
+     · brand-fill (#2563EB) — solo relleno. Con texto blanco da 5,17:1.
+     · brand-ink  (#3B82F6) — solo tinta. Sobre #07090E da 5,42:1.
+   #3B82F6 con texto blanco daría 3,68:1 y fallaría en cuerpo, así que nunca
+   es el fondo de la tarjeta de acento. No hay un tercer color de marca: el
+   secundario es un acero desaturado, no un hue que compita con el azul.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-base: #07090e;
+  --color-raised: #0e121a;
+  --color-raised-2: #131824;
+  --color-brand-fill: #2563eb;
+  --color-brand-fill-hover: #1d4ed8;
+  --color-brand-ink: #3b82f6;
+  --color-steel: #7c8da6;
+  /* Dos bordes con trabajos distintos:
+     · hairline (.08) — SEPARACIÓN. Tarjetas y filetes de sección. Es el valor
+       del brief y se respeta: separar no es señalizar.
+     · hairline-strong (.36) — CONTROLES. Campos, botones fantasma y casillas.
+       Por debajo de .36 el borde de un control no llega a 3:1 sobre estas
+       superficies (a .16 se queda en 1,78:1) y deja de verse dónde se pincha. */
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.36);
+  --color-hairline-hover: rgba(255, 255, 255, 0.55);
+  --color-ink-1: #ffffff;
+  --color-ink-2: rgba(255, 255, 255, 0.62);
+  /* El brief pedía .38 para el texto apagado y, a la vez, un mínimo de 4,5:1
+     verificado. Las dos cosas no caben: medido en el navegador, .38 da 3,57:1
+     sobre la tarjeta y 3,49:1 sobre el fondo. Gana el contraste — .48 sube a
+     4,99:1 en ambas superficies y mantiene el escalón frente a .62. */
+  --color-ink-3: rgba(255, 255, 255, 0.48);
+  --color-danger: #fca5a5;
+
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala tipográfica del brief: 72 / 48 / 32 / 24 / 18 / 16 / 13 */
+  --text-d1: 4.5rem;
+  --text-d1--line-height: 1.02;
+  --text-d2: 3rem;
+  --text-d2--line-height: 1.08;
+  --text-d3: 2rem;
+  --text-d3--line-height: 1.15;
+  --text-d4: 1.5rem;
+  --text-d4--line-height: 1.25;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-util: 0.8125rem;
+  --text-util--line-height: 1.4;
+
+  --radius-card: 28px;
+  --radius-field: 16px;
+
+  --container-page: 1280px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Alias con los nombres exactos que pide el brief. Una sola fuente de verdad:
+   estos apuntan a los tokens de arriba, no duplican valores. */
+:root {
+  --brand-primary: var(--color-brand-fill);
+  --brand-secondary: var(--color-steel);
+  --surface-base: var(--color-base);
+  --surface-raised: var(--color-raised);
+  --border-hairline: var(--color-hairline);
+  --text-primary: var(--color-ink-1);
+  --text-secondary: var(--color-ink-2);
+  --text-muted: var(--color-ink-3);
+  --nav-h: 72px;
+}
+
+/* ---------------------------------------------------------------------------
+   BASE
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 24px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Ningún elemento puede provocar scroll horizontal a 360 px. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* El foco de teclado es visible en todo el documento y nunca se elimina. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-brand-fill);
+    color: #fff;
+  }
+
+  /* Toda cifra del documento se alinea en columna. */
+  .tabular,
+  time,
+  td,
+  th {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   COMPONENTES
+--------------------------------------------------------------------------- */
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+  }
+
+  /* Tipografía de utilidad: etiquetas, encabezados de campo, cifras. */
+  .u-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-util);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Superficie elevada. Sin sombra: la separación es borde + cambio de fondo. */
+  .card {
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-card);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 999px;
+    padding: 0.875rem 1.5rem;
+    font-size: var(--text-body);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 160ms linear, border-color 160ms linear, color 160ms linear;
+  }
+
+  .btn-primary {
+    background-color: var(--color-brand-fill);
+    color: #fff;
+    border: 1px solid var(--color-brand-fill);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-brand-fill-hover);
+    border-color: var(--color-brand-fill-hover);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--color-hairline-strong);
+  }
+
+  .btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-hairline-hover);
+  }
+
+  /* Botón outline sobre la tarjeta de acento pleno. */
+  .btn-on-accent {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+  }
+
+  .btn-on-accent:hover {
+    background-color: #fff;
+    color: var(--color-brand-fill);
+    border-color: #fff;
+  }
+
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* Campos de formulario */
+  .field {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: var(--radius-field);
+    padding: 0.875rem 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    transition: border-color 160ms linear, background-color 160ms linear;
+  }
+
+  .field::placeholder {
+    color: var(--text-muted);
+  }
+
+  .field:hover {
+    border-color: var(--color-hairline-hover);
+  }
+
+  .field:focus {
+    border-color: var(--color-brand-ink);
+    background-color: rgba(255, 255, 255, 0.05);
+    outline: none;
+  }
+
+  .field:focus-visible {
+    outline: 2px solid var(--color-brand-ink);
+    outline-offset: 2px;
+  }
+
+  .field[aria-invalid='true'] {
+    border-color: var(--color-danger);
+  }
+
+  select.field {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-ink-2) 50%),
+      linear-gradient(135deg, var(--color-ink-2) 50%, transparent 50%);
+    background-position: right 1.15rem center, right 0.85rem center;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+  }
+
+  /* El desplegable nativo se pinta con los colores del SO: hay que forzarlos
+     o en Windows aparece texto blanco sobre fondo blanco. */
+  select.field option {
+    background-color: var(--color-raised-2);
+    color: var(--text-primary);
+  }
+
+  textarea.field {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+  }
+
+  .field-error {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-danger);
+    font-size: var(--text-util);
+    line-height: 1.5;
+  }
+
+  /* Casilla de servicio de interés */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: 999px;
+    padding: 0.625rem 1rem;
+    color: var(--text-secondary);
+    font-size: var(--text-body);
+    cursor: pointer;
+    transition: border-color 160ms linear, color 160ms linear, background-color 160ms linear;
+  }
+
+  .chip:hover {
+    border-color: var(--color-hairline-hover);
+    color: var(--text-primary);
+  }
+
+  .chip:has(input:checked) {
+    border-color: var(--color-brand-ink);
+    color: var(--text-primary);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  .chip:has(input:focus-visible) {
+    outline: 2px solid var(--color-brand-ink);
+    outline-offset: 3px;
+  }
+
+  .chip-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: 3px;
+    flex: none;
+    transition: background-color 160ms linear, border-color 160ms linear;
+  }
+
+  .chip:has(input:checked) .chip-box {
+    background-color: var(--color-brand-ink);
+    border-color: var(--color-brand-ink);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -120%);
+    z-index: 100;
+    background: var(--color-brand-fill);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 0 12px 12px;
+    transition: transform 160ms var(--ease-out);
+  }
+
+  .skip-link:focus {
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   MOVIMIENTO
+   Una única secuencia orquestada en el hero (fade + 12 px, escalonado 60 ms) y
+   revelados discretos al hacer scroll. Nada más.
+--------------------------------------------------------------------------- */
+@layer utilities {
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .stagger > * {
+    opacity: 0;
+    animation: rise 520ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  /* El estado oculto SOLO existe si JavaScript está vivo.
+     `.js` lo pone un script en línea en el <head>, antes del primer pintado.
+     Sin esta condición, un fallo de JS o un IntersectionObserver que no llega a
+     dispararse dejarían toda la página por debajo del pliegue en opacity 0 —
+     es decir, en blanco. El contenido es visible por defecto y el revelado es
+     una mejora progresiva, no un requisito. */
+  .reveal {
+    transition: opacity 520ms var(--ease-out), transform 520ms var(--ease-out);
+  }
+
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .js .reveal[data-in='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .stagger > * {
+    opacity: 1;
+  }
+
+  /* Tiene que ganar a `.js .reveal`, que es más específica. */
+  .js .reveal,
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

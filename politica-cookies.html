@@ -44,7 +44,7 @@
        movil (CPU x4, 4G, mediana de 5) el preload de la fuente empeoraba
        FCP 1296->1468 ms y TBT 279->795 ms al competir con la hoja de estilos. -->
 
-  <link rel="stylesheet" href="css/styles.css?v=20260812a" />
+  <link rel="stylesheet" href="css/styles.css?v=20260813a" />
 
   <style>
     /* Tipografía específica del documento legal, apoyada en .prose */
@@ -234,7 +234,7 @@
         <p class="eyebrow" style="margin-top:18px">Información legal</p>
         <h1 class="subhero__title">Política de cookies</h1>
         <p class="subhero__lead">Esta política explica qué cookies y tecnologías similares utiliza el sitio web de APF Tech, para qué sirve cada una, cuánto tiempo permanecen en tu dispositivo y cómo puedes aceptarlas, rechazarlas o cambiar tu decisión cuando quieras.</p>
-        <span class="legal__updated">Última actualización: 11 de agosto de 2026 · Versión 1.0</span>
+        <span class="legal__updated">Última actualización: 13 de agosto de 2026 · Versión 1.1</span>
       </div>
     </section>
 
@@ -278,7 +278,7 @@
             <h2 class="subsection__title">2. Qué son las cookies</h2>
             <p>Una cookie es un pequeño fichero de texto que un sitio web guarda en tu navegador cuando lo visitas. Sirve, por ejemplo, para recordar tus preferencias entre una visita y la siguiente, o para medir de forma agregada cómo se usa la web.</p>
             <p>Junto a las cookies existen otras tecnologías que funcionan de manera equivalente y que la normativa trata igual: el <em>almacenamiento local</em> del navegador (<code>localStorage</code> y <code>sessionStorage</code>), los píxeles de seguimiento o las huellas digitales de dispositivo. En este documento, cuando hablamos de «cookies» nos referimos a todas ellas.</p>
-            <p class="legal__note">Este sitio no utiliza píxeles de seguimiento, huellas digitales de dispositivo ni publicidad comportamental. Lo que guardamos hoy en tu navegador se reduce a lo estrictamente necesario para que la web funcione y recuerde tus ajustes, y está detallado en el apartado 5.</p>
+            <p class="legal__note">Este sitio no utiliza huellas digitales de dispositivo, publicidad comportamental ni píxeles de redes sociales. Usamos analítica para saber qué contenidos funcionan, y la parte de esa analítica que emplea cookies no se activa hasta que tú la aceptas. Todo lo que puede guardarse en tu navegador está detallado, una por una, en el apartado 5.</p>
           </div>
 
           <div class="legal__block" id="c3">
@@ -304,7 +304,7 @@
 
           <div class="legal__block" id="c5">
             <h2 class="subsection__title">5. Cookies que utiliza este sitio</h2>
-            <p>A día de hoy, este sitio web solo instala tecnologías propias de la categoría necesaria. Este es el detalle completo:</p>
+            <p>Este es el detalle completo de lo que puede guardarse en tu navegador. Solo las de la primera tabla se instalan sin preguntar; las demás requieren que las aceptes.</p>
 
             <h3>5.1. Necesarias (no requieren consentimiento)</h3>
             <div class="legal__table">
@@ -365,16 +365,56 @@
               </table>
             </div>
 
-            <h3>5.2. Analíticas y de marketing</h3>
-            <p>En este momento <strong>no utilizamos ninguna cookie analítica ni de marketing</strong>. Las categorías aparecen en el panel de preferencias porque están previstas: si en el futuro incorporamos alguna herramienta de medición, solo se activará después de que la aceptes expresamente, y esta tabla se actualizará con su nombre, titular, finalidad y duración antes de ponerla en marcha.</p>
+            <h3>5.2. Analíticas (solo si las aceptas)</h3>
+            <p>Estas cookies las instala Google Analytics 4 y <strong>no se descargan ni se ejecutan hasta que aceptas la categoría analítica</strong>. Si la rechazas, no se realiza ni una sola petición a Google; y si retiras el permiso más adelante, estas cookies se borran de tu navegador en ese mismo momento.</p>
+            <div class="legal__table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Titular</th>
+                    <th scope="col">Finalidad</th>
+                    <th scope="col">Duración</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>_ga</code></td>
+                    <td>Cookie</td>
+                    <td>Google Ireland Ltd. (tercero)</td>
+                    <td>Distingue a un visitante de otro mediante un identificador aleatorio, para poder contar visitantes únicos en lugar de visitas sueltas.</td>
+                    <td>2 años</td>
+                  </tr>
+                  <tr>
+                    <td><code>_ga_&lt;ID&gt;</code></td>
+                    <td>Cookie</td>
+                    <td>Google Ireland Ltd. (tercero)</td>
+                    <td>Mantiene el estado de la sesión para saber si una serie de páginas vistas pertenece a la misma visita.</td>
+                    <td>2 años</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>La medición está configurada con la IP anonimizada y con las señales publicitarias de Google desactivadas (<em>Consent Mode</em> con <code>ad_storage</code>, <code>ad_user_data</code> y <code>ad_personalization</code> denegados): los datos se usan para entender qué contenidos funcionan, no para perfilarte ni para mostrarte anuncios.</p>
 
-            <h3>5.3. Portal de cliente</h3>
+            <h3>5.3. Analítica sin cookies</h3>
+            <p>Además usamos <strong>Cloudflare Web Analytics</strong>, que mide las visitas de forma agregada <strong>sin instalar ninguna cookie</strong>, sin almacenar nada en tu navegador y sin crear un identificador que te siga entre sitios. Precisamente por eso no requiere consentimiento y funciona aunque rechaces todo lo demás. Puedes consultar su funcionamiento en la <a href="https://www.cloudflare.com/es-es/web-analytics/" target="_blank" rel="noopener">página de Cloudflare Web Analytics</a>.</p>
+
+            <h3>5.4. Marketing</h3>
+            <p>En este momento <strong>no utilizamos ninguna cookie de marketing</strong>. La categoría aparece en el panel de preferencias porque está prevista: si algún día incorporamos un píxel publicitario, solo se activará después de que lo aceptes expresamente, y este documento se actualizará con su nombre, titular, finalidad y duración antes de ponerlo en marcha.</p>
+
+            <h3>5.5. Portal de cliente</h3>
             <p>El área privada disponible en <code>/portal/</code> emplea almacenamiento técnico de sesión para mantener tu acceso identificado mientras la utilizas. Es estrictamente necesario para prestar el servicio y no se usa con fines analíticos ni publicitarios.</p>
           </div>
 
           <div class="legal__block" id="c6">
             <h2 class="subsection__title">6. Cookies de terceros</h2>
-            <p>No cedemos el control de tu navegación a redes publicitarias ni a plataformas de seguimiento. Las únicas cookies de terceros presentes son las técnicas que instala <strong>Cloudflare</strong> como proveedor de alojamiento y de seguridad, descritas en el apartado anterior. Puedes consultar su tratamiento en la <a href="https://www.cloudflare.com/es-es/privacypolicy/" target="_blank" rel="noopener">política de privacidad de Cloudflare</a>.</p>
+            <p>No cedemos el control de tu navegación a redes publicitarias ni a plataformas de seguimiento comportamental. Los únicos terceros con presencia en este sitio son:</p>
+            <ul>
+              <li><strong>Cloudflare</strong>, proveedor de alojamiento, seguridad y analítica sin cookies. Sus cookies técnicas están descritas en el apartado 5.1 y su analítica no instala ninguna. Consulta su <a href="https://www.cloudflare.com/es-es/privacypolicy/" target="_blank" rel="noopener">política de privacidad</a>.</li>
+              <li><strong>Google Ireland Ltd.</strong>, proveedor de Google Analytics 4, únicamente si aceptas la categoría analítica. Consulta cómo <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google usa los datos de los sitios que utilizan sus servicios</a>.</li>
+            </ul>
             <p>Este sitio contiene enlaces a servicios externos, como nuestro perfil de Instagram. Al seguirlos, saldrás de nuestra web y pasarás a estar sujeto a las políticas de cookies y privacidad de esos terceros, sobre las que no tenemos control.</p>
           </div>
 
@@ -405,6 +445,7 @@
             <h2 class="subsection__title">9. Transferencias internacionales de datos</h2>
             <p>Las cookies propias descritas en esta política se procesan en tu propio navegador y no implican transferencia de datos fuera del Espacio Económico Europeo.</p>
             <p>Nuestro proveedor de alojamiento, Cloudflare, opera una red global de servidores, por lo que ciertos datos técnicos de conexión pueden tratarse fuera del EEE. Estas transferencias se amparan en las garantías previstas en el capítulo V del RGPD, en particular las cláusulas contractuales tipo aprobadas por la Comisión Europea.</p>
+            <p>Si aceptas la categoría analítica, los datos de Google Analytics los trata <strong>Google Ireland Ltd.</strong> y pueden transferirse a Google LLC en Estados Unidos. Dicha transferencia se ampara en el <a href="https://commission.europa.eu/document/fa09cbad-dd7d-4684-ae60-be03fcb0fddf_en" target="_blank" rel="noopener">Marco de Privacidad de Datos UE-EE. UU.</a>, respecto del cual la Comisión Europea adoptó una decisión de adecuación el 10 de julio de 2023, y de forma complementaria en las cláusulas contractuales tipo. Si rechazas esta categoría, no se produce ninguna transferencia porque no se realiza ninguna petición a Google.</p>
           </div>
 
           <div class="legal__block" id="c10">
@@ -479,8 +520,9 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260812a" defer></script>
-  <script src="js/core.js?v=20260812a" defer></script>
-  <script src="js/cookies.js?v=20260812a" defer></script>
+  <script src="js/i18n.js?v=20260813a" defer></script>
+  <script src="js/core.js?v=20260813a" defer></script>
+  <script src="js/cookies.js?v=20260813a" defer></script>
+  <script src="js/analytics.js?v=20260813a" defer></script>
 </body>
 </html>

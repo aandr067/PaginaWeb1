@@ -161,3 +161,33 @@ es el documento legal al que apuntan. Dos cosas que conviene no olvidar:
 Si algún día cambian las categorías, sube `VERSION` en `js/cookies.js`: invalida los
 consentimientos guardados y vuelve a preguntar a todo el mundo, que es lo correcto
 cuando cambian las finalidades.
+
+---
+
+## 8. Analítica
+
+`js/analytics.js` carga dos herramientas con reglas distintas, y **los dos únicos
+valores que hay que tocar están arriba del todo del fichero**:
+
+| Constante | De dónde sale | Si está vacía |
+|---|---|---|
+| `CF_TOKEN` | Cloudflare › Analytics & Logs › Web Analytics › el sitio › *Manage site* | No se carga el beacon |
+| `GA_ID` | Google Analytics › Administrar › Flujos de datos › el flujo web (`G-XXXXXXXXXX`) | No se carga GA |
+
+Ninguno de los dos es un secreto: van en el HTML de cualquier sitio que use estas
+herramientas. Por eso viven en el repositorio y no en variables de entorno.
+
+**Cloudflare Web Analytics** no usa cookies, así que se carga siempre y mide al 100 %
+de los visitantes. Ojo con una cosa: si en vez de rellenar `CF_TOKEN` activas Web
+Analytics desde el proyecto de Pages, Cloudflare inyecta el beacon por su cuenta.
+Hacer las dos cosas duplica la medición — elige una.
+
+**Google Analytics 4** sí usa cookies, así que no se descarga ni se ejecuta hasta que
+el visitante acepta la categoría analítica; verificado en Chromium interceptando la
+red: cero peticiones a Google antes del consentimiento. Al retirarlo, `js/cookies.js`
+borra `_ga` y `_ga_*` y recarga.
+
+Si añades una herramienta más, hay tres sitios que actualizar a la vez o la política
+pasa a ser falsa: la tabla del apartado 5 de `politica-cookies.html`, la descripción
+de la categoría en `js/cookies.js` (el visitante tiene derecho a saber quién la
+opera) y la lista de destinatarios de `politica-privacidad.html`.

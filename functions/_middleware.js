@@ -11,7 +11,12 @@
  * rutas profundas del portal devolvían 404 real en vez de la aplicación.
  */
 
-const BLOQUEADOS_PREFIJO = ['/portal-cliente/'];
+// /landing/ es el código fuente del proyecto Next.js de la landing de gimnasios.
+// Se versiona en el repositorio, pero el despliegue publica la raíz ("publish =
+// ."), así que sin este bloqueo Cloudflare serviría los .tsx y el contenido de
+// content/site.ts tal cual a cualquiera que pidiese la ruta. La landing se
+// despliega por su cuenta (ver landing/README.md), no desde aquí.
+const BLOQUEADOS_PREFIJO = ['/portal-cliente/', '/landing/'];
 const BLOQUEADOS_EXACTOS = new Set([
   '/AUDITORIA.md',
   '/HALLAZGOS.md',

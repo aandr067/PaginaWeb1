@@ -55,7 +55,7 @@
         {
           id: "analytics",
           name: "Analíticas",
-          desc: "Nos permiten medir de forma agregada qué páginas se visitan y cómo se navega, para mejorar el contenido y la velocidad del sitio. Nunca se usan para identificarte personalmente."
+          desc: "Google Analytics 4. Nos permite medir de forma agregada qué páginas se visitan y cómo se navega, para mejorar el contenido y la velocidad del sitio. Va con la IP anonimizada y sin señales publicitarias: nunca se usa para identificarte ni para mostrarte anuncios."
         },
         {
           id: "marketing",
@@ -85,7 +85,7 @@
         {
           id: "analytics",
           name: "Analytics",
-          desc: "They let us measure in aggregate which pages are visited and how the site is browsed, so we can improve its content and speed. They are never used to identify you personally."
+          desc: "Google Analytics 4. It lets us measure in aggregate which pages are visited and how the site is browsed, so we can improve its content and speed. It runs with anonymised IP and no advertising signals: never used to identify you or to show you ads."
         },
         {
           id: "marketing",
@@ -160,11 +160,40 @@
     });
   }
 
+  /* Cookies que instala cada categoria. Al retirar un permiso hay que borrar
+     lo que ya se escribio: dejar de cargar el script no deshace nada, y un
+     "rechazar" que deja las cookies puestas no es un rechazo. */
+  var OWNED = {
+    analytics: ["_ga", "_gid", "_gat"],   /* Google Analytics 4 */
+    marketing: []                          /* hoy no se usa ninguna */
+  };
+
+  function forget(cat) {
+    var prefixes = OWNED[cat] || [];
+    if (!prefixes.length) return;
+
+    /* El borrado solo funciona si path y domain coinciden con los que uso al
+       escribirla, y no hay forma de leerlos desde JS. Se prueban las
+       combinaciones habituales; las que no existan no hacen nada. */
+    var host = location.hostname;
+    var domains = ["", host, "." + host, "." + host.split(".").slice(-2).join(".")];
+
+    document.cookie.split("; ").forEach(function (pair) {
+      var name = pair.split("=")[0];
+      var mine = prefixes.some(function (p) { return name.indexOf(p) === 0; });
+      if (!mine) return;
+      domains.forEach(function (d) {
+        document.cookie = name + "=; path=/; max-age=0" + (d ? "; domain=" + d : "");
+      });
+    });
+  }
+
   function commit(prefs) {
     /* Retirar un permiso ya concedido no basta con dejar de cargar el script:
-       el que ya se ejecuto sigue vivo en la pagina. Se recarga para que se
-       vaya de verdad. */
-    var revoked = CATS.some(function (c) { return state && state[c] && !prefs[c]; });
+       el que ya se ejecuto sigue vivo en la pagina. Se borran sus cookies y se
+       recarga para que se vaya de verdad. */
+    var revoked = CATS.filter(function (c) { return state && state[c] && !prefs[c]; });
+    revoked.forEach(forget);
 
     state = write(prefs);
     CATS.forEach(function (c) { draft[c] = !!state[c]; });
@@ -173,7 +202,7 @@
 
     hideBanner();
     closePanel();
-    if (revoked) location.reload();
+    if (revoked.length) location.reload();
   }
 
   /* ---- Markup ---- */
